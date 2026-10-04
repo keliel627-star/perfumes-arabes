@@ -269,25 +269,29 @@ function loadPerfumes() {
     }
   } else {
     perfumes = [...DEFAULT_PERFUMES];
-    savePerfumes();
-    fetchPerfumesFallback();
   }
+
+  // Sincronizar SIEMPRE con el catálogo oficial del servidor (perfumes.json)
+  syncWithServerCatalog();
 }
 
-async function fetchPerfumesFallback() {
+async function syncWithServerCatalog() {
   try {
     const res = await fetch(`perfumes.json?v=${Date.now()}`);
     if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        perfumes = data;
-        savePerfumes();
-        renderCatalog();
-        renderNewArrivalsCarousel();
+      const serverData = await res.json();
+      if (Array.isArray(serverData) && serverData.length > 0) {
+        const isAdmin = sessionStorage.getItem("alSultan_admin_auth") === "true";
+        if (!isAdmin) {
+          perfumes = serverData;
+          localStorage.setItem("alSultan_perfumes", JSON.stringify(serverData));
+          renderCatalog();
+          renderNewArrivalsCarousel();
+        }
       }
     }
   } catch (err) {
-    // Si falla o no está en servidor, DEFAULT_PERFUMES ya está asignado
+    // Modo offline o red lenta: continúa con la versión en memoria
   }
 }
 

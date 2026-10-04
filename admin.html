@@ -96,11 +96,17 @@
       </div>
 
       <!-- BOTONES DE ACCIÓN RÁPIDA -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Publicar en la Web Global -->
+        <button onclick="openPublishModal()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950 transition-all cursor-pointer" title="Hacer que tus cambios se vean en todos los ordenadores y móviles del mundo">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span class="hidden sm:inline">Publicar Global</span>
+        </button>
+
         <!-- Ver Tienda como Cliente -->
-        <a href="index.html" target="_blank" class="btn-gold-outline px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2" title="Abrir la tienda pública que ven los clientes">
+        <a href="index.html" target="_blank" class="btn-gold-outline px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2" title="Abrir la tienda pública que ven los clientes">
           <i class="fa-solid fa-arrow-up-right-from-square text-[#D4AF37]"></i>
-          <span class="hidden sm:inline">Ver Tienda (Clientes)</span>
+          <span class="hidden sm:inline">Ver Tienda</span>
         </a>
 
         <!-- Bloquear / Salir -->
@@ -530,22 +536,40 @@
             </form>
           </div>
 
-          <!-- Copia de Seguridad JSON -->
-          <div class="card-luxury p-6 sm:p-8">
-            <h3 class="font-cinzel text-lg font-bold text-white mb-2">Copia de Seguridad del Catálogo</h3>
-            <p class="text-xs text-gray-400 mb-4">Exporta o importa tus perfumes en un archivo por si deseas guardarlos o trasladarlos a otro dispositivo.</p>
+          <!-- Sincronización Global en la Web -->
+          <div class="card-luxury p-6 sm:p-8 border-2 border-emerald-500/40 bg-gradient-to-b from-dark-900 to-emerald-950/20">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-1">
+              <i class="fa-solid fa-globe"></i>
+              <span>Sincronización Global en la Web</span>
+            </div>
+            <h3 class="font-cinzel text-lg font-bold text-white mb-2">Publicar en Todos los Dispositivos</h3>
+            <p class="text-xs text-gray-300 mb-4 leading-relaxed">
+              Tus cambios se guardan en este navegador. Para que tus clientes los vean desde sus <b>móviles, tablets y otros ordenadores</b>, publica el catálogo en la nube de GitHub o copia el archivo para tu asistente.
+            </p>
 
-            <div class="flex flex-col sm:flex-row gap-3">
-              <button onclick="exportCatalogJson()" class="btn-gold-outline flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2">
-                <i class="fa-solid fa-download"></i>
-                <span>Descargar Copia JSON</span>
-              </button>
+            <div class="space-y-3">
+              <div class="flex flex-col sm:flex-row gap-2.5">
+                <button type="button" onclick="openPublishModal()" class="flex-1 py-3 px-4 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30 transition-all cursor-pointer">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <span>Publicar en GitHub (Global)</span>
+                </button>
+                <button type="button" onclick="copyCatalogJsonToClipboard()" class="flex-1 py-3 px-4 rounded-xl text-xs font-bold bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/40 text-purple-200 flex items-center justify-center gap-2 transition-all cursor-pointer">
+                  <i class="fa-solid fa-copy"></i>
+                  <span>Copiar JSON para Asistente</span>
+                </button>
+              </div>
 
-              <label class="btn-gold-outline flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-upload"></i>
-                <span>Restaurar Copia</span>
-                <input type="file" id="importJsonInput" accept=".json" onchange="importCatalogJson(event)" class="hidden" />
-              </label>
+              <div class="flex flex-col sm:flex-row gap-2.5 pt-2 border-t border-white/10">
+                <button type="button" onclick="downloadPerfumesJson()" class="btn-gold-outline flex-1 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5">
+                  <i class="fa-solid fa-file-arrow-down text-[#D4AF37]"></i>
+                  <span>Descargar perfumes.json</span>
+                </button>
+                <label class="btn-gold-outline flex-1 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                  <i class="fa-solid fa-upload text-[#D4AF37]"></i>
+                  <span>Restaurar Copia</span>
+                  <input type="file" id="importJsonInput" accept=".json" onchange="importCatalogJson(event)" class="hidden" />
+                </label>
+              </div>
             </div>
           </div>
 
@@ -699,6 +723,67 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL: PUBLICAR CAMBIOS GLOBALMENTE EN GITHUB
+       ==================================================================== -->
+  <div id="publishModal" class="fixed inset-0 modal-backdrop z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="card-luxury w-full max-w-lg p-6 sm:p-8 bg-dark-900 border border-emerald-500/60 relative my-8 shadow-2xl shadow-emerald-950/50">
+      
+      <button type="button" onclick="closePublishModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="mb-4">
+        <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>SINCRONIZACIÓN EN LA NUBE</span>
+        </span>
+        <h3 class="font-cinzel text-xl font-bold text-white mt-1">Publicar Cambios para Todo el Mundo</h3>
+        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+          Al publicar, tu catálogo se actualiza en el servidor central (GitHub). En unos 30 segundos, <b>cualquier cliente desde cualquier teléfono u ordenador</b> verá tus nuevos precios, fotos y productos.
+        </p>
+      </div>
+
+      <div class="space-y-4 my-4">
+        <div>
+          <label class="block text-gray-300 font-semibold text-xs mb-1">
+            Token de Acceso de GitHub (PAT)
+          </label>
+          <div class="relative">
+            <input type="password" id="githubTokenInput" placeholder="gho_... o ghp_..." 
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white font-mono text-xs focus:outline-none focus:border-emerald-500" 
+            />
+            <button type="button" onclick="toggleTokenVisibility()" class="absolute right-3 top-2.5 text-gray-400 hover:text-white text-xs">
+              <i class="fa-solid fa-eye" id="toggleTokenEye"></i>
+            </button>
+          </div>
+          <span class="text-[11px] text-gray-400 block mt-1">
+            Se almacena únicamente de forma privada en tu navegador.
+          </span>
+        </div>
+
+        <div id="publishStatusMsg" class="hidden text-xs p-3 rounded-xl transition-all"></div>
+
+        <button type="button" id="btnPublishGitHub" onclick="publishToGitHub()" class="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-emerald-950 transition-all cursor-pointer">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Publicar en GitHub Ahora</span>
+        </button>
+
+        <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+          <button type="button" onclick="copyCatalogJsonToClipboard()" class="text-xs text-purple-300 hover:text-purple-200 flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-copy"></i>
+            <span>Copiar JSON</span>
+          </button>
+          <button type="button" onclick="downloadPerfumesJson()" class="text-xs text-[#F9E79F] hover:text-white flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Descargar perfumes.json</span>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 

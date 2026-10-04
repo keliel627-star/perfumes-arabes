@@ -1072,6 +1072,168 @@ function importCatalogJson(e) {
 }
 
 // ==========================================================================
+// PUBLICACIÓN GLOBAL EN LA NUBE (GITHUB) Y EXPORTACIÓN
+// ==========================================================================
+function openPublishModal() {
+  const modal = document.getElementById("publishModal");
+  const input = document.getElementById("githubTokenInput");
+  const savedToken = localStorage.getItem("kelyscent_github_token") || "";
+  
+  if (input) input.value = savedToken;
+  const statusMsg = document.getElementById("publishStatusMsg");
+  if (statusMsg) statusMsg.classList.add("hidden");
+
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  }
+}
+
+function closePublishModal() {
+  const modal = document.getElementById("publishModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  }
+}
+
+function toggleTokenVisibility() {
+  const input = document.getElementById("githubTokenInput");
+  const eye = document.getElementById("toggleTokenEye");
+  if (!input) return;
+  if (input.type === "password") {
+    input.type = "text";
+    if (eye) eye.className = "fa-solid fa-eye-slash";
+  } else {
+    input.type = "password";
+    if (eye) eye.className = "fa-solid fa-eye";
+  }
+}
+
+function copyCatalogJsonToClipboard() {
+  const jsonStr = JSON.stringify(perfumes, null, 2);
+  const finishCopy = () => {
+    showToast("📋 Catálogo copiado al portapapeles. ¡Pégalo en el chat!");
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(jsonStr).then(finishCopy).catch(() => {
+      fallbackCopy(jsonStr);
+      finishCopy();
+    });
+  } else {
+    fallbackCopy(jsonStr);
+    finishCopy();
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand("copy");
+  document.body.removeChild(ta);
+}
+
+function downloadPerfumesJson() {
+  const jsonStr = JSON.stringify(perfumes, null, 2);
+  const blob = new Blob([jsonStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "perfumes.json";
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("📥 Descargando perfumes.json");
+}
+
+async function publishToGitHub() {
+  const tokenInput = document.getElementById("githubTokenInput");
+  const token = (tokenInput ? tokenInput.value.trim() : "") || localStorage.getItem("kelyscent_github_token");
+
+  if (!token) {
+    showToast("⚠️ Introduce tu Token de GitHub para publicar");
+    return;
+  }
+
+  localStorage.setItem("kelyscent_github_token", token);
+
+  const statusEl = document.getElementById("publishStatusMsg");
+  const btn = document.getElementById("btnPublishGitHub");
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Publicando en la nube...';
+  }
+  if (statusEl) {
+    statusEl.className = "text-xs text-amber-300 font-semibold bg-amber-950/40 p-3 rounded-xl border border-amber-500/40";
+    statusEl.classList.remove("hidden");
+    statusEl.textContent = "Conectando con GitHub y actualizando perfumes.json...";
+  }
+
+  try {
+    // 1. Obtener SHA actual del archivo en GitHub
+    const getRes = await fetch("https://api.github.com/repos/keliel627-star/perfumes-arabes/contents/perfumes.json", {
+      headers: {
+        "Authorization": `token ${token}`,
+        "Accept": "application/vnd.github.v3+json"
+      }
+    });
+
+    if (!getRes.ok) {
+      throw new Error(`Error ${getRes.status}: Token inválido o sin permisos en el repositorio.`);
+    }
+
+    const getData = await getRes.json();
+    const sha = getData.sha;
+
+    // 2. Codificar JSON en Base64 seguro para UTF-8 (soporta tildes y caracteres especiales)
+    const jsonString = JSON.stringify(perfumes, null, 2);
+    const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+    // 3. Enviar actualización a GitHub
+    const putRes = await fetch("https://api.github.com/repos/keliel627-star/perfumes-arabes/contents/perfumes.json", {
+      method: "PUT",
+      headers: {
+        "Authorization": `token ${token}`,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "Actualización de catálogo desde Panel de Administración (Kelyscent)",
+        content: contentBase64,
+        sha: sha
+      })
+    });
+
+    if (!putRes.ok) {
+      const errData = await putRes.json();
+      throw new Error(errData.message || "Error al subir cambios a GitHub");
+    }
+
+    if (statusEl) {
+      statusEl.className = "text-xs text-emerald-300 font-bold bg-emerald-950/50 p-3 rounded-xl border border-emerald-500/40";
+      statusEl.innerHTML = '🎉 <b>¡Publicado con éxito en GitHub!</b> GitHub Pages está desplegando la actualización. En unos 30 segundos estará visible en todos los teléfonos y ordenadores del mundo.';
+    }
+    showToast("🎉 ¡Catálogo publicado globalmente en GitHub!");
+  } catch (err) {
+    console.error("Error al publicar:", err);
+    if (statusEl) {
+      statusEl.className = "text-xs text-red-300 font-semibold bg-red-950/50 p-3 rounded-xl border border-red-500/40";
+      statusEl.classList.remove("hidden");
+      statusEl.textContent = "❌ " + err.message;
+    }
+    showToast("⚠️ " + err.message);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Publicar en GitHub Ahora';
+    }
+  }
+}
+
+// ==========================================================================
 // TABS Y NAVEGACIÓN
 // ==========================================================================
 function switchTab(tabId) {
