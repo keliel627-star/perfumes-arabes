@@ -242,8 +242,21 @@ function lockAdmin() {
   showToast("🔒 Panel bloqueado con seguridad");
 }
 
+// Canal de sincronización en tiempo real entre pestañas
+const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('kelyscent_sync') : null;
+
+function broadcastSync(type) {
+  if (syncChannel) {
+    try {
+      syncChannel.postMessage({ type, timestamp: Date.now() });
+    } catch (e) {
+      console.warn("Error en broadcastSync:", e);
+    }
+  }
+}
+
 // ==========================================================================
-// CARGA Y GUARDADO DE DATOS (LOCALSTORAGE)
+// CARGA Y GUARDADO DE DATOS (LOCALSTORAGE & SYNC)
 // ==========================================================================
 function loadData() {
   // Configuración
@@ -285,15 +298,33 @@ function loadData() {
 }
 
 function savePerfumes() {
-  localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
+  try {
+    localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
+    broadcastSync("perfumes");
+  } catch (e) {
+    console.error("Error guardando perfumes:", e);
+    if (e.name === "QuotaExceededError") {
+      showToast("⚠️ Memoria de imágenes llena en navegador. Usa fotos más ligeras o URLs.");
+    }
+  }
 }
 
 function saveSettings() {
-  localStorage.setItem("alSultan_settings", JSON.stringify(settings));
+  try {
+    localStorage.setItem("alSultan_settings", JSON.stringify(settings));
+    broadcastSync("settings");
+  } catch (e) {
+    console.error("Error guardando configuración:", e);
+  }
 }
 
 function saveOrders() {
-  localStorage.setItem("alSultan_orders", JSON.stringify(orders));
+  try {
+    localStorage.setItem("alSultan_orders", JSON.stringify(orders));
+    broadcastSync("orders");
+  } catch (e) {
+    console.error("Error guardando pedidos:", e);
+  }
 }
 
 // ==========================================================================
@@ -380,29 +411,35 @@ function renderPricingTable() {
         </span>
       </td>
 
-      <!-- PRECIO DE VENTA (EDITABLE RÁPIDO) -->
+      <!-- PRECIO DE VENTA (EDITABLE RÁPIDO Y AUTO-GUARDADO) -->
       <td class="p-3.5 text-center">
         <div class="inline-flex items-center gap-1.5">
           <input type="number" step="0.01" id="price_${item.id}" value="${item.price}" 
+            onchange="saveQuickPrice('${item.id}')"
+            onblur="saveQuickPrice('${item.id}')"
             class="w-20 bg-black/80 border border-emerald-500/40 rounded-lg px-2 py-1.5 text-center font-bold text-emerald-400 text-xs focus:outline-none focus:border-emerald-400" 
           />
           <span class="text-gray-400 text-xs font-bold">${settings.currency}</span>
         </div>
       </td>
 
-      <!-- PRECIO TACHADO / OFERTA (EDITABLE RÁPIDO) -->
+      <!-- PRECIO TACHADO / OFERTA (EDITABLE RÁPIDO Y AUTO-GUARDADO) -->
       <td class="p-3.5 text-center">
         <div class="inline-flex items-center gap-1.5">
           <input type="number" step="0.01" id="oldPrice_${item.id}" value="${item.oldPrice || ''}" placeholder="Sin oferta" 
+            onchange="saveQuickPrice('${item.id}')"
+            onblur="saveQuickPrice('${item.id}')"
             class="w-20 bg-black/80 border border-white/10 rounded-lg px-2 py-1.5 text-center text-gray-400 text-xs focus:outline-none focus:border-[#D4AF37]" 
           />
           <span class="text-gray-500 text-xs">${settings.currency}</span>
         </div>
       </td>
 
-      <!-- ETIQUETA / BADGE -->
+      <!-- ETIQUETA / BADGE (AUTO-GUARDADO) -->
       <td class="p-3.5 text-center">
         <input type="text" id="badge_${item.id}" value="${item.badge || ''}" placeholder="Ej: Bestseller" 
+          onchange="saveQuickPrice('${item.id}')"
+          onblur="saveQuickPrice('${item.id}')"
           class="w-24 bg-black/80 border border-white/10 rounded-lg px-2 py-1.5 text-center text-xs text-[#F9E79F] focus:outline-none focus:border-[#D4AF37]" 
         />
       </td>
@@ -418,8 +455,8 @@ function renderPricingTable() {
       <!-- BOTONES DE ACCIÓN -->
       <td class="p-3.5 text-right">
         <div class="flex items-center justify-end gap-1.5">
-          <!-- Botón Guardar Precio Rápido -->
-          <button onclick="saveQuickPrice('${item.id}')" class="btn-gold px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" title="Guardar cambios de precio y etiqueta">
+          <!-- Botón Guardar Manual -->
+          <button onclick="saveQuickPrice('${item.id}', true)" class="btn-gold px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" title="Guardar cambios">
             <i class="fa-solid fa-floppy-disk"></i>
             <span class="hidden xl:inline">Guardar</span>
           </button>
@@ -439,7 +476,7 @@ function renderPricingTable() {
   `).join("");
 }
 
-function saveQuickPrice(id) {
+function saveQuickPrice(id, notify = true) {
   const item = perfumes.find(p => p.id === id);
   if (!item) return;
 
@@ -449,12 +486,17 @@ function saveQuickPrice(id) {
 
   const newPrice = parseFloat(priceInput?.value);
   if (isNaN(newPrice) || newPrice <= 0) {
-    showToast("⚠️ Introduce un precio de venta válido");
+    if (notify) showToast("⚠️ Introduce un precio de venta válido");
     return;
   }
 
   const newOldPrice = oldPriceInput?.value ? parseFloat(oldPriceInput.value) : null;
   const newBadge = badgeInput?.value.trim() || "";
+
+  // Si no ha cambiado nada, no guardar innecesariamente
+  if (item.price === newPrice && item.oldPrice === newOldPrice && item.badge === newBadge) {
+    return;
+  }
 
   item.price = newPrice;
   item.oldPrice = newOldPrice;
@@ -462,7 +504,9 @@ function saveQuickPrice(id) {
 
   savePerfumes();
   updateKpis();
-  showToast(`✅ Precio de "${item.name}" actualizado a ${newPrice.toFixed(2)}${settings.currency}`);
+  if (notify) {
+    showToast(`✅ "${item.name}" guardado a ${newPrice.toFixed(2)}${settings.currency}`);
+  }
 }
 
 function toggleStock(id) {

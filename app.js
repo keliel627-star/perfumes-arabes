@@ -191,6 +191,23 @@ let currentSearch = "";
 let currentSort = "featured";
 let appliedDiscount = 0; // valor en porcentaje (ej. 0.10)
 
+// Canal de sincronización en tiempo real entre pestañas (Admin <-> Tienda Clientes)
+const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('kelyscent_sync') : null;
+
+if (syncChannel) {
+  syncChannel.onmessage = (event) => {
+    if (event.data?.type === 'perfumes') {
+      loadPerfumes();
+      renderCatalog();
+      renderNewArrivalsCarousel();
+    } else if (event.data?.type === 'settings') {
+      loadSettings();
+      updateContactLinks();
+      updateCartUI();
+    }
+  };
+}
+
 // ==========================================================================
 // INICIALIZACIÓN Y PERSISTENCIA (LOCALSTORAGE)
 // ==========================================================================
@@ -253,6 +270,24 @@ function loadPerfumes() {
   } else {
     perfumes = [...DEFAULT_PERFUMES];
     savePerfumes();
+    fetchPerfumesFallback();
+  }
+}
+
+async function fetchPerfumesFallback() {
+  try {
+    const res = await fetch(`perfumes.json?v=${Date.now()}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        perfumes = data;
+        savePerfumes();
+        renderCatalog();
+        renderNewArrivalsCarousel();
+      }
+    }
+  } catch (err) {
+    // Si falla o no está en servidor, DEFAULT_PERFUMES ya está asignado
   }
 }
 
@@ -914,6 +949,25 @@ function setupEventListeners() {
       loadSettings();
       updateContactLinks();
       updateCartUI();
+    }
+  });
+
+  // Re-sincronizar inmediatamente al volver a enfocar la pestaña de la tienda
+  window.addEventListener("focus", () => {
+    loadPerfumes();
+    loadSettings();
+    renderCatalog();
+    renderNewArrivalsCarousel();
+    updateContactLinks();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      loadPerfumes();
+      loadSettings();
+      renderCatalog();
+      renderNewArrivalsCarousel();
+      updateContactLinks();
     }
   });
 }
