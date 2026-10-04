@@ -200,6 +200,18 @@ function initApp() {
   loadCart();
   loadOrders();
 
+  // Detectar término de búsqueda si el cliente viene desde la página 404
+  const pendingQuery = sessionStorage.getItem("kelyscent_search_query") || sessionStorage.getItem("alsultan_search_query");
+  if (pendingQuery) {
+    sessionStorage.removeItem("kelyscent_search_query");
+    sessionStorage.removeItem("alsultan_search_query");
+    currentSearch = pendingQuery;
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      searchInput.value = pendingQuery;
+    }
+  }
+
   renderCatalog();
   renderNewArrivalsCarousel();
   updateCartUI();
