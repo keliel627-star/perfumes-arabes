@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración | AL-SULTAN PARFUMS</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#FDE68A',
+              400: '#F9E79F',
+              500: '#D4AF37',
+              600: '#AA820A',
+              700: '#856404',
+            },
+            dark: {
+              950: '#060608',
+              900: '#0B0B0E',
+              800: '#121217',
+              700: '#181822',
+              600: '#232233'
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Estilos base compartidos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-dark-950 text-gray-200 antialiased min-h-screen flex flex-col">
+
+  <!-- ====================================================================
+       1. PANTALLA DE ACCESO CON PIN DE SEGURIDAD
+       ==================================================================== -->
+  <div id="pinScreen" class="fixed inset-0 bg-dark-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+    <div class="card-luxury w-full max-w-sm p-8 text-center border-[#D4AF37]/50 shadow-2xl relative">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-amber-900 mx-auto mb-4 flex items-center justify-center shadow-lg shadow-gold/20">
+        <i class="fa-solid fa-lock text-dark-950 text-2xl"></i>
+      </div>
+      <h2 class="font-cinzel text-xl font-bold text-white mb-1">Panel de Propietario</h2>
+      <p class="text-xs text-gray-400 mb-6">Introduce tu código PIN de seguridad para acceder a la gestión de precios y pedidos.</p>
+
+      <form onsubmit="handlePinSubmit(event)" class="space-y-4">
+        <div>
+          <input type="password" id="pinInput" maxlength="6" autofocus placeholder="PIN (por defecto: 1234)" 
+            class="w-full text-center tracking-[0.5em] text-2xl font-bold bg-black/60 border border-[#D4AF37]/40 rounded-xl py-3 text-white focus:outline-none focus:border-[#D4AF37]" 
+          />
+          <span class="text-[11px] text-gray-500 mt-1 block">PIN inicial: <strong>1234</strong> (lo puedes cambiar en Ajustes)</span>
+        </div>
+        <button type="submit" class="btn-gold w-full py-3 rounded-xl font-bold text-xs uppercase tracking-wider">
+          Desbloquear Panel
+        </button>
+      </form>
+      <div id="pinError" class="text-xs text-red-400 mt-3 font-semibold hidden">
+        ⚠️ PIN incorrecto. Inténtalo de nuevo.
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       2. HEADER DEL PANEL DE ADMINISTRACIÓN
+       ==================================================================== -->
+  <header class="bg-dark-900 border-b border-[#D4AF37]/30 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between gap-4">
+      
+      <!-- LOGO & TITULO -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] to-amber-900 flex items-center justify-center shadow-md">
+          <i class="fa-solid fa-crown text-dark-950 text-lg"></i>
+        </div>
+        <div>
+          <span class="font-cinzel text-lg font-black text-gold-gradient tracking-wide block leading-none">
+            AL-SULTAN ADMIN
+          </span>
+          <span class="text-[10px] text-gray-400 font-medium tracking-widest uppercase block mt-0.5">
+            Gestor de Precios, Catálogo & Pedidos
+          </span>
+        </div>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN RÁPIDA -->
+      <div class="flex items-center gap-3">
+        <!-- Ver Tienda como Cliente -->
+        <a href="index.html" target="_blank" class="btn-gold-outline px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2" title="Abrir la tienda pública que ven los clientes">
+          <i class="fa-solid fa-arrow-up-right-from-square text-[#D4AF37]"></i>
+          <span class="hidden sm:inline">Ver Tienda (Clientes)</span>
+        </a>
+
+        <!-- Bloquear / Salir -->
+        <button onclick="lockAdmin()" class="bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-500/30 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Bloquear panel">
+          <i class="fa-solid fa-lock text-xs"></i>
+          <span class="hidden sm:inline">Bloquear</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       3. CONTENIDO PRINCIPAL DEL DASHBOARD
+       ==================================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- TARJETAS DE MÉTRICAS (KPIS) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <div class="card-luxury p-4 sm:p-5">
+        <div class="flex items-center justify-between text-gray-400 text-xs mb-2">
+          <span>Total Perfumes</span>
+          <i class="fa-solid fa-bottle-droplet text-[#D4AF37] text-base"></i>
+        </div>
+        <div id="kpiTotalPerfumes" class="font-cinzel text-2xl sm:text-3xl font-bold text-white">0</div>
+        <div class="text-[11px] text-gray-500 mt-1">En catálogo activo</div>
+      </div>
+
+      <div class="card-luxury p-4 sm:p-5">
+        <div class="flex items-center justify-between text-gray-400 text-xs mb-2">
+          <span>Pedidos Recibidos</span>
+          <i class="fa-solid fa-receipt text-emerald-400 text-base"></i>
+        </div>
+        <div id="kpiTotalOrders" class="font-cinzel text-2xl sm:text-3xl font-bold text-white">0</div>
+        <div class="text-[11px] text-gray-500 mt-1">Registrados en la web</div>
+      </div>
+
+      <div class="card-luxury p-4 sm:p-5">
+        <div class="flex items-center justify-between text-gray-400 text-xs mb-2">
+          <span>Importe Pedidos</span>
+          <i class="fa-solid fa-coins text-gold-400 text-base"></i>
+        </div>
+        <div id="kpiTotalRevenue" class="font-cinzel text-2xl sm:text-3xl font-bold text-[#F9E79F]">0.00€</div>
+        <div class="text-[11px] text-gray-500 mt-1">Volumen de ventas</div>
+      </div>
+
+      <div class="card-luxury p-4 sm:p-5">
+        <div class="flex items-center justify-between text-gray-400 text-xs mb-2">
+          <span>Novedades Activas</span>
+          <i class="fa-solid fa-sparkles text-emerald-400 text-base"></i>
+        </div>
+        <div id="kpiTotalNew" class="font-cinzel text-2xl sm:text-3xl font-bold text-emerald-400">0</div>
+        <div class="text-[11px] text-gray-500 mt-1">Con etiqueta ✨ Novedad</div>
+      </div>
+
+    </div>
+
+    <!-- PESTAÑAS DE GESTIÓN -->
+    <div class="bg-dark-900 rounded-2xl border border-white/10 p-2 flex flex-wrap gap-2 text-xs font-bold">
+      <button id="tabBtn-pricing" onclick="switchTab('pricing')" class="tab-button active px-5 py-3 rounded-xl bg-[#D4AF37] text-dark-950 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-tag"></i>
+        <span>Gestión de Precios & Catálogo</span>
+      </button>
+
+      <button id="tabBtn-add" onclick="switchTab('add')" class="tab-button px-5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-plus-circle"></i>
+        <span>Añadir Nuevo Perfume</span>
+      </button>
+
+      <button id="tabBtn-orders" onclick="switchTab('orders')" class="tab-button px-5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <span>Pedidos de Clientes</span>
+        <span id="ordersTabBadge" class="bg-emerald-600 text-white text-[10px] px-1.5 py-0.2 rounded-full hidden">0</span>
+      </button>
+
+      <button id="tabBtn-settings" onclick="switchTab('settings')" class="tab-button px-5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Configuración de Tienda</span>
+      </button>
+    </div>
+
+    <!-- ==================================================================
+         SECCIÓN 1: GESTIÓN DE PRECIOS & CATÁLOGO (TABLA RÁPIDA)
+         ================================================================== -->
+    <section id="tabContent-pricing" class="tab-panel space-y-4">
+      
+      <!-- Controles Superiores: Búsqueda y Botón Restaurar -->
+      <div class="card-luxury p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="relative w-full sm:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+          <input type="text" id="adminSearchInput" oninput="renderPricingTable()" placeholder="Buscar perfume o marca..." 
+            class="w-full bg-black/50 border border-white/10 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37]" 
+          />
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          <select id="adminCategoryFilter" onchange="renderPricingTable()" class="bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#D4AF37]">
+            <option value="Todos">Todas las categorías</option>
+            <option value="Hombre">Para Él</option>
+            <option value="Mujer">Para Ella</option>
+            <option value="Unisex">Unisex</option>
+            <option value="Aceites">Aceites CPO</option>
+          </select>
+
+          <button onclick="resetToDefaults()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1.5 px-3 py-2 bg-amber-950/30 rounded-xl border border-amber-600/30 transition-colors">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Restablecer Iniciales</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabla de Precios -->
+      <div class="card-luxury overflow-hidden">
+        <div class="p-4 border-b border-white/10 flex items-center justify-between">
+          <h3 class="font-cinzel text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-table-cells text-[#D4AF37]"></i>
+            <span>Lista de Perfumes & Edición Rápida de Precios</span>
+          </h3>
+          <span class="text-xs text-gray-400">Modifica el precio y pulsa <strong>Guardar</strong> para aplicar en la tienda</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-gray-300">
+            <thead class="bg-black/70 text-[#D4AF37] uppercase text-[10px] tracking-wider border-b border-white/10">
+              <tr>
+                <th class="p-3.5">Perfume</th>
+                <th class="p-3.5">Categoría</th>
+                <th class="p-3.5 text-center">Precio Venta (€)</th>
+                <th class="p-3.5 text-center">Precio Tachado (€)</th>
+                <th class="p-3.5 text-center">Etiqueta</th>
+                <th class="p-3.5 text-center">Stock</th>
+                <th class="p-3.5 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="pricingTableBody" class="divide-y divide-white/5">
+              <!-- Renderizado por JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================================
+         SECCIÓN 2: AÑADIR NUEVO PERFUME AL CATÁLOGO
+         ================================================================== -->
+    <section id="tabContent-add" class="tab-panel hidden space-y-4">
+      
+      <div class="card-luxury p-6 sm:p-8 max-w-4xl mx-auto">
+        <div class="mb-6 border-b border-white/10 pb-4">
+          <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold">NUEVA INCORPORACIÓN</span>
+          <h3 class="font-cinzel text-2xl font-bold text-white mt-1">Añadir Nuevo Perfume a la Tienda</h3>
+          <p class="text-xs text-gray-400">Rellena la ficha y aparecerá de inmediato disponible para compra en la web de clientes.</p>
+        </div>
+
+        <form onsubmit="handleAddNewPerfume(event)" class="space-y-5 text-xs">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Nombre del Perfume *</label>
+              <input type="text" id="addName" required placeholder="Ej: Velvet Rose & Oud" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Marca / Casa *</label>
+              <input type="text" id="addBrand" required placeholder="Ej: Lattafa, Maison Alhambra, Afnan..." 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Volumen & Concentración</label>
+              <input type="text" id="addVolume" placeholder="100ml - Eau de Parfum" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Precio de Venta (€) *</label>
+              <input type="number" step="0.01" id="addPrice" required placeholder="42.50" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white font-bold text-emerald-400 focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Precio Anterior / Oferta (€)</label>
+              <input type="number" step="0.01" id="addOldPrice" placeholder="55.00 (Opcional)" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Categoría</label>
+              <select id="addCategory" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]">
+                <option value="Unisex">Unisex</option>
+                <option value="Hombre">Para Él (Hombre)</option>
+                <option value="Mujer">Para Ella (Mujer)</option>
+                <option value="Aceites">Aceite CPO / Attar</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Familia Olfativa</label>
+              <select id="addFamily" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]">
+                <option value="Amaderado">Amaderado / Oud</option>
+                <option value="Gourmand">Gourmand / Vainilla / Café</option>
+                <option value="Dulce">Dulce / Ámbar</option>
+                <option value="Floral">Floral / Jazmín / Rosa</option>
+                <option value="Cítrico">Cítrico / Ahumado</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Etiqueta Destacada (Badge)</label>
+            <input type="text" id="addBadge" placeholder="✨ Novedad, Bestseller, Edición Limitada, Viral TikTok..." 
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+            />
+          </div>
+
+          <!-- Selector de Imagen de Alta Calidad -->
+          <div class="bg-black/40 p-4 rounded-xl border border-white/10 space-y-3">
+            <label class="block text-gray-300 font-semibold">Seleccionar Imagen del Perfume:</label>
+            <p class="text-[11px] text-gray-400">Elige un frasco de alta gama o introduce el enlace directo de una foto:</p>
+            
+            <div id="adminImagePresets" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <!-- Presets inyectados por JS -->
+            </div>
+
+            <div class="pt-2">
+              <label class="block text-gray-400 text-[11px] mb-1">O escribe la URL de tu imagen personalizada:</label>
+              <input type="url" id="addImageUrl" placeholder="https://..." 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+              <img id="addImagePreview" src="" alt="Vista previa" class="w-20 h-24 object-cover rounded-lg mt-2 hidden border border-[#D4AF37]" />
+            </div>
+          </div>
+
+          <!-- Pirámide Olfativa -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Notas de Salida (Primer impacto)</label>
+              <input type="text" id="addTopNotes" placeholder="Ej: Canela, cardamomo, bergamota" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Notas de Corazón (Cuerpo del aroma)</label>
+              <input type="text" id="addHeartNotes" placeholder="Ej: Rosa oriental, praliné, madera de agar" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Notas de Fondo (Fijación en piel)</label>
+              <input type="text" id="addBaseNotes" placeholder="Ej: Vainilla de Madagascar, ámbar, benjuí" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-[#D4AF37]" 
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Descripción del Perfume</label>
+            <textarea id="addDescription" rows="3" placeholder="Describe sensaciones, estela, ocasiones recomendadas de uso y duración..." 
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-gold w-full py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+            <i class="fa-solid fa-plus-circle text-base"></i>
+            <span>Publicar Perfume en la Tienda de Clientes</span>
+          </button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- ==================================================================
+         SECCIÓN 3: PEDIDOS DE CLIENTES RECIBIDOS
+         ================================================================== -->
+    <section id="tabContent-orders" class="tab-panel hidden space-y-4">
+      
+      <div class="card-luxury p-4 flex items-center justify-between">
+        <div>
+          <h3 class="font-cinzel text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-clipboard-list text-emerald-400"></i>
+            <span>Bandeja de Pedidos de Clientes</span>
+          </h3>
+          <p class="text-xs text-gray-400">Pedidos que los clientes han completado en la web.</p>
+        </div>
+        <button onclick="clearCompletedOrders()" class="text-xs text-gray-400 hover:text-red-400 transition-colors">
+          Limpiar pedidos completados
+        </button>
+      </div>
+
+      <div id="ordersContainer" class="space-y-4">
+        <!-- Inyectado por JS -->
+      </div>
+
+    </section>
+
+    <!-- ==================================================================
+         SECCIÓN 4: CONFIGURACIÓN GENERAL DE TIENDA & CONTACTO
+         ================================================================== -->
+    <section id="tabContent-settings" class="tab-panel hidden space-y-4">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Formulario de Configuración -->
+        <div class="card-luxury p-6 sm:p-8">
+          <h3 class="font-cinzel text-lg font-bold text-white mb-2">Datos de Contacto y Tienda</h3>
+          <p class="text-xs text-gray-400 mb-6">Estos datos se sincronizan con la web de los clientes para llamadas, WhatsApp y correos.</p>
+
+          <form onsubmit="handleSaveStoreSettings(event)" class="space-y-4 text-xs">
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Nombre Comercial de la Tienda</label>
+              <input type="text" id="setStoreName" class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white" />
+            </div>
+
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Teléfono / WhatsApp para recibir Pedidos</label>
+              <input type="text" id="setPhone" placeholder="34612345678 (Con prefijo internacional, sin espacios)" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white font-mono" 
+              />
+              <span class="text-[11px] text-gray-400 block mt-1">Aquí es donde los clientes te enviarán el mensaje con su pedido en 1 clic.</span>
+            </div>
+
+            <div>
+              <label class="block text-gray-300 font-semibold mb-1">Correo Electrónico de la Tienda</label>
+              <input type="email" id="setEmail" class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-gray-300 font-semibold mb-1">Envío Gratis a partir de (€)</label>
+                <input type="number" id="setFreeShipping" step="1" class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white" />
+              </div>
+              <div>
+                <label class="block text-gray-300 font-semibold mb-1">Coste Envío Estándar (€)</label>
+                <input type="number" id="setShippingCost" step="0.05" class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-gold w-full py-3 rounded-xl font-bold text-xs uppercase tracking-wider">
+              Guardar Configuración
+            </button>
+          </form>
+        </div>
+
+        <!-- Seguridad y Copias de Seguridad -->
+        <div class="space-y-6">
+          
+          <!-- Cambiar PIN -->
+          <div class="card-luxury p-6 sm:p-8">
+            <h3 class="font-cinzel text-lg font-bold text-white mb-2">Seguridad de Acceso</h3>
+            <p class="text-xs text-gray-400 mb-4">Cambia el PIN de acceso a este panel de administración.</p>
+
+            <form onsubmit="handleChangePin(event)" class="space-y-3 text-xs">
+              <div>
+                <label class="block text-gray-300 font-semibold mb-1">Nuevo PIN (4 a 6 dígitos)</label>
+                <input type="password" id="setNewPin" maxlength="6" required placeholder="Ej: 5678" 
+                  class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white tracking-widest font-bold" 
+                />
+              </div>
+              <button type="submit" class="btn-gold-outline w-full py-2.5 rounded-xl font-bold text-xs">
+                Actualizar PIN de Seguridad
+              </button>
+            </form>
+          </div>
+
+          <!-- Copia de Seguridad JSON -->
+          <div class="card-luxury p-6 sm:p-8">
+            <h3 class="font-cinzel text-lg font-bold text-white mb-2">Copia de Seguridad del Catálogo</h3>
+            <p class="text-xs text-gray-400 mb-4">Exporta o importa tus perfumes en un archivo por si deseas guardarlos o trasladarlos a otro dispositivo.</p>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button onclick="exportCatalogJson()" class="btn-gold-outline flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-download"></i>
+                <span>Descargar Copia JSON</span>
+              </button>
+
+              <label class="btn-gold-outline flex-1 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-upload"></i>
+                <span>Restaurar Copia</span>
+                <input type="file" id="importJsonInput" accept=".json" onchange="importCatalogJson(event)" class="hidden" />
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       MODAL: EDICIÓN COMPLETA DE UN PERFUME
+       ==================================================================== -->
+  <div id="editPerfumeModal" class="fixed inset-0 modal-backdrop z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="card-luxury w-full max-w-3xl p-6 sm:p-8 bg-dark-900 border border-[#D4AF37]/60 relative my-8">
+      
+      <button onclick="closeEditModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="mb-5 border-b border-white/10 pb-3">
+        <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold">EDITOR</span>
+        <h3 class="font-cinzel text-xl font-bold text-white mt-1">Editar Perfume Completo</h3>
+      </div>
+
+      <form onsubmit="handleSaveEditPerfume(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="editId" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Nombre *</label>
+            <input type="text" id="editName" required class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Marca *</label>
+            <input type="text" id="editBrand" required class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Volumen</label>
+            <input type="text" id="editVolume" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Precio Venta (€) *</label>
+            <input type="number" step="0.01" id="editPrice" required class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold text-emerald-400" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Precio Anterior (€)</label>
+            <input type="number" step="0.01" id="editOldPrice" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Categoría</label>
+            <select id="editCategory" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white">
+              <option value="Unisex">Unisex</option>
+              <option value="Hombre">Para Él</option>
+              <option value="Mujer">Para Ella</option>
+              <option value="Aceites">Aceites CPO</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Familia</label>
+            <select id="editFamily" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white">
+              <option value="Amaderado">Amaderado / Oud</option>
+              <option value="Gourmand">Gourmand / Vainilla / Café</option>
+              <option value="Dulce">Dulce / Ámbar</option>
+              <option value="Floral">Floral / Rosa</option>
+              <option value="Cítrico">Cítrico / Ahumado</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-semibold mb-1">Etiqueta destacada</label>
+          <input type="text" id="editBadge" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-semibold mb-1">URL de la Imagen</label>
+          <input type="url" id="editImage" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Notas de Salida</label>
+            <input type="text" id="editTopNotes" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Notas de Corazón</label>
+            <input type="text" id="editHeartNotes" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-semibold mb-1">Notas de Fondo</label>
+            <input type="text" id="editBaseNotes" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-300 font-semibold mb-1">Descripción</label>
+          <textarea id="editDescription" rows="2" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-3">
+          <button type="button" onclick="closeEditModal()" class="px-5 py-2.5 rounded-xl border border-white/10 text-gray-300 hover:text-white">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-gold px-6 py-2.5 rounded-xl font-bold">
+            Guardar Todos los Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-dark-900/95 border border-[#D4AF37] text-white px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 text-xs font-semibold">
+    <i class="fa-solid fa-sparkles text-[#D4AF37]"></i>
+    <span id="toastMessage">Acción realizada con éxito</span>
+  </div>
+
+  <!-- SCRIPT DEL PANEL DE ADMINISTRACIÓN -->
+  <script src="admin.js"></script>
+</body>
+</html>
