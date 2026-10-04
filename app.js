@@ -182,7 +182,15 @@ let settings = {
   freeShippingThreshold: 50.00,
   shippingCost: 4.95,
   currency: "€",
-  promoDiscount: 0.10 // 10% con código KELY10 o SULTAN10
+  promoDiscount: 0.10, // 10% con código KELY10 o SULTAN10
+  heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
+  heroBadge: "Edición de Colección",
+  heroTitle: "Khamrah & Oud Royale",
+  heroVolume: "100ml Eau de Parfum",
+  heroDesc: "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.",
+  storyImage: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80",
+  storyTitle: "Maceración Tradicional",
+  storyDesc: "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel."
 };
 
 let currentFilter = "Todos";
@@ -250,6 +258,28 @@ function loadSettings() {
     } catch (e) {
       console.error("Error cargando configuración:", e);
     }
+  }
+  // Sincronizar siempre con settings.json del servidor para tener banners actualizados
+  syncServerSettings();
+}
+
+async function syncServerSettings() {
+  try {
+    const res = await fetch(`settings.json?v=${Date.now()}`);
+    if (res.ok) {
+      const serverSettings = await res.json();
+      if (serverSettings && typeof serverSettings === 'object') {
+        const isAdmin = sessionStorage.getItem("alSultan_admin_auth") === "true";
+        if (!isAdmin) {
+          settings = { ...settings, ...serverSettings };
+          localStorage.setItem("alSultan_settings", JSON.stringify(settings));
+          updateContactLinks();
+          updateBannersUI();
+        }
+      }
+    }
+  } catch (e) {
+    // Modo offline
   }
 }
 
@@ -359,6 +389,31 @@ function updateContactLinks() {
   // Nombre de la tienda
   const storeNameEls = document.querySelectorAll(".store-name-text");
   storeNameEls.forEach(el => el.textContent = settings.storeName);
+
+  // Actualizar fotos y cartelas destacadas de la portada e historia
+  updateBannersUI();
+}
+
+function updateBannersUI() {
+  const heroImg = document.getElementById("heroImageEl");
+  const heroBadge = document.getElementById("heroCardBadge");
+  const heroTitle = document.getElementById("heroCardTitle");
+  const heroVolume = document.getElementById("heroCardVolume");
+  const heroDesc = document.getElementById("heroCardDesc");
+
+  if (heroImg && settings.heroImage) heroImg.src = settings.heroImage;
+  if (heroBadge && settings.heroBadge) heroBadge.textContent = settings.heroBadge;
+  if (heroTitle && settings.heroTitle) heroTitle.textContent = settings.heroTitle;
+  if (heroVolume && settings.heroVolume) heroVolume.textContent = settings.heroVolume;
+  if (heroDesc && settings.heroDesc) heroDesc.textContent = settings.heroDesc;
+
+  const storyImg = document.getElementById("storyImageEl");
+  const storyTitle = document.getElementById("storyCardTitle");
+  const storyDesc = document.getElementById("storyCardDesc");
+
+  if (storyImg && settings.storyImage) storyImg.src = settings.storyImage;
+  if (storyTitle && settings.storyTitle) storyTitle.textContent = settings.storyTitle;
+  if (storyDesc && settings.storyDesc) storyDesc.textContent = settings.storyDesc;
 }
 
 function formatPhoneNumber(num) {

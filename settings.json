@@ -1,0 +1,17 @@
+{
+  "storeName": "KELYSCENT",
+  "sellerPhone": "34612345678",
+  "sellerEmail": "pedidos@kelyscent.es",
+  "freeShippingThreshold": 50.0,
+  "shippingCost": 4.95,
+  "currency": "€",
+  "promoDiscount": 0.1,
+  "heroImage": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
+  "heroBadge": "Edición de Colección",
+  "heroTitle": "Khamrah & Oud Royale",
+  "heroVolume": "100ml Eau de Parfum",
+  "heroDesc": "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.",
+  "storyImage": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80",
+  "storyTitle": "Maceración Tradicional",
+  "storyDesc": "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel."
+}

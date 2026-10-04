@@ -188,7 +188,15 @@ let settings = {
   freeShippingThreshold: 50.00,
   shippingCost: 4.95,
   currency: "€",
-  adminPin: "1234"
+  adminPin: "1234",
+  heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
+  heroBadge: "Edición de Colección",
+  heroTitle: "Khamrah & Oud Royale",
+  heroVolume: "100ml Eau de Parfum",
+  heroDesc: "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.",
+  storyImage: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80",
+  storyTitle: "Maceración Tradicional",
+  storyDesc: "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel."
 };
 
 // ==========================================================================
@@ -199,6 +207,7 @@ function initAdmin() {
   checkAuth();
   populatePresets();
   setupListeners();
+  loadBannersForm();
 }
 
 function checkAuth() {
@@ -663,7 +672,7 @@ function processImageFile(file, context) {
         if (preview) preview.src = compressedDataUrl;
         if (info) info.textContent = `${file.name} (${kbSize} KB optimizado)`;
         if (container) container.classList.remove("hidden");
-      } else {
+      } else if (context === "edit") {
         const input = document.getElementById("editImage");
         if (input) input.value = compressedDataUrl;
         
@@ -673,6 +682,20 @@ function processImageFile(file, context) {
         if (preview) preview.src = compressedDataUrl;
         if (info) info.textContent = `${file.name} (${kbSize} KB optimizado)`;
         if (container) container.classList.remove("hidden");
+      } else if (context === "hero") {
+        const input = document.getElementById("heroImageUrl");
+        if (input) input.value = compressedDataUrl;
+        const preview = document.getElementById("heroImagePreview");
+        const info = document.getElementById("previewInfo-hero");
+        if (preview) preview.src = compressedDataUrl;
+        if (info) info.textContent = `Foto seleccionada: ${file.name} (${kbSize} KB optimizado)`;
+      } else if (context === "story") {
+        const input = document.getElementById("storyImageUrl");
+        if (input) input.value = compressedDataUrl;
+        const preview = document.getElementById("storyImagePreview");
+        const info = document.getElementById("previewInfo-story");
+        if (preview) preview.src = compressedDataUrl;
+        if (info) info.textContent = `Foto seleccionada: ${file.name} (${kbSize} KB optimizado)`;
       }
 
       showToast(`✅ Foto "${file.name}" cargada correctamente`);
@@ -684,9 +707,17 @@ function processImageFile(file, context) {
 
 function handleUrlInput(e, context) {
   const url = e.target.value.trim();
-  const preview = document.getElementById(context === 'add' ? 'addImagePreview' : 'editImagePreview');
-  const container = document.getElementById(context === 'add' ? 'previewContainer-add' : 'previewContainer-edit');
-  const info = document.getElementById(context === 'add' ? 'previewInfo-add' : 'previewInfo-edit');
+  const preview = document.getElementById(
+    context === 'add' ? 'addImagePreview' :
+    context === 'edit' ? 'editImagePreview' :
+    context === 'hero' ? 'heroImagePreview' : 'storyImagePreview'
+  );
+  const container = document.getElementById(`previewContainer-${context}`);
+  const info = document.getElementById(
+    context === 'add' ? 'previewInfo-add' :
+    context === 'edit' ? 'previewInfo-edit' :
+    context === 'hero' ? 'previewInfo-hero' : 'previewInfo-story'
+  );
 
   if (url) {
     if (preview) preview.src = url;
@@ -698,21 +729,16 @@ function handleUrlInput(e, context) {
 }
 
 function removeImage(context) {
-  if (context === "add") {
-    const input = document.getElementById("addImageUrl");
-    const fileInput = document.getElementById("fileInput-add");
-    const container = document.getElementById("previewContainer-add");
-    if (input) input.value = "";
-    if (fileInput) fileInput.value = "";
-    if (container) container.classList.add("hidden");
-  } else {
-    const input = document.getElementById("editImage");
-    const fileInput = document.getElementById("fileInput-edit");
-    const container = document.getElementById("previewContainer-edit");
-    if (input) input.value = "";
-    if (fileInput) fileInput.value = "";
-    if (container) container.classList.add("hidden");
-  }
+  const input = document.getElementById(
+    context === "add" ? "addImageUrl" :
+    context === "edit" ? "editImage" :
+    context === "hero" ? "heroImageUrl" : "storyImageUrl"
+  );
+  const fileInput = document.getElementById(`fileInput-${context}`);
+  const container = document.getElementById(`previewContainer-${context}`);
+  if (input) input.value = "";
+  if (fileInput) fileInput.value = "";
+  if (container) container.classList.add("hidden");
   showToast("Foto eliminada");
 }
 
@@ -726,6 +752,16 @@ function selectPresetImage(url) {
   if (info) info.textContent = "Frasco de lujo prediseñado";
   if (container) container.classList.remove("hidden");
   showToast("Frasco seleccionado");
+}
+
+function selectBannerPreset(url, context) {
+  const input = document.getElementById(context === 'hero' ? 'heroImageUrl' : 'storyImageUrl');
+  const preview = document.getElementById(context === 'hero' ? 'heroImagePreview' : 'storyImagePreview');
+  const info = document.getElementById(context === 'hero' ? 'previewInfo-hero' : 'previewInfo-story');
+  if (input) input.value = url;
+  if (preview) preview.src = url;
+  if (info) info.textContent = "Preset árabe seleccionado";
+  showToast("Foto árabe seleccionada");
 }
 
 function handleAddNewPerfume(e) {
@@ -1212,11 +1248,43 @@ async function publishToGitHub() {
       throw new Error(errData.message || "Error al subir cambios a GitHub");
     }
 
+    // 2. Enviar actualización de settings.json (fotos de portada, historia y tienda) a GitHub
+    try {
+      let settingsSha = null;
+      const getSet = await fetch("https://api.github.com/repos/keliel627-star/perfumes-arabes/contents/settings.json", {
+        headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github.v3+json" }
+      });
+      if (getSet.ok) {
+        const setData = await getSet.json();
+        settingsSha = setData.sha;
+      }
+
+      const settingsString = JSON.stringify(settings, null, 2);
+      const settingsBase64 = btoa(unescape(encodeURIComponent(settingsString)));
+      const putSetBody = {
+        message: "Actualización de fotos de portada y configuración desde Panel de Administración (Kelyscent)",
+        content: settingsBase64
+      };
+      if (settingsSha) putSetBody.sha = settingsSha;
+
+      await fetch("https://api.github.com/repos/keliel627-star/perfumes-arabes/contents/settings.json", {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github.v3+json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(putSetBody)
+      });
+    } catch (eSet) {
+      console.warn("Aviso al actualizar settings.json:", eSet);
+    }
+
     if (statusEl) {
       statusEl.className = "text-xs text-emerald-300 font-bold bg-emerald-950/50 p-3 rounded-xl border border-emerald-500/40";
-      statusEl.innerHTML = '🎉 <b>¡Publicado con éxito en GitHub!</b> GitHub Pages está desplegando la actualización. En unos 30 segundos estará visible en todos los teléfonos y ordenadores del mundo.';
+      statusEl.innerHTML = '🎉 <b>¡Publicado con éxito en GitHub!</b> Catálogo y fotos de portada actualizados. En unos 30 segundos estará visible en todos los teléfonos y ordenadores del mundo.';
     }
-    showToast("🎉 ¡Catálogo publicado globalmente en GitHub!");
+    showToast("🎉 ¡Catálogo y fotos publicados globalmente!");
   } catch (err) {
     console.error("Error al publicar:", err);
     if (statusEl) {
@@ -1231,6 +1299,101 @@ async function publishToGitHub() {
       btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Publicar en GitHub Ahora';
     }
   }
+}
+
+// ==========================================================================
+// GESTIÓN DE BANNERS Y FOTOS DE LA WEB (PORTADA & HISTORIA)
+// ==========================================================================
+function loadBannersForm() {
+  // Hero
+  const heroImg = document.getElementById("heroImagePreview");
+  const heroUrl = document.getElementById("heroImageUrl");
+  const heroBadge = document.getElementById("heroBadgeInput");
+  const heroTitle = document.getElementById("heroTitleInput");
+  const heroVolume = document.getElementById("heroVolumeInput");
+  const heroDesc = document.getElementById("heroDescInput");
+
+  if (heroImg && settings.heroImage) heroImg.src = settings.heroImage;
+  if (heroUrl && settings.heroImage && !settings.heroImage.startsWith("data:")) heroUrl.value = settings.heroImage;
+  if (heroBadge) heroBadge.value = settings.heroBadge || "Edición de Colección";
+  if (heroTitle) heroTitle.value = settings.heroTitle || "Khamrah & Oud Royale";
+  if (heroVolume) heroVolume.value = settings.heroVolume || "100ml Eau de Parfum";
+  if (heroDesc) heroDesc.value = settings.heroDesc || "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.";
+  updateHeroPreviewTexts();
+
+  // Story
+  const storyImg = document.getElementById("storyImagePreview");
+  const storyUrl = document.getElementById("storyImageUrl");
+  const storyTitle = document.getElementById("storyTitleInput");
+  const storyDesc = document.getElementById("storyDescInput");
+
+  if (storyImg && settings.storyImage) storyImg.src = settings.storyImage;
+  if (storyUrl && settings.storyImage && !settings.storyImage.startsWith("data:")) storyUrl.value = settings.storyImage;
+  if (storyTitle) storyTitle.value = settings.storyTitle || "Maceración Tradicional";
+  if (storyDesc) storyDesc.value = settings.storyDesc || "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.";
+  updateStoryPreviewTexts();
+}
+
+function updateHeroPreviewTexts() {
+  const badge = document.getElementById("heroBadgeInput")?.value || "";
+  const title = document.getElementById("heroTitleInput")?.value || "";
+  const volume = document.getElementById("heroVolumeInput")?.value || "";
+  const desc = document.getElementById("heroDescInput")?.value || "";
+
+  const pBadge = document.getElementById("heroPreviewBadge");
+  const pTitle = document.getElementById("heroPreviewTitle");
+  const pVolume = document.getElementById("heroPreviewVolume");
+  const pDesc = document.getElementById("heroPreviewDesc");
+
+  if (pBadge) pBadge.textContent = badge;
+  if (pTitle) pTitle.textContent = title;
+  if (pVolume) pVolume.textContent = volume;
+  if (pDesc) pDesc.textContent = desc;
+}
+
+function updateStoryPreviewTexts() {
+  const title = document.getElementById("storyTitleInput")?.value || "";
+  const desc = document.getElementById("storyDescInput")?.value || "";
+
+  const pTitle = document.getElementById("storyPreviewTitle");
+  const pDesc = document.getElementById("storyPreviewDesc");
+
+  if (pTitle) pTitle.textContent = title;
+  if (pDesc) pDesc.textContent = desc;
+}
+
+function saveHeroBanner() {
+  const preview = document.getElementById("heroImagePreview");
+  const urlInput = document.getElementById("heroImageUrl");
+  const badgeInput = document.getElementById("heroBadgeInput");
+  const titleInput = document.getElementById("heroTitleInput");
+  const volumeInput = document.getElementById("heroVolumeInput");
+  const descInput = document.getElementById("heroDescInput");
+
+  const newImg = preview ? preview.src : (urlInput ? urlInput.value.trim() : "");
+  if (newImg) settings.heroImage = newImg;
+  if (badgeInput) settings.heroBadge = badgeInput.value.trim();
+  if (titleInput) settings.heroTitle = titleInput.value.trim();
+  if (volumeInput) settings.heroVolume = volumeInput.value.trim();
+  if (descInput) settings.heroDesc = descInput.value.trim();
+
+  saveSettings();
+  showToast("✅ Foto y textos de Portada guardados con éxito");
+}
+
+function saveStoryBanner() {
+  const preview = document.getElementById("storyImagePreview");
+  const urlInput = document.getElementById("storyImageUrl");
+  const titleInput = document.getElementById("storyTitleInput");
+  const descInput = document.getElementById("storyDescInput");
+
+  const newImg = preview ? preview.src : (urlInput ? urlInput.value.trim() : "");
+  if (newImg) settings.storyImage = newImg;
+  if (titleInput) settings.storyTitle = titleInput.value.trim();
+  if (descInput) settings.storyDesc = descInput.value.trim();
+
+  saveSettings();
+  showToast("✅ Foto y textos de Historia guardados con éxito");
 }
 
 // ==========================================================================
@@ -1250,6 +1413,10 @@ function switchTab(tabId) {
   if (activeBtn) {
     activeBtn.classList.add("bg-[#D4AF37]", "text-dark-950", "active");
     activeBtn.classList.remove("text-gray-400");
+  }
+
+  if (tabId === "banners") {
+    loadBannersForm();
   }
 }
 

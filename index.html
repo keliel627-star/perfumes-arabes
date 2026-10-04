@@ -211,7 +211,7 @@
         <div class="lg:col-span-5 relative">
           <div class="card-luxury p-3 relative group">
             <div class="relative h-[440px] rounded-xl overflow-hidden bg-black/60">
-              <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80" 
+              <img id="heroImageEl" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80" 
                 alt="Perfume Árabe de Lujo" 
                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
               />
@@ -220,11 +220,11 @@
               <!-- Cartela flotante -->
               <div class="absolute bottom-6 left-6 right-6 bg-dark-900/90 backdrop-blur-md p-4 rounded-xl border border-[#D4AF37]/30">
                 <div class="flex items-center justify-between mb-1">
-                  <span class="badge-gold">Edición de Colección</span>
-                  <span class="text-gold-400 text-xs font-bold">100ml Eau de Parfum</span>
+                  <span id="heroCardBadge" class="badge-gold">Edición de Colección</span>
+                  <span id="heroCardVolume" class="text-gold-400 text-xs font-bold">100ml Eau de Parfum</span>
                 </div>
-                <h3 class="font-cinzel text-lg font-bold text-white">Khamrah & Oud Royale</h3>
-                <p class="text-xs text-gray-300 mt-1">Notas de canela especiada, dátiles árabes y vainilla de Madagascar.</p>
+                <h3 id="heroCardTitle" class="font-cinzel text-lg font-bold text-white">Khamrah & Oud Royale</h3>
+                <p id="heroCardDesc" class="text-xs text-gray-300 mt-1">Notas de canela especiada, dátiles árabes y vainilla de Madagascar.</p>
               </div>
             </div>
           </div>
@@ -365,14 +365,14 @@
         
         <div class="lg:col-span-5 relative">
           <div class="rounded-2xl overflow-hidden border border-[#D4AF37]/40 shadow-2xl relative">
-            <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=800&q=80" 
+            <img id="storyImageEl" src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80" 
               alt="Maceración de perfumes árabes" 
               class="w-full h-[460px] object-cover" 
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
             <div class="absolute bottom-6 left-6 right-6 p-4 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 text-xs">
-              <span class="text-[#D4AF37] font-bold uppercase tracking-wider block mb-1">Maceración Tradicional</span>
-              <p class="text-gray-300">Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.</p>
+              <span id="storyCardTitle" class="text-[#D4AF37] font-bold uppercase tracking-wider block mb-1">Maceración Tradicional</span>
+              <p id="storyCardDesc" class="text-gray-300">Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.</p>
             </div>
           </div>
         </div>

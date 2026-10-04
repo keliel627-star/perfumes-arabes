@@ -183,6 +183,11 @@
         <span id="ordersTabBadge" class="bg-emerald-600 text-white text-[10px] px-1.5 py-0.2 rounded-full hidden">0</span>
       </button>
 
+      <button id="tabBtn-banners" onclick="switchTab('banners')" class="tab-button px-5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-images text-purple-400"></i>
+        <span>Fotos de Portada & Historia</span>
+      </button>
+
       <button id="tabBtn-settings" onclick="switchTab('settings')" class="tab-button px-5 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all">
         <i class="fa-solid fa-sliders"></i>
         <span>Configuración de Tienda</span>
@@ -579,7 +584,303 @@
 
     </section>
 
-  </main>
+    <!-- ==================================================================
+         SECCIÓN 5: FOTOS DE LA WEB (PORTADA & HISTORIA)
+         ================================================================== -->
+    <section id="tabContent-banners" class="tab-panel hidden space-y-6">
+      
+      <!-- Cabecera de la sección -->
+      <div class="card-luxury p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-camera-retro"></i>
+            <span>IMAGEN Y ESTILO VISUAL</span>
+          </span>
+          <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-white mt-1">
+            Personalizar Fotos de la Portada e Historia
+          </h2>
+          <p class="text-xs text-gray-400 mt-1">
+            Cambia las fotos principales que ven los clientes. Puedes subir imágenes desde tu ordenador o pegar enlaces/URLs.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="index.html" target="_blank" class="btn-gold-outline px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-eye text-[#D4AF37]"></i>
+            <span>Ver Cambios en Tienda</span>
+          </a>
+          <button type="button" onclick="openPublishModal()" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white flex items-center gap-1.5 shadow-md shadow-emerald-950 transition-all cursor-pointer">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Publicar Global</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de 2 Banners -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- ==============================================================
+             BANNER 1: FOTO DE LA PORTADA (HERO BANNER)
+             ============================================================== -->
+        <div class="card-luxury p-6 sm:p-7 space-y-5 border border-purple-500/30">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-300">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <h3 class="font-cinzel text-base font-bold text-white">Foto 1: Portada Principal</h3>
+                <span class="text-[10px] text-purple-300 font-semibold uppercase tracking-wider">Hero Banner Superior</span>
+              </div>
+            </div>
+            <span class="text-[11px] bg-purple-900/40 border border-purple-500/30 text-purple-200 px-2 py-0.5 rounded-full font-bold">
+              Vista del Hero
+            </span>
+          </div>
+
+          <!-- Vista Previa de la Foto Actual -->
+          <div class="space-y-2">
+            <label class="block text-gray-300 font-semibold text-xs">Vista Previa Actual:</label>
+            <div class="relative h-64 rounded-xl overflow-hidden bg-black/60 border border-white/10 group">
+              <img id="heroImagePreview" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80" 
+                alt="Vista previa de portada" 
+                class="w-full h-full object-cover object-center" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+              
+              <!-- Cartela superpuesta como en la tienda -->
+              <div class="absolute bottom-3 left-3 right-3 bg-dark-900/90 backdrop-blur-md p-3 rounded-lg border border-[#D4AF37]/30 text-xs">
+                <div class="flex items-center justify-between mb-0.5">
+                  <span id="heroPreviewBadge" class="badge-gold text-[10px]">Edición de Colección</span>
+                  <span id="heroPreviewVolume" class="text-gold-400 text-[10px] font-bold">100ml Eau de Parfum</span>
+                </div>
+                <h4 id="heroPreviewTitle" class="font-cinzel text-sm font-bold text-white">Khamrah & Oud Royale</h4>
+                <p id="heroPreviewDesc" class="text-[11px] text-gray-300 truncate">Notas de canela especiada, dátiles árabes y vainilla de Madagascar.</p>
+              </div>
+            </div>
+            <p id="previewInfo-hero" class="text-[11px] text-emerald-400 font-medium"></p>
+          </div>
+
+          <!-- Selector de Modo de Carga (Subir PC / URL / Presets Árabes) -->
+          <div class="space-y-3 bg-black/40 p-4 rounded-xl border border-white/10">
+            <div class="flex items-center justify-between">
+              <label class="text-white font-bold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-camera text-purple-400"></i>
+                <span>Cambiar Foto del Hero</span>
+              </label>
+              <div class="inline-flex items-center gap-1 bg-white/5 p-1 rounded-xl text-[11px]">
+                <button type="button" onclick="setImageMode('upload', 'hero')" id="btnModeUpload-hero" class="px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition-all">
+                  <i class="fa-solid fa-upload mr-1"></i> Subir PC
+                </button>
+                <button type="button" onclick="setImageMode('url', 'hero')" id="btnModeUrl-hero" class="px-2.5 py-1 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-link mr-1"></i> Por URL
+                </button>
+                <button type="button" onclick="setImageMode('presets', 'hero')" id="btnModePresets-hero" class="px-2.5 py-1 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-sparkles mr-1"></i> Presets
+                </button>
+              </div>
+            </div>
+
+            <!-- Modo 1: Subir desde Escritorio -->
+            <div id="imageUploadBox-hero" class="space-y-2">
+              <div onclick="document.getElementById('fileInput-hero').click()" 
+                class="border-2 border-dashed border-purple-500/40 hover:border-purple-400 bg-purple-950/20 hover:bg-purple-950/30 rounded-xl p-4 text-center cursor-pointer transition-all">
+                <input type="file" id="fileInput-hero" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'hero')" />
+                <i class="fa-solid fa-folder-open text-purple-400 text-2xl mb-1"></i>
+                <p class="text-xs text-white font-semibold">Haz clic para elegir una foto de tu ordenador</p>
+                <p class="text-[10px] text-gray-400 mt-0.5">JPG, PNG o WebP (se optimizará automáticamente)</p>
+              </div>
+            </div>
+
+            <!-- Modo 2: Pegar Enlace URL -->
+            <div id="imageUrlBox-hero" class="hidden space-y-2">
+              <input type="url" id="heroImageUrl" placeholder="https://ejemplo.com/tu-foto-arabe.jpg" 
+                oninput="handleUrlInput(event, 'hero')" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2 text-white text-xs font-mono focus:outline-none focus:border-purple-400" 
+              />
+            </div>
+
+            <!-- Modo 3: Presets de Perfumes Árabes Auténticos -->
+            <div id="imagePresetsBox-hero" class="hidden space-y-2">
+              <span class="text-[11px] text-gray-400 block mb-1">Elige un frasco árabe prediseñado:</span>
+              <div class="grid grid-cols-4 gap-2">
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80', 'hero')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Oro Real</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=1200&q=80', 'hero')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Ámbar Qahwa</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1200&q=80', 'hero')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Noir Místico</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80', 'hero')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Attar Joya</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Textos de la Cartela del Hero -->
+          <div class="space-y-3 pt-2 border-t border-white/10 text-xs">
+            <span class="text-gray-300 font-bold block">Textos de la Cartela Flotante:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-gray-400 text-[11px] mb-1">Título del Frasco</label>
+                <input type="text" id="heroTitleInput" value="Khamrah & Oud Royale" oninput="updateHeroPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold" />
+              </div>
+              <div>
+                <label class="block text-gray-400 text-[11px] mb-1">Volumen / Subtítulo</label>
+                <input type="text" id="heroVolumeInput" value="100ml Eau de Parfum" oninput="updateHeroPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-gray-400 text-[11px] mb-1">Etiqueta</label>
+                <input type="text" id="heroBadgeInput" value="Edición de Colección" oninput="updateHeroPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+              </div>
+              <div>
+                <label class="block text-gray-400 text-[11px] mb-1">Notas Cortas / Descripción</label>
+                <input type="text" id="heroDescInput" value="Notas de canela especiada, dátiles árabes y vainilla de Madagascar." oninput="updateHeroPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white text-[11px]" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón Guardar Hero -->
+          <button type="button" onclick="saveHeroBanner()" class="btn-gold w-full py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Guardar Foto de Portada</span>
+          </button>
+        </div>
+
+
+        <!-- ==============================================================
+             BANNER 2: FOTO DE HISTORIA & MISTICISMO (EL ARTE DEL PERFUME)
+             ============================================================== -->
+        <div class="card-luxury p-6 sm:p-7 space-y-5 border border-[#D4AF37]/30">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-950/60 border border-amber-500/40 flex items-center justify-center text-[#F9E79F]">
+                <i class="fa-solid fa-scroll"></i>
+              </div>
+              <div>
+                <h3 class="font-cinzel text-base font-bold text-white">Foto 2: Historia & Misticismo</h3>
+                <span class="text-[10px] text-[#D4AF37] font-semibold uppercase tracking-wider">Sección "El Arte del Perfume"</span>
+              </div>
+            </div>
+            <span class="text-[11px] bg-amber-900/40 border border-[#D4AF37]/30 text-[#F9E79F] px-2 py-0.5 rounded-full font-bold">
+              Maceración
+            </span>
+          </div>
+
+          <!-- Vista Previa de la Foto Actual de Historia -->
+          <div class="space-y-2">
+            <label class="block text-gray-300 font-semibold text-xs">Vista Previa Actual:</label>
+            <div class="relative h-64 rounded-xl overflow-hidden bg-black/60 border border-white/10 group">
+              <img id="storyImagePreview" src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80" 
+                alt="Vista previa de historia" 
+                class="w-full h-full object-cover object-center" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+              
+              <!-- Cartela superpuesta como en la tienda -->
+              <div class="absolute bottom-3 left-3 right-3 bg-black/80 backdrop-blur-md p-3 rounded-lg border border-white/10 text-xs">
+                <span id="storyPreviewTitle" class="text-[#D4AF37] font-bold uppercase tracking-wider block mb-0.5 text-[11px]">Maceración Tradicional</span>
+                <p id="storyPreviewDesc" class="text-[11px] text-gray-300 truncate">Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.</p>
+              </div>
+            </div>
+            <p id="previewInfo-story" class="text-[11px] text-emerald-400 font-medium"></p>
+          </div>
+
+          <!-- Selector de Modo de Carga (Subir PC / URL / Presets Árabes) -->
+          <div class="space-y-3 bg-black/40 p-4 rounded-xl border border-white/10">
+            <div class="flex items-center justify-between">
+              <label class="text-white font-bold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-camera text-[#D4AF37]"></i>
+                <span>Cambiar Foto de Historia</span>
+              </label>
+              <div class="inline-flex items-center gap-1 bg-white/5 p-1 rounded-xl text-[11px]">
+                <button type="button" onclick="setImageMode('upload', 'story')" id="btnModeUpload-story" class="px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition-all">
+                  <i class="fa-solid fa-upload mr-1"></i> Subir PC
+                </button>
+                <button type="button" onclick="setImageMode('url', 'story')" id="btnModeUrl-story" class="px-2.5 py-1 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-link mr-1"></i> Por URL
+                </button>
+                <button type="button" onclick="setImageMode('presets', 'story')" id="btnModePresets-story" class="px-2.5 py-1 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-sparkles mr-1"></i> Presets
+                </button>
+              </div>
+            </div>
+
+            <!-- Modo 1: Subir desde Escritorio -->
+            <div id="imageUploadBox-story" class="space-y-2">
+              <div onclick="document.getElementById('fileInput-story').click()" 
+                class="border-2 border-dashed border-amber-500/40 hover:border-amber-400 bg-amber-950/20 hover:bg-amber-950/30 rounded-xl p-4 text-center cursor-pointer transition-all">
+                <input type="file" id="fileInput-story" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'story')" />
+                <i class="fa-solid fa-folder-open text-amber-400 text-2xl mb-1"></i>
+                <p class="text-xs text-white font-semibold">Haz clic para elegir una foto de tu ordenador</p>
+                <p class="text-[10px] text-gray-400 mt-0.5">JPG, PNG o WebP (se optimizará automáticamente)</p>
+              </div>
+            </div>
+
+            <!-- Modo 2: Pegar Enlace URL -->
+            <div id="imageUrlBox-story" class="hidden space-y-2">
+              <input type="url" id="storyImageUrl" placeholder="https://ejemplo.com/tu-foto-maceracion.jpg" 
+                oninput="handleUrlInput(event, 'story')" 
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2 text-white text-xs font-mono focus:outline-none focus:border-amber-400" 
+              />
+            </div>
+
+            <!-- Modo 3: Presets de Perfumes Árabes Auténticos -->
+            <div id="imagePresetsBox-story" class="hidden space-y-2">
+              <span class="text-[11px] text-gray-400 block mb-1">Elige una foto tradicional árabe prediseñada:</span>
+              <div class="grid grid-cols-4 gap-2">
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80', 'story')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Aceite Attar</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1200&q=80', 'story')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Cristal & Oro</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80', 'story')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Oud Real</span>
+                </div>
+                <div onclick="selectBannerPreset('https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=1200&q=80', 'story')" class="cursor-pointer group rounded-lg overflow-hidden border border-white/10 hover:border-[#D4AF37] relative h-16">
+                  <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-all" />
+                  <span class="absolute inset-x-0 bottom-0 bg-black/80 text-[9px] text-center text-gold-300 py-0.5">Especias</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Textos de la Cartela de Historia -->
+          <div class="space-y-3 pt-2 border-t border-white/10 text-xs">
+            <span class="text-gray-300 font-bold block">Textos de la Cartela de Maceración:</span>
+            <div>
+              <label class="block text-gray-400 text-[11px] mb-1">Título de la Cartela</label>
+              <input type="text" id="storyTitleInput" value="Maceración Tradicional" oninput="updateStoryPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold" />
+            </div>
+            <div>
+              <label class="block text-gray-400 text-[11px] mb-1">Descripción de la Cartela</label>
+              <textarea id="storyDescInput" rows="2" oninput="updateStoryPreviewTexts()" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white text-[11px]">Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.</textarea>
+            </div>
+          </div>
+
+          <!-- Botón Guardar Historia -->
+          <button type="button" onclick="saveStoryBanner()" class="btn-gold w-full py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>Guardar Foto de Historia</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
 
   <!-- ====================================================================
        MODAL: EDICIÓN COMPLETA DE UN PERFUME
