@@ -516,15 +516,172 @@ function populatePresets() {
   `).join("");
 }
 
+// ==========================================================================
+// GESTOR DE IMÁGENES (SUBIDA DESDE ESCRITORIO / PC, URL Y PRESETS)
+// ==========================================================================
+function setImageMode(mode, context) {
+  const modes = ['upload', 'url', 'presets'];
+  
+  modes.forEach(m => {
+    const btn = document.getElementById(`btnMode${m.charAt(0).toUpperCase() + m.slice(1)}-${context}`);
+    const box = document.getElementById(`image${m.charAt(0).toUpperCase() + m.slice(1)}Box-${context}`);
+    
+    if (btn) {
+      if (m === mode) {
+        btn.className = "px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition-all shadow-md";
+      } else {
+        btn.className = "px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-all";
+      }
+    }
+    if (box) {
+      if (m === mode) {
+        box.classList.remove("hidden");
+      } else {
+        box.classList.add("hidden");
+      }
+    }
+  });
+}
+
+function handleDragOver(e, context) {
+  e.preventDefault();
+  const dropzone = document.getElementById(`dropzone-${context}`);
+  if (dropzone) {
+    dropzone.classList.add("border-purple-400", "bg-purple-900/40");
+  }
+}
+
+function handleDragLeave(e, context) {
+  e.preventDefault();
+  const dropzone = document.getElementById(`dropzone-${context}`);
+  if (dropzone) {
+    dropzone.classList.remove("border-purple-400", "bg-purple-900/40");
+  }
+}
+
+function handleDrop(e, context) {
+  e.preventDefault();
+  handleDragLeave(e, context);
+  const file = e.dataTransfer?.files?.[0];
+  if (file) {
+    processImageFile(file, context);
+  }
+}
+
+function handleFileSelect(e, context) {
+  const file = e.target.files?.[0];
+  if (file) {
+    processImageFile(file, context);
+  }
+}
+
+function processImageFile(file, context) {
+  if (!file.type.startsWith("image/")) {
+    showToast("⚠️ Por favor selecciona un archivo de imagen (JPG, PNG, WebP)");
+    return;
+  }
+
+  showToast("⏳ Optimizando y cargando foto...");
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      // Redimensionar proporcionalmente para optimizar almacenamiento en localStorage
+      const maxDim = 800;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height && width > maxDim) {
+        height = Math.round((height * maxDim) / width);
+        width = maxDim;
+      } else if (height > maxDim) {
+        width = Math.round((width * maxDim) / height);
+        height = maxDim;
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.82);
+      const kbSize = Math.round((compressedDataUrl.length * 3 / 4) / 1024);
+
+      if (context === "add") {
+        const input = document.getElementById("addImageUrl");
+        if (input) input.value = compressedDataUrl;
+        
+        const preview = document.getElementById("addImagePreview");
+        const container = document.getElementById("previewContainer-add");
+        const info = document.getElementById("previewInfo-add");
+        if (preview) preview.src = compressedDataUrl;
+        if (info) info.textContent = `${file.name} (${kbSize} KB optimizado)`;
+        if (container) container.classList.remove("hidden");
+      } else {
+        const input = document.getElementById("editImage");
+        if (input) input.value = compressedDataUrl;
+        
+        const preview = document.getElementById("editImagePreview");
+        const container = document.getElementById("previewContainer-edit");
+        const info = document.getElementById("previewInfo-edit");
+        if (preview) preview.src = compressedDataUrl;
+        if (info) info.textContent = `${file.name} (${kbSize} KB optimizado)`;
+        if (container) container.classList.remove("hidden");
+      }
+
+      showToast(`✅ Foto "${file.name}" cargada correctamente`);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleUrlInput(e, context) {
+  const url = e.target.value.trim();
+  const preview = document.getElementById(context === 'add' ? 'addImagePreview' : 'editImagePreview');
+  const container = document.getElementById(context === 'add' ? 'previewContainer-add' : 'previewContainer-edit');
+  const info = document.getElementById(context === 'add' ? 'previewInfo-add' : 'previewInfo-edit');
+
+  if (url) {
+    if (preview) preview.src = url;
+    if (info) info.textContent = "URL externa vinculada";
+    if (container) container.classList.remove("hidden");
+  } else {
+    if (container) container.classList.add("hidden");
+  }
+}
+
+function removeImage(context) {
+  if (context === "add") {
+    const input = document.getElementById("addImageUrl");
+    const fileInput = document.getElementById("fileInput-add");
+    const container = document.getElementById("previewContainer-add");
+    if (input) input.value = "";
+    if (fileInput) fileInput.value = "";
+    if (container) container.classList.add("hidden");
+  } else {
+    const input = document.getElementById("editImage");
+    const fileInput = document.getElementById("fileInput-edit");
+    const container = document.getElementById("previewContainer-edit");
+    if (input) input.value = "";
+    if (fileInput) fileInput.value = "";
+    if (container) container.classList.add("hidden");
+  }
+  showToast("Foto eliminada");
+}
+
 function selectPresetImage(url) {
   const input = document.getElementById("addImageUrl");
   const preview = document.getElementById("addImagePreview");
+  const container = document.getElementById("previewContainer-add");
+  const info = document.getElementById("previewInfo-add");
   if (input) input.value = url;
-  if (preview) {
-    preview.src = url;
-    preview.classList.remove("hidden");
-  }
-  showToast("Imagen de frasco seleccionada");
+  if (preview) preview.src = url;
+  if (info) info.textContent = "Frasco de lujo prediseñado";
+  if (container) container.classList.remove("hidden");
+  showToast("Frasco seleccionado");
 }
 
 function handleAddNewPerfume(e) {
@@ -577,8 +734,7 @@ function handleAddNewPerfume(e) {
   renderPricingTable();
 
   e.target.reset();
-  const preview = document.getElementById("addImagePreview");
-  if (preview) preview.classList.add("hidden");
+  removeImage('add');
 
   showToast(`🎉 ¡"${name}" publicado con éxito en la tienda!`);
   switchTab("pricing");
@@ -605,6 +761,14 @@ function openEditModal(id) {
   document.getElementById("editHeartNotes").value = item.heartNotes || "";
   document.getElementById("editBaseNotes").value = item.baseNotes || "";
   document.getElementById("editDescription").value = item.description || "";
+
+  // Mostrar imagen activa en vista previa de edición
+  const editPreview = document.getElementById("editImagePreview");
+  const editContainer = document.getElementById("previewContainer-edit");
+  const editInfo = document.getElementById("previewInfo-edit");
+  if (editPreview) editPreview.src = item.image;
+  if (editContainer) editContainer.classList.remove("hidden");
+  if (editInfo) editInfo.textContent = "Foto actual en la web (puedes cambiarla subiendo otra)";
 
   const modal = document.getElementById("editPerfumeModal");
   if (modal) {

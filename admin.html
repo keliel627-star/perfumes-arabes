@@ -321,21 +321,81 @@
             />
           </div>
 
-          <!-- Selector de Imagen de Alta Calidad -->
-          <div class="bg-black/40 p-4 rounded-xl border border-white/10 space-y-3">
-            <label class="block text-gray-300 font-semibold">Seleccionar Imagen del Perfume:</label>
-            <p class="text-[11px] text-gray-400">Elige un frasco de alta gama o introduce el enlace directo de una foto:</p>
-            
-            <div id="adminImagePresets" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              <!-- Presets inyectados por JS -->
+          <!-- Selector y Subida de Imagen (Escritorio o URL) -->
+          <div class="bg-black/40 p-5 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <label class="block text-white font-bold text-xs flex items-center gap-2">
+                <i class="fa-solid fa-camera text-purple-400"></i>
+                <span>Imagen del Perfume</span>
+              </label>
+              
+              <!-- Pestañas para elegir modo de imagen -->
+              <div class="inline-flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/5 text-[11px]">
+                <button type="button" onclick="setImageMode('upload', 'add')" id="btnModeUpload-add" class="px-3 py-1.5 rounded-lg bg-purple-600 text-white font-bold transition-all shadow-md">
+                  <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Subir desde tu PC
+                </button>
+                <button type="button" onclick="setImageMode('url', 'add')" id="btnModeUrl-add" class="px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-link mr-1.5"></i> Por URL
+                </button>
+                <button type="button" onclick="setImageMode('presets', 'add')" id="btnModePresets-add" class="px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-all">
+                  <i class="fa-solid fa-gem mr-1.5"></i> Frascos de Lujo
+                </button>
+              </div>
             </div>
 
-            <div class="pt-2">
-              <label class="block text-gray-400 text-[11px] mb-1">O escribe la URL de tu imagen personalizada:</label>
-              <input type="url" id="addImageUrl" placeholder="https://..." 
-                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#D4AF37]" 
+            <!-- MODO 1: Subir desde el Ordenador / Escritorio (Drag & Drop) -->
+            <div id="imageUploadBox-add" class="space-y-3">
+              <div id="dropzone-add" 
+                onclick="document.getElementById('fileInput-add').click()" 
+                ondragover="handleDragOver(event, 'add')" 
+                ondragleave="handleDragLeave(event, 'add')" 
+                ondrop="handleDrop(event, 'add')" 
+                class="border-2 border-dashed border-purple-500/40 hover:border-purple-400 bg-purple-950/20 hover:bg-purple-950/30 rounded-2xl p-6 text-center cursor-pointer transition-all group">
+                <input type="file" id="fileInput-add" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'add')" />
+                <div class="w-12 h-12 rounded-full bg-purple-900/60 border border-purple-500/30 flex items-center justify-center mx-auto mb-2.5 text-purple-300 group-hover:scale-110 transition-transform shadow-lg">
+                  <i class="fa-solid fa-folder-open text-xl"></i>
+                </div>
+                <p class="text-xs font-bold text-white mb-1">
+                  Haz clic aquí para elegir una foto de tu ordenador o arrástrala
+                </p>
+                <p class="text-[11px] text-gray-400">
+                  Compatible con fotos de móvil o PC (JPG, PNG, WebP). La comprimimos automáticamente para máxima velocidad.
+                </p>
+              </div>
+            </div>
+
+            <!-- MODO 2: Introducir URL Web -->
+            <div id="imageUrlBox-add" class="hidden space-y-1.5">
+              <label class="block text-gray-400 text-[11px]">Introduce el enlace directo de la imagen (de internet o de un catálogo):</label>
+              <input type="url" id="addImageUrl" placeholder="https://ejemplo.com/perfume.jpg" oninput="handleUrlInput(event, 'add')"
+                class="w-full bg-black/60 border border-white/10 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-purple-400 text-xs" 
               />
-              <img id="addImagePreview" src="" alt="Vista previa" class="w-20 h-24 object-cover rounded-lg mt-2 hidden border border-[#D4AF37]" />
+            </div>
+
+            <!-- MODO 3: Frascos Prediseñados (Presets) -->
+            <div id="imagePresetsBox-add" class="hidden space-y-2">
+              <p class="text-[11px] text-gray-400">O elige uno de nuestros frascos profesionales de alta gama:</p>
+              <div id="adminImagePresets" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <!-- Presets inyectados por JS -->
+              </div>
+            </div>
+
+            <!-- Vista Previa de la Imagen Seleccionada -->
+            <div id="previewContainer-add" class="hidden p-3.5 bg-purple-950/30 rounded-2xl border border-purple-500/30 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <img id="addImagePreview" src="" alt="Vista previa" class="w-16 h-20 object-cover rounded-xl border border-purple-400 shadow-md" />
+                <div>
+                  <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                    <span>Foto cargada con éxito</span>
+                  </div>
+                  <span id="previewInfo-add" class="text-[11px] text-purple-300 block mt-0.5">Lista para publicar</span>
+                </div>
+              </div>
+              <button type="button" onclick="removeImage('add')" class="text-xs text-red-300 hover:text-white px-3 py-1.5 rounded-xl bg-red-950/50 hover:bg-red-900 border border-red-500/30 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                <span>Quitar</span>
+              </button>
             </div>
           </div>
 
@@ -565,9 +625,49 @@
           <input type="text" id="editBadge" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
         </div>
 
-        <div>
-          <label class="block text-gray-300 font-semibold mb-1">URL de la Imagen</label>
-          <input type="url" id="editImage" class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white" />
+        <!-- Imagen del Perfume (Subida o URL en Edición) -->
+        <div class="bg-black/40 p-4 rounded-xl border border-white/10 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="block text-white font-bold text-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-camera text-purple-400"></i>
+              <span>Foto del Perfume</span>
+            </label>
+            <div class="inline-flex items-center gap-1 bg-white/5 p-1 rounded-xl text-[11px]">
+              <button type="button" onclick="setImageMode('upload', 'edit')" id="btnModeUpload-edit" class="px-2.5 py-1 rounded-lg bg-purple-600 text-white font-bold transition-all">
+                <i class="fa-solid fa-upload mr-1"></i> Subir de PC
+              </button>
+              <button type="button" onclick="setImageMode('url', 'edit')" id="btnModeUrl-edit" class="px-2.5 py-1 rounded-lg text-gray-300 hover:text-white transition-all">
+                <i class="fa-solid fa-link mr-1"></i> Por URL
+              </button>
+            </div>
+          </div>
+
+          <!-- MODO 1: Subida desde Escritorio -->
+          <div id="imageUploadBox-edit" class="space-y-2">
+            <div onclick="document.getElementById('fileInput-edit').click()" 
+              class="border-2 border-dashed border-purple-500/40 hover:border-purple-400 bg-purple-950/20 hover:bg-purple-950/30 rounded-xl p-4 text-center cursor-pointer transition-all">
+              <input type="file" id="fileInput-edit" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'edit')" />
+              <i class="fa-solid fa-folder-open text-purple-400 text-xl mb-1"></i>
+              <p class="text-xs text-white font-semibold">Haz clic para cambiar la foto desde tu ordenador</p>
+            </div>
+          </div>
+
+          <!-- MODO 2: URL -->
+          <div id="imageUrlBox-edit" class="hidden space-y-1">
+            <label class="block text-gray-400 text-[11px]">Enlace URL de la imagen:</label>
+            <input type="url" id="editImage" placeholder="https://..." oninput="handleUrlInput(event, 'edit')" 
+              class="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-purple-400" 
+            />
+          </div>
+
+          <!-- Vista previa -->
+          <div id="previewContainer-edit" class="flex items-center gap-3 p-2.5 bg-purple-950/20 rounded-xl border border-purple-500/30">
+            <img id="editImagePreview" src="" alt="Vista previa" class="w-14 h-16 object-cover rounded-lg border border-purple-400 shadow-sm" />
+            <div class="text-[11px] text-gray-300">
+              <span class="font-bold text-white block">Foto activa</span>
+              <span id="previewInfo-edit" class="text-purple-300">Esta imagen se mostrará a los clientes</span>
+            </div>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">

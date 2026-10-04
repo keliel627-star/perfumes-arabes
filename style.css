@@ -1,21 +1,36 @@
 /* ==========================================================================
-   AL-SULTAN PARFUMS - ESTILOS DE LUJO ORIENTAL MODERNO
+   KELYSCENT - ESTILOS OFICIALES: ROYAL AMETHYST & ARABIAN GOLD
+   Lujo Oriental Moderno: Fondo Obsidiana Violeta, Acentos Amatista & Oro Sultán
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-gold-light: #F9E79F;
+  /* Amatista y Púrpura Real */
+  --color-purple-light: #F3E8FF;
+  --color-purple-glow: #C084FC;
+  --color-purple: #A855F7;
+  --color-purple-dark: #7E22CE;
+  --color-purple-deep: #4C1D95;
+  --color-purple-gradient: linear-gradient(135deg, #FFF 0%, #E9D5FF 20%, #C084FC 50%, #FDE68A 100%);
+
+  /* Oro Árabe Sultán */
+  --color-gold-light: #FDE68A;
   --color-gold: #D4AF37;
   --color-gold-dark: #AA820A;
-  --color-gold-gradient: linear-gradient(135deg, #F9E79F 0%, #D4AF37 50%, #996515 100%);
-  --color-bg-dark: #08080A;
-  --color-bg-card: #121217;
-  --color-bg-elevated: #181822;
-  --color-border-gold: rgba(212, 175, 55, 0.25);
-  --color-border-gold-hover: rgba(212, 175, 55, 0.6);
-  --shadow-gold: 0 8px 32px 0 rgba(212, 175, 55, 0.15);
-  --shadow-gold-lg: 0 16px 48px 0 rgba(212, 175, 55, 0.25);
+  --color-gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #996515 100%);
+
+  /* Fondos Noche Imperial Violeta */
+  --color-bg-dark: #07030C;
+  --color-bg-card: #11081D;
+  --color-bg-elevated: #1B0D2E;
+
+  /* Bordes y Sombras */
+  --color-border-purple: rgba(168, 85, 247, 0.25);
+  --color-border-purple-hover: rgba(192, 132, 252, 0.7);
+  --color-border-gold: rgba(212, 175, 55, 0.3);
+  --shadow-purple: 0 8px 32px 0 rgba(168, 85, 247, 0.22);
+  --shadow-purple-lg: 0 16px 48px 0 rgba(147, 51, 234, 0.35);
 }
 
 * {
@@ -25,123 +40,129 @@
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--color-bg-dark);
-  color: #E2E8F0;
+  color: #EDE9FE;
   overflow-x: hidden;
-  selection-background-color: #D4AF37;
-  selection-color: #08080A;
+  selection-background-color: #A855F7;
+  selection-color: #07030C;
 }
 
 ::selection {
-  background: #D4AF37;
-  color: #08080A;
+  background: #A855F7;
+  color: #07030C;
 }
 
-/* Tipografía de lujo */
+/* Tipografía de Lujo */
 .font-cinzel {
   font-family: 'Cinzel', serif;
 }
 
-/* Patrón geométrico árabe de fondo sutil */
-.bg-arabesque {
-  background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px), radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
+/* Patrón Geométrico Árabe Místico con reflejos violeta y oro */
+.bg-arabesque, .bg-arabesque-purple {
+  background-image: 
+    radial-gradient(rgba(192, 132, 252, 0.09) 1px, transparent 1px), 
+    radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+  background-position: 0 0, 19px 19px;
 }
 
-.bg-arabesque-ornament {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5 15 15 5-15 5-5 15-5-15-15-5 15-5zM0 30l3 9 9 3-9 3-3 9-3-9-9-3 9-3zM60 30l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%23d4af37' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+/* Textos con Degradados */
+.text-purple-gradient {
+  background: var(--color-purple-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Texto dorado degradado */
 .text-gold-gradient {
   background: var(--color-gold-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.text-purple-glow {
+  text-shadow: 0 0 25px rgba(192, 132, 252, 0.55);
+}
+
 .text-gold-glow {
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
-/* Botón dorado con brillo */
-.btn-gold {
-  background: var(--color-gold-gradient);
-  color: #0A0A0C;
+/* Botones de Lujo Púrpura Imperial */
+.btn-purple-luxury, .btn-gold {
+  background: linear-gradient(135deg, #9333EA 0%, #7E22CE 50%, #4C1D95 100%);
+  color: #FFFFFF;
   font-weight: 700;
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 25px rgba(147, 51, 234, 0.35);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(216, 180, 254, 0.3);
 }
 
-.btn-gold::before {
+.btn-purple-luxury::before, .btn-gold::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transition: 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(253, 230, 138, 0.4), transparent);
+  transition: 0.6s;
 }
 
-.btn-gold:hover::before {
+.btn-purple-luxury:hover::before, .btn-gold:hover::before {
   left: 100%;
 }
 
-.btn-gold:hover {
+.btn-purple-luxury:hover, .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 8px 35px rgba(168, 85, 247, 0.55);
+  border-color: rgba(253, 230, 138, 0.6);
 }
 
-.btn-gold:active {
-  transform: translateY(0);
-}
-
-/* Botón contorno dorado */
-.btn-gold-outline {
-  background: rgba(18, 18, 23, 0.7);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: #F9E79F;
+.btn-purple-outline, .btn-gold-outline {
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  color: #E9D5FF;
+  background: rgba(147, 51, 234, 0.08);
   transition: all 0.3s ease;
 }
 
-.btn-gold-outline:hover {
+.btn-purple-outline:hover, .btn-gold-outline:hover {
   border-color: #D4AF37;
-  background: rgba(212, 175, 55, 0.12);
   color: #FFFFFF;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  background: rgba(147, 51, 234, 0.2);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
   transform: translateY(-2px);
 }
 
-/* Efectos de tarjetas de lujo */
-.card-luxury {
-  background: linear-gradient(180deg, rgba(24, 24, 34, 0.85) 0%, rgba(14, 14, 20, 0.95) 100%);
-  border: 1px solid var(--color-border-gold);
-  border-radius: 1rem;
-  backdrop-filter: blur(12px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+/* Tarjetas de Perfumes con Glassmorphism Violeta & Oro */
+.card-luxury, .card-purple-luxury {
+  background: linear-gradient(145deg, rgba(18, 9, 31, 0.85) 0%, rgba(10, 4, 18, 0.95) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
-.card-luxury:hover {
-  border-color: var(--color-border-gold-hover);
+.card-luxury:hover, .card-purple-luxury:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.2), 0 0 25px 2px rgba(212, 175, 55, 0.08);
+  border-color: rgba(192, 132, 252, 0.55);
+  box-shadow: 0 18px 45px -10px rgba(147, 51, 234, 0.35), 0 0 20px 0 rgba(212, 175, 55, 0.15);
 }
 
-/* Badge de lujo con pulso suave */
-.badge-gold {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(170, 130, 10, 0.3) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.6);
-  color: #F9E79F;
+/* Badges / Insignias */
+.badge-amethyst, .badge-gold {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.9) 0%, rgba(88, 28, 135, 0.9) 100%);
+  border: 1px solid rgba(216, 180, 254, 0.4);
+  color: #FFFFFF;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.65rem;
   font-weight: 700;
   padding: 0.25rem 0.65rem;
   border-radius: 9999px;
+  box-shadow: 0 2px 10px rgba(147, 51, 234, 0.4);
 }
 
 .badge-novedad {
@@ -161,54 +182,54 @@ body {
   animation: float 5s ease-in-out infinite;
 }
 
-@keyframes pulseGold {
+@keyframes pulsePurple {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
 }
 
-.animate-pulse-gold {
-  animation: pulseGold 3s ease-in-out infinite;
+.animate-pulse-purple {
+  animation: pulsePurple 3s ease-in-out infinite;
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar Púrpura Imperial */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08080A;
+  background: #07030C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333340;
+  background: linear-gradient(180deg, #9333EA, #581C87);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #C084FC;
 }
 
 /* Pirámide Olfativa */
 .pyramid-level {
   position: relative;
-  border-left: 3px solid #D4AF37;
+  border-left: 3px solid #C084FC;
   padding-left: 1rem;
   margin-bottom: 0.75rem;
 }
 
-/* Modal Blur */
+/* Modal Backdrop */
 .modal-backdrop {
-  background-color: rgba(6, 6, 9, 0.85);
-  backdrop-filter: blur(8px);
+  background-color: rgba(7, 3, 12, 0.88);
+  backdrop-filter: blur(10px);
 }
 
 /* Glassmorphism panel */
 .glass-panel {
-  background: rgba(18, 18, 24, 0.9);
+  background: rgba(17, 8, 29, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
 /* Toast notification */
