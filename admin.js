@@ -182,9 +182,9 @@ const PRESET_IMAGES = [
 let perfumes = [];
 let orders = [];
 let settings = {
-  storeName: "AL-SULTAN PARFUMS",
+  storeName: "KELYSCENT",
   sellerPhone: "34612345678",
-  sellerEmail: "pedidos@alsultanparfums.com",
+  sellerEmail: "pedidos@kelyscent.es",
   freeShippingThreshold: 50.00,
   shippingCost: 4.95,
   currency: "€",
@@ -251,6 +251,10 @@ function loadData() {
   if (savedSettings) {
     try {
       settings = { ...settings, ...JSON.parse(savedSettings) };
+      if (!settings.storeName || settings.storeName === "AL-SULTAN PARFUMS") {
+        settings.storeName = "KELYSCENT";
+        saveSettings();
+      }
     } catch (e) {
       console.error(e);
     }
@@ -781,9 +785,9 @@ function clearCompletedOrders() {
 // CONFIGURACIÓN DE LA TIENDA
 // ==========================================================================
 function loadSettingsForm() {
-  document.getElementById("setStoreName").value = settings.storeName || "AL-SULTAN PARFUMS";
+  document.getElementById("setStoreName").value = settings.storeName || "KELYSCENT";
   document.getElementById("setPhone").value = settings.sellerPhone || "34612345678";
-  document.getElementById("setEmail").value = settings.sellerEmail || "pedidos@alsultanparfums.com";
+  document.getElementById("setEmail").value = settings.sellerEmail || "pedidos@kelyscent.es";
   document.getElementById("setFreeShipping").value = settings.freeShippingThreshold || 50;
   document.getElementById("setShippingCost").value = settings.shippingCost || 4.95;
 }
@@ -791,9 +795,9 @@ function loadSettingsForm() {
 function handleSaveStoreSettings(e) {
   e.preventDefault();
 
-  settings.storeName = document.getElementById("setStoreName").value.trim() || "AL-SULTAN PARFUMS";
+  settings.storeName = document.getElementById("setStoreName").value.trim() || "KELYSCENT";
   settings.sellerPhone = document.getElementById("setPhone").value.trim() || "34612345678";
-  settings.sellerEmail = document.getElementById("setEmail").value.trim() || "pedidos@alsultanparfums.com";
+  settings.sellerEmail = document.getElementById("setEmail").value.trim() || "pedidos@kelyscent.es";
   settings.freeShippingThreshold = parseFloat(document.getElementById("setFreeShipping").value) || 50;
   settings.shippingCost = parseFloat(document.getElementById("setShippingCost").value) || 4.95;
 

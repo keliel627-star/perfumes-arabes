@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AL-SULTAN PARFUMS - LOGICA PRINCIPAL DE LA APLICACIÓN
+   KELYSCENT - LOGICA PRINCIPAL DE LA APLICACIÓN
    Catálogo Dinámico, Carrito, Pedidos WhatsApp/Email y Panel de Gestión
    ========================================================================== */
 
@@ -176,13 +176,13 @@ let perfumes = [];
 let cart = [];
 let orders = [];
 let settings = {
-  storeName: "AL-SULTAN PARFUMS",
+  storeName: "KELYSCENT",
   sellerPhone: "34612345678",
-  sellerEmail: "pedidos@alsultanparfums.com",
+  sellerEmail: "pedidos@kelyscent.es",
   freeShippingThreshold: 50.00,
   shippingCost: 4.95,
   currency: "€",
-  promoDiscount: 0.10 // 10% con código SULTAN10
+  promoDiscount: 0.10 // 10% con código KELY10 o SULTAN10
 };
 
 let currentFilter = "Todos";
@@ -225,6 +225,11 @@ function loadSettings() {
   if (saved) {
     try {
       settings = { ...settings, ...JSON.parse(saved) };
+      // Actualizar a KELYSCENT si aún tenía el nombre provisional anterior
+      if (!settings.storeName || settings.storeName === "AL-SULTAN PARFUMS") {
+        settings.storeName = "KELYSCENT";
+        saveSettings();
+      }
     } catch (e) {
       console.error("Error cargando configuración:", e);
     }
