@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showroom de Diseños & Bocetos | KELYSCENT</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#FDE68A',
+              400: '#F9E79F',
+              500: '#D4AF37',
+              600: '#AA820A',
+            },
+            purple: {
+              400: '#C084FC',
+              500: '#A855F7',
+              600: '#9333EA',
+              700: '#7E22CE',
+              900: '#581C87',
+              950: '#0B0516',
+            },
+            dark: {
+              950: '#060608',
+              900: '#0D0D11',
+              800: '#14141A',
+              700: '#1E1E26',
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-dark-950 text-gray-200 antialiased min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+
+  <!-- ====================================================================
+       CABECERA DEL SHOWROOM
+       ==================================================================== -->
+  <header class="bg-dark-900 border-b border-white/10 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-amber-500 to-emerald-600 p-[1px] flex items-center justify-center">
+          <div class="w-full h-full bg-dark-950 rounded-2xl flex items-center justify-center">
+            <i class="fa-solid fa-wand-magic-sparkles text-amber-300 text-lg"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-cinzel text-lg sm:text-xl font-black tracking-wider text-white block leading-none">
+            KELYSCENT <span class="text-xs font-sans text-purple-400 font-semibold px-2 py-0.5 rounded-full bg-purple-950/70 border border-purple-500/30 ml-1">ESTUDIO</span>
+          </span>
+          <span class="text-[10px] uppercase tracking-widest text-gray-400 block mt-1">
+            Explorador Interactivo de Bocetos y Estilos
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          <span class="hidden sm:inline">Tu Web Actual (Oro & Negro)</span>
+          <span class="sm:hidden">Web Actual</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       SELECTOR INTERACTIVO DE BOCETOS
+       ==================================================================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-grow w-full">
+    
+    <!-- Aviso de seguridad -->
+    <div class="mb-8 p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 flex items-center gap-3 text-xs text-emerald-200">
+      <i class="fa-solid fa-shield-halved text-emerald-400 text-base"></i>
+      <div>
+        <strong>Página principal protegida:</strong> Tu tienda en vivo (<code class="bg-dark-950 px-2 py-0.5 rounded text-white">index.html</code>) no ha sido modificada. Estos bocetos son vistas previas independientes para que puedas comparar y elegir el estilo que más te guste.
+      </div>
+    </div>
+
+    <!-- Título y pestañas de estilos -->
+    <div class="text-center max-w-3xl mx-auto mb-8">
+      <h1 class="font-cinzel text-3xl sm:text-4xl font-black text-white mb-3">
+        Elige y Compara tu Estilo Favorito
+      </h1>
+      <p class="text-gray-400 text-sm">
+        Haz clic en cada pestaña para previsualizar en directo cómo luce cada variante de color, contraste y detalles de lujo oriental.
+      </p>
+    </div>
+
+    <!-- Selector de Pestañas de Bocetos -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-4xl mx-auto mb-8">
+      
+      <!-- TAB 1: MORADO AMATISTA -->
+      <button onclick="switchStyle('morado')" id="tab-morado" class="style-tab active p-4 rounded-2xl border text-left transition-all relative overflow-hidden bg-purple-950/40 border-purple-500 shadow-lg shadow-purple-950/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-purple-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
+            Boceto 1 (Toques Morados)
+          </span>
+          <span class="text-[10px] bg-purple-500/20 text-purple-200 px-2 py-0.5 rounded-md border border-purple-400/30">Recomendado</span>
+        </div>
+        <div class="font-cinzel text-base font-bold text-white mb-1">Amatista Real & Oro Sultán</div>
+        <p class="text-[11px] text-gray-300 leading-snug">Obsidiana violeta oscuro, reflejos amatista, oro árabe cálido y aura nocturna mística.</p>
+      </button>
+
+      <!-- TAB 2: ESMERALDA OASIS -->
+      <button onclick="switchStyle('esmeralda')" id="tab-esmeralda" class="style-tab p-4 rounded-2xl border text-left transition-all relative overflow-hidden bg-dark-900 border-white/10 hover:border-emerald-500/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            Boceto 2
+          </span>
+        </div>
+        <div class="font-cinzel text-base font-bold text-white mb-1">Oasis Esmeralda & Oro Rosa</div>
+        <p class="text-[11px] text-gray-400 leading-snug">Verde joya palaciego, jade de Oriente, sutil oro rosa y atmósfera fresca de los oasis.</p>
+      </button>
+
+      <!-- TAB 3: ORO & NEGRO ACTUAL -->
+      <button onclick="switchStyle('actual')" id="tab-actual" class="style-tab p-4 rounded-2xl border text-left transition-all relative overflow-hidden bg-dark-900 border-white/10 hover:border-amber-500/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            Estilo Actual
+          </span>
+          <span class="text-[10px] bg-white/10 text-gray-300 px-2 py-0.5 rounded-md">En vivo</span>
+        </div>
+        <div class="font-cinzel text-base font-bold text-white mb-1">Oro Imperial & Negro Azabache</div>
+        <p class="text-[11px] text-gray-400 leading-snug">El diseño activo en tu web: negro puro con dorados intensos y estética sobria de palacio.</p>
+      </button>
+
+    </div>
+
+    <!-- Barra de Herramientas de Previsualización -->
+    <div class="bg-dark-900 border border-white/10 rounded-t-2xl px-4 py-3 flex items-center justify-between text-xs text-gray-400">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+        </div>
+        <span class="opacity-30">|</span>
+        <span id="currentUrlDisplay" class="font-mono text-purple-300">boceto-morado.html</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a id="btnOpenNewTab" href="boceto-morado.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-white transition-colors flex items-center gap-1.5 font-medium">
+          <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+          <span>Abrir a Pantalla Completa</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contenedor del Iframe con Vista Previa Interactiva -->
+    <div class="border-x border-b border-white/10 rounded-b-2xl overflow-hidden bg-black shadow-2xl relative" style="height: 750px;">
+      <iframe id="previewIframe" src="boceto-morado.html" class="w-full h-full border-0"></iframe>
+    </div>
+
+  </main>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="bg-dark-900 border-t border-white/10 py-6 text-center text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 KELYSCENT. Estudio de variantes visuales.
+      </div>
+      <div>
+        <a href="index.html" class="text-[#D4AF37] hover:underline">Volver a la tienda oficial</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const STYLES = {
+      morado: {
+        url: 'boceto-morado.html',
+        display: 'boceto-morado.html (Amatista Real & Oro)',
+        colorBorder: 'border-purple-500',
+        bgActive: 'bg-purple-950/40',
+        shadow: 'shadow-purple-950/50'
+      },
+      esmeralda: {
+        url: 'boceto-esmeralda.html',
+        display: 'boceto-esmeralda.html (Oasis Esmeralda & Oro Rosa)',
+        colorBorder: 'border-emerald-500',
+        bgActive: 'bg-emerald-950/40',
+        shadow: 'shadow-emerald-950/50'
+      },
+      actual: {
+        url: 'index.html',
+        display: 'index.html (Oro Imperial & Negro Actual)',
+        colorBorder: 'border-amber-500',
+        bgActive: 'bg-amber-950/40',
+        shadow: 'shadow-amber-950/50'
+      }
+    };
+
+    function switchStyle(key) {
+      const s = STYLES[key];
+      if (!s) return;
+
+      // Actualizar Iframe
+      document.getElementById('previewIframe').src = s.url;
+      document.getElementById('currentUrlDisplay').textContent = s.display;
+      document.getElementById('btnOpenNewTab').href = s.url;
+
+      // Actualizar clases de pestañas
+      ['morado', 'esmeralda', 'actual'].forEach(k => {
+        const btn = document.getElementById(`tab-${k}`);
+        btn.classList.remove('border-purple-500', 'border-emerald-500', 'border-amber-500', 'bg-purple-950/40', 'bg-emerald-950/40', 'bg-amber-950/40', 'shadow-lg');
+        btn.classList.add('border-white/10', 'bg-dark-900');
+      });
+
+      const activeBtn = document.getElementById(`tab-${key}`);
+      activeBtn.classList.remove('border-white/10', 'bg-dark-900');
+      activeBtn.classList.add(s.colorBorder, s.bgActive, 'shadow-lg', s.shadow);
+    }
+  </script>
+
+</body>
+</html>

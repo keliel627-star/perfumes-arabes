@@ -1,0 +1,116 @@
+/* ==========================================================================
+   KELYSCENT - ESTILOS DE LUJO: OASIS ESMERALDA & ORO ROSA (BOCETO VERDE)
+   Atmósfera: Jardines Reales de Babilonia, Esmeralda Imperial, Oro Rosa y Jade
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-emerald-light: #A7F3D0;
+  --color-emerald-glow: #34D399;
+  --color-emerald: #10B981;
+  --color-emerald-dark: #059669;
+  --color-emerald-deep: #064E3B;
+  
+  --color-gold-rose: #E2A76F;
+  --color-gold-light: #FDE68A;
+  --color-gold: #D4AF37;
+
+  --color-bg-dark: #030C09;
+  --color-bg-card: #071712;
+  --color-bg-elevated: #0C241D;
+  --color-border-emerald: rgba(16, 185, 129, 0.25);
+  --color-border-emerald-hover: rgba(52, 211, 153, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: #ECFDF5;
+  overflow-x: hidden;
+  selection-background-color: #10B981;
+  selection-color: #030C09;
+}
+
+::selection {
+  background: #10B981;
+  color: #030C09;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.bg-arabesque-emerald {
+  background-image: 
+    radial-gradient(rgba(52, 211, 153, 0.08) 1px, transparent 1px), 
+    radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+  background-size: 38px 38px;
+  background-position: 0 0, 19px 19px;
+}
+
+.text-emerald-gradient {
+  background: linear-gradient(135deg, #FFF 0%, #A7F3D0 25%, #34D399 50%, #FDE68A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-emerald-glow {
+  text-shadow: 0 0 25px rgba(52, 211, 153, 0.5);
+}
+
+.btn-emerald-luxury {
+  background: linear-gradient(135deg, #059669 0%, #047857 50%, #064E3B 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 25px rgba(5, 150, 105, 0.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(167, 243, 208, 0.3);
+}
+
+.btn-emerald-luxury:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(16, 185, 129, 0.5);
+  border-color: rgba(253, 230, 138, 0.6);
+}
+
+.btn-emerald-outline {
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #A7F3D0;
+  background: rgba(16, 185, 129, 0.08);
+  transition: all 0.3s ease;
+}
+
+.btn-emerald-outline:hover {
+  border-color: #D4AF37;
+  color: #FFFFFF;
+  background: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.card-emerald-luxury {
+  background: linear-gradient(145deg, rgba(7, 23, 18, 0.85) 0%, rgba(3, 12, 9, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-emerald-luxury:hover {
+  transform: translateY(-5px);
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 16px 40px -10px rgba(16, 185, 129, 0.3), 0 0 15px 0 rgba(212, 175, 55, 0.15);
+}
+
+.badge-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(6, 78, 59, 0.9) 100%);
+  border: 1px solid rgba(167, 243, 208, 0.4);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+}

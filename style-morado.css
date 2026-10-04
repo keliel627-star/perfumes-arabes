@@ -1,0 +1,162 @@
+/* ==========================================================================
+   KELYSCENT - ESTILOS DE LUJO: ROYAL AMETHYST & ARABIAN GOLD (BOCETO MORADO)
+   Atmósfera: Noche Imperial de Dubái, Terciopelo Púrpura, Oro Sultán y Amatista
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-purple-light: #F3E8FF;
+  --color-purple-glow: #C084FC;
+  --color-purple: #A855F7;
+  --color-purple-dark: #7E22CE;
+  --color-purple-deep: #4C1D95;
+  --color-purple-gradient: linear-gradient(135deg, #FDE68A 0%, #C084FC 45%, #9333EA 80%, #581C87 100%);
+  
+  --color-gold-light: #FDE68A;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #996515;
+  --color-gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #996515 100%);
+
+  --color-bg-dark: #07030C;
+  --color-bg-card: #11081D;
+  --color-bg-elevated: #1B0D2E;
+  --color-border-purple: rgba(168, 85, 247, 0.25);
+  --color-border-purple-hover: rgba(192, 132, 252, 0.7);
+  --shadow-purple: 0 8px 32px 0 rgba(168, 85, 247, 0.22);
+  --shadow-purple-lg: 0 16px 48px 0 rgba(147, 51, 234, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: #EDE9FE;
+  overflow-x: hidden;
+  selection-background-color: #A855F7;
+  selection-color: #07030C;
+}
+
+::selection {
+  background: #A855F7;
+  color: #07030C;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+/* Patrón geométrico árabe místico con resplandor púrpura */
+.bg-arabesque-purple {
+  background-image: 
+    radial-gradient(rgba(192, 132, 252, 0.09) 1px, transparent 1px), 
+    radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+  background-position: 0 0, 19px 19px;
+}
+
+/* Texto Amatista & Oro degradado */
+.text-purple-gradient {
+  background: linear-gradient(135deg, #FFF 0%, #E9D5FF 20%, #C084FC 50%, #FDE68A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient {
+  background: var(--color-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-purple-glow {
+  text-shadow: 0 0 25px rgba(192, 132, 252, 0.55);
+}
+
+/* Botón Amatista Real con brillo dinámico */
+.btn-purple-luxury {
+  background: linear-gradient(135deg, #9333EA 0%, #7E22CE 50%, #4C1D95 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 25px rgba(147, 51, 234, 0.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(216, 180, 254, 0.3);
+}
+
+.btn-purple-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(253, 230, 138, 0.4), transparent);
+  transition: 0.6s;
+}
+
+.btn-purple-luxury:hover::before {
+  left: 100%;
+}
+
+.btn-purple-luxury:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(168, 85, 247, 0.55);
+  border-color: rgba(253, 230, 138, 0.6);
+}
+
+.btn-purple-outline {
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  color: #E9D5FF;
+  background: rgba(147, 51, 234, 0.08);
+  transition: all 0.3s ease;
+}
+
+.btn-purple-outline:hover {
+  border-color: #D4AF37;
+  color: #FFFFFF;
+  background: rgba(147, 51, 234, 0.2);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Tarjeta con Glassmorphism Violeta de Alta Gama */
+.card-purple-luxury {
+  background: linear-gradient(145deg, rgba(18, 9, 31, 0.85) 0%, rgba(10, 4, 18, 0.95) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  backdrop-filter: blur(14px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.card-purple-luxury:hover {
+  transform: translateY(-5px);
+  border-color: rgba(192, 132, 252, 0.55);
+  box-shadow: 0 16px 40px -10px rgba(147, 51, 234, 0.3), 0 0 15px 0 rgba(212, 175, 55, 0.15);
+}
+
+/* Badge Amatista */
+.badge-amethyst {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.9) 0%, rgba(88, 28, 135, 0.9) 100%);
+  border: 1px solid rgba(216, 180, 254, 0.4);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(147, 51, 234, 0.4);
+}
+
+/* Scrollbar Púrpura Elegante */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07030C;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9333EA, #581C87);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C084FC;
+}
