@@ -588,75 +588,79 @@ function renderCatalog() {
   }
 
   container.innerHTML = filtered.map(item => `
-    <div class="card-luxury flex flex-col group overflow-hidden">
-      <!-- Imagen y Badges -->
-      <div class="relative overflow-hidden bg-black/40 h-72 cursor-pointer" onclick="openQuickView('${item.id}')">
+    <div class="card-luxury flex flex-col group overflow-hidden text-center">
+      <!-- Imagen y Badges Centrados -->
+      <div class="relative overflow-hidden bg-cocoa-950/70 h-80 flex items-center justify-center p-4 cursor-pointer" onclick="openQuickView('${item.id}')">
         <img src="${item.image}" alt="${item.name}" 
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+          class="max-h-full max-w-full object-contain mx-auto transition-transform duration-700 group-hover:scale-108 drop-shadow-xl"
           onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'"
         />
         
         <!-- Badges Superiores -->
-        <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
-          ${item.badge ? `<span class="badge-gold">${item.badge}</span>` : ''}
-          ${item.isNew ? `<span class="badge-novedad text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">✨ Novedad</span>` : ''}
+        <div class="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
+          <div class="flex items-center gap-1.5">
+            ${item.badge ? `<span class="badge-gold">${item.badge}</span>` : ''}
+            ${item.isNew ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
+          </div>
+          <span class="badge-family">${item.family || 'Oriental'}</span>
         </div>
 
         <!-- Botón Vista Rápida flotante -->
-        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-          <span class="btn-gold-outline px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-            <i class="fa-solid fa-eye"></i> Vista Rápida & Pirámide
+        <div class="absolute inset-0 bg-cocoa-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+          <span class="btn-gold-outline px-5 py-2.5 rounded-full text-xs font-semibold flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+            <i class="fa-solid fa-eye text-amberwarm-400"></i> Ver Notas & Detalles
           </span>
         </div>
 
-        <span class="absolute bottom-2 right-2 bg-black/75 backdrop-blur-md text-gray-300 text-[11px] font-medium px-2 py-0.5 rounded border border-white/10">
+        <span class="absolute bottom-2.5 right-3 bg-cocoa-900/80 backdrop-blur-md text-cream-500 text-[10px] font-medium px-2 py-0.5 rounded border border-cocoa-700">
           ${item.volume || '100ml EDP'}
         </span>
       </div>
 
-      <!-- Contenido de la Tarjeta -->
-      <div class="p-5 flex-1 flex flex-col justify-between">
-        <div>
+      <!-- Contenido Centrado de la Tarjeta -->
+      <div class="p-6 flex-1 flex flex-col justify-between items-center space-y-3">
+        <div class="space-y-1.5 w-full">
           <!-- Marca y Categoría -->
-          <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
-            <span class="uppercase tracking-widest text-[#D4AF37] font-semibold">${item.brand}</span>
-            <span class="bg-white/5 px-2 py-0.5 rounded text-[11px]">${item.category}</span>
+          <div class="flex items-center justify-center gap-2 text-xs text-cream-500">
+            <span class="uppercase tracking-widest text-amberwarm-400 font-bold">${item.brand}</span>
+            <span class="text-cocoa-700">•</span>
+            <span class="bg-cocoa-800 text-cream-400 px-2 py-0.5 rounded-full text-[10px]">${item.category}</span>
           </div>
 
-          <!-- Nombre -->
-          <h3 class="font-cinzel text-lg font-bold text-white group-hover:text-[#F9E79F] transition-colors leading-snug cursor-pointer mb-2" onclick="openQuickView('${item.id}')">
+          <!-- Nombre Centrado -->
+          <h3 class="font-cinzel text-xl font-bold text-cream-100 group-hover:text-amberwarm-400 transition-colors leading-snug cursor-pointer pt-1" onclick="openQuickView('${item.id}')">
             ${item.name}
           </h3>
 
-          <!-- Notas destacadas -->
-          <div class="text-xs text-gray-400 line-clamp-2 mb-3">
-            <span class="text-gray-300 font-medium">Notas clave:</span> ${item.topNotes || item.heartNotes}
+          <!-- Notas destacadas centradas -->
+          <div class="text-xs text-cream-500 bg-cocoa-850 px-3 py-1.5 rounded-xl border border-cocoa-800 line-clamp-1 max-w-xs mx-auto">
+            <span class="text-cream-300 font-semibold">Notas:</span> ${item.topNotes ? item.topNotes.split(',').slice(0, 2).join(', ') : (item.heartNotes || 'Especias, maderas')}
           </div>
         </div>
 
-        <!-- Precios y Botones de Pedido / Contacto -->
-        <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
-          <div>
-            <div class="text-xs text-gray-500 line-through">${item.oldPrice ? `${item.oldPrice.toFixed(2)}${settings.currency}` : ''}</div>
-            <div class="text-xl font-black text-white font-cinzel">
-              <span class="text-[#D4AF37]">${item.price.toFixed(2)}</span>${settings.currency}
-            </div>
+        <!-- Precios y Acciones Centradas -->
+        <div class="pt-4 border-t border-cocoa-800 w-full flex flex-col items-center gap-3">
+          <div class="flex items-baseline justify-center gap-2">
+            <span class="text-2xl font-bold text-cream-100 font-cinzel">
+              ${item.price.toFixed(2)}${settings.currency}
+            </span>
+            ${item.oldPrice ? `<span class="text-xs text-cream-500/70 line-through">${item.oldPrice.toFixed(2)}${settings.currency}</span>` : ''}
           </div>
 
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center justify-center gap-2 w-full">
             <!-- Pedir directamente por WhatsApp -->
             <button onclick="directWhatsAppOrder('${item.id}')" 
-              class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-emerald-950/40"
+              class="flex-1 max-w-[140px] bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md"
               title="Pedir este perfume por WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
-              <span>Pedir</span>
+              <span>Pedir Ya</span>
             </button>
 
-            <!-- Añadir a mi selección -->
+            <!-- Añadir a la cesta -->
             <button onclick="addToCart('${item.id}')" 
-              class="bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white p-2.5 rounded-xl text-xs transition-all"
-              title="Añadir a mi selección para consultar varios">
-              <i class="fa-solid fa-plus"></i>
+              class="bg-cocoa-800 hover:bg-amberwarm-500 hover:text-cocoa-950 text-cream-200 border border-cocoa-700 p-2.5 rounded-full text-xs transition-all shadow-sm"
+              title="Añadir a mi cesta">
+              <i class="fa-solid fa-bag-shopping"></i>
             </button>
           </div>
         </div>
@@ -669,22 +673,37 @@ function renderNewArrivalsCarousel() {
   const container = document.getElementById("newArrivalsList");
   if (!container) return;
 
-  const newItems = perfumes.filter(p => p.isNew || p.badge?.includes("Novedad")).slice(0, 4);
-  const itemsToDisplay = newItems.length > 0 ? newItems : perfumes.slice(0, 4);
+  const newItems = perfumes.filter(p => p.isNew || p.badge?.includes("Novedad"));
+  const itemsToDisplay = newItems.length >= 4 ? newItems.slice(0, 4) : perfumes.slice(0, 4);
 
   container.innerHTML = itemsToDisplay.map(item => `
-    <div class="card-luxury p-4 flex gap-4 items-center group cursor-pointer" onclick="openQuickView('${item.id}')">
-      <div class="w-20 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-black/40 relative">
-        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+    <div class="card-luxury flex flex-col group overflow-hidden text-center cursor-pointer" onclick="openQuickView('${item.id}')">
+      <!-- Imagen centrada -->
+      <div class="relative bg-cocoa-950/80 h-64 flex items-center justify-center p-4 overflow-hidden">
+        <img src="${item.image}" alt="${item.name}" 
+          class="max-h-full max-w-full object-contain mx-auto group-hover:scale-108 transition-transform duration-500 drop-shadow-md" 
+          onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'"
+        />
+        <span class="badge-novedad absolute top-3 left-3">✨ Recién Llegado</span>
+        <span class="badge-family absolute top-3 right-3">${item.family || 'Oriental'}</span>
       </div>
-      <div class="flex-1 min-w-0">
-        <span class="text-[10px] text-[#D4AF37] uppercase font-bold tracking-wider">${item.brand}</span>
-        <h4 class="font-cinzel text-white font-bold text-sm truncate group-hover:text-[#F9E79F] transition-colors">${item.name}</h4>
-        <p class="text-xs text-gray-400 truncate mb-1">${item.family} • ${item.category}</p>
-        <div class="flex items-center justify-between">
-          <span class="text-sm font-bold text-[#D4AF37]">${item.price.toFixed(2)}${settings.currency}</span>
-          <button onclick="event.stopPropagation(); directWhatsAppOrder('${item.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1.5 rounded-lg font-bold flex items-center gap-1 transition-colors">
-            <i class="fa-brands fa-whatsapp"></i>
+
+      <!-- Datos Centrados -->
+      <div class="p-5 flex flex-col justify-between items-center space-y-2 flex-grow">
+        <div>
+          <span class="text-[10px] text-amberwarm-400 uppercase font-bold tracking-wider">${item.brand}</span>
+          <h4 class="font-cinzel text-cream-100 font-bold text-lg group-hover:text-amberwarm-400 transition-colors leading-snug">
+            ${item.name}
+          </h4>
+          <p class="text-xs text-cream-500 mt-1 line-clamp-1">${item.topNotes || item.family}</p>
+        </div>
+
+        <div class="w-full pt-3 border-t border-cocoa-800 flex items-center justify-between">
+          <span class="text-lg font-bold text-cream-100 font-cinzel">
+            ${item.price.toFixed(2)}${settings.currency}
+          </span>
+          <button onclick="event.stopPropagation(); directWhatsAppOrder('${item.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-colors shadow-sm">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
             <span>Pedir</span>
           </button>
         </div>
@@ -726,68 +745,68 @@ function openQuickView(id) {
   if (!modal || !modalContent) return;
 
   modalContent.innerHTML = `
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      <!-- Imagen de Alta Calidad -->
-      <div class="relative rounded-2xl overflow-hidden bg-black/60 border border-white/10 shadow-2xl">
-        <img src="${item.image}" alt="${item.name}" class="w-full h-96 object-cover object-center" />
-        <div class="absolute top-4 left-4 flex flex-col gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <!-- Imagen Centrada de Alta Calidad -->
+      <div class="relative rounded-2xl overflow-hidden bg-cocoa-950/80 border border-cocoa-700 shadow-xl p-6 flex items-center justify-center h-96">
+        <img src="${item.image}" alt="${item.name}" class="max-h-full max-w-full object-contain mx-auto drop-shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'" />
+        <div class="absolute top-4 left-4 flex flex-col gap-1.5">
           ${item.badge ? `<span class="badge-gold">${item.badge}</span>` : ''}
-          ${item.isNew ? `<span class="badge-novedad text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">✨ Novedad</span>` : ''}
+          ${item.isNew ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
         </div>
-        <div class="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 text-xs flex justify-between items-center text-gray-300">
-          <span><i class="fa-solid fa-droplet text-[#D4AF37] mr-1"></i> ${item.volume || '100ml Eau de Parfum'}</span>
-          <span><i class="fa-solid fa-stopwatch text-[#D4AF37] mr-1"></i> Duración 12h+</span>
+        <div class="absolute bottom-4 left-4 right-4 bg-cocoa-900/90 backdrop-blur-md p-2.5 rounded-xl border border-cocoa-700 text-xs flex justify-between items-center text-cream-400">
+          <span><i class="fa-solid fa-droplet text-amberwarm-400 mr-1"></i> ${item.volume || '100ml Eau de Parfum'}</span>
+          <span><i class="fa-solid fa-stopwatch text-amberwarm-400 mr-1"></i> Duración 12h+ en piel</span>
         </div>
       </div>
 
-      <!-- Información y Pirámide Olfativa -->
-      <div class="space-y-6">
+      <!-- Información y Pirámide Olfativa Centrada/Equilibrada -->
+      <div class="space-y-5">
         <div>
-          <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold">${item.brand}</span>
-          <h2 class="text-2xl md:text-3xl font-cinzel font-bold text-white mt-1">${item.name}</h2>
+          <span class="text-xs uppercase tracking-widest text-amberwarm-400 font-bold">${item.brand}</span>
+          <h2 class="text-2xl md:text-3xl font-cinzel font-bold text-cream-100 mt-1">${item.name}</h2>
           <div class="flex items-center gap-3 mt-2">
-            <span class="text-2xl font-bold font-cinzel text-[#F9E79F]">${item.price.toFixed(2)}${settings.currency}</span>
-            ${item.oldPrice ? `<span class="text-sm text-gray-500 line-through">${item.oldPrice.toFixed(2)}${settings.currency}</span>` : ''}
-            <span class="bg-white/10 text-gray-300 text-xs px-2.5 py-0.5 rounded-full">${item.category}</span>
+            <span class="text-2xl font-bold font-cinzel text-cream-100">${item.price.toFixed(2)}${settings.currency}</span>
+            ${item.oldPrice ? `<span class="text-sm text-cream-500/70 line-through">${item.oldPrice.toFixed(2)}${settings.currency}</span>` : ''}
+            <span class="bg-cocoa-800 text-cream-300 text-xs px-2.5 py-0.5 rounded-full border border-cocoa-700">${item.category}</span>
           </div>
         </div>
 
-        <p class="text-sm text-gray-300 leading-relaxed">${item.description}</p>
+        <p class="text-xs sm:text-sm text-cream-300 leading-relaxed font-light">${item.description}</p>
 
         <!-- Pirámide Olfativa Árabe -->
-        <div class="bg-black/50 p-4 rounded-xl border border-[#D4AF37]/30 space-y-3">
-          <h4 class="text-xs uppercase tracking-wider text-[#D4AF37] font-bold flex items-center gap-2">
+        <div class="bg-cocoa-900/80 p-4 rounded-2xl border border-cocoa-700 space-y-2.5">
+          <h4 class="text-xs uppercase tracking-wider text-amberwarm-400 font-bold flex items-center gap-2">
             <i class="fa-solid fa-layer-group"></i> Pirámide Olfativa Oriental
           </h4>
           
-          <div class="pyramid-level">
-            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Notas de Salida (Primeros 15 min):</span>
-            <span class="text-xs text-white">${item.topNotes || "Notas aromáticas orientales"}</span>
+          <div class="text-xs">
+            <span class="text-[11px] font-bold text-cream-500 uppercase tracking-wider block">Salida:</span>
+            <span class="text-cream-200">${item.topNotes || "Notas aromáticas orientales"}</span>
           </div>
 
-          <div class="pyramid-level">
-            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Notas de Corazón (Cuerpo del perfume):</span>
-            <span class="text-xs text-white">${item.heartNotes || "Maderas preciosas y flores exóticas"}</span>
+          <div class="text-xs">
+            <span class="text-[11px] font-bold text-cream-500 uppercase tracking-wider block">Corazón:</span>
+            <span class="text-cream-200">${item.heartNotes || "Maderas preciosas y flores exóticas"}</span>
           </div>
 
-          <div class="pyramid-level">
-            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Notas de Fondo (Permanencia en piel):</span>
-            <span class="text-xs text-white">${item.baseNotes || "Oud noble, ámbar y vainilla"}</span>
+          <div class="text-xs">
+            <span class="text-[11px] font-bold text-cream-500 uppercase tracking-wider block">Fondo:</span>
+            <span class="text-cream-200">${item.baseNotes || "Oud noble, ámbar y vainilla"}</span>
           </div>
         </div>
 
-        <!-- Botones de Contacto para Comprar -->
+        <!-- Botones de Acción -->
         <div class="pt-2 flex flex-col sm:flex-row gap-3">
           <button onclick="directWhatsAppOrder('${item.id}')" 
-            class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-900/30 flex-1">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-full text-xs flex items-center justify-center gap-2 transition-all shadow-lg flex-1">
+            <i class="fa-brands fa-whatsapp text-base"></i>
             <span>Pedir por WhatsApp (${item.price.toFixed(2)}${settings.currency})</span>
           </button>
           
           <button onclick="addToCart('${item.id}'); closeQuickView();" 
-            class="btn-gold-outline py-3.5 px-5 rounded-xl text-xs flex items-center justify-center gap-2 font-bold">
+            class="bg-cocoa-800 hover:bg-cocoa-700 text-cream-200 border border-cocoa-700 py-3.5 px-5 rounded-full text-xs flex items-center justify-center gap-2 font-semibold">
             <i class="fa-solid fa-plus"></i>
-            <span>Añadir a mi Selección</span>
+            <span>Añadir a la Cesta</span>
           </button>
         </div>
       </div>

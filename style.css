@@ -1,36 +1,30 @@
 /* ==========================================================================
-   KELYSCENT - ESTILOS OFICIALES: ROYAL AMETHYST & ARABIAN GOLD
-   Lujo Oriental Moderno: Fondo Obsidiana Violeta, Acentos Amatista & Oro Sultán
+   KELYSCENT - ESTILO LOUNGE NOCTURNO & TERCIOPELO
+   Diseño Íntimo, Limpio y Humano: Cacao Tostado, Vainilla & Luz Ámbar
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Amatista y Púrpura Real */
-  --color-purple-light: #F3E8FF;
-  --color-purple-glow: #C084FC;
-  --color-purple: #A855F7;
-  --color-purple-dark: #7E22CE;
-  --color-purple-deep: #4C1D95;
-  --color-purple-gradient: linear-gradient(135deg, #FFF 0%, #E9D5FF 20%, #C084FC 50%, #FDE68A 100%);
+  /* Ámbar & Bronce Cálido */
+  --color-amber-light: #F6EEE3;
+  --color-amber-glow: #E0AA6A;
+  --color-amber: #CB904D;
+  --color-amber-dark: #A76E30;
+  --color-amber-gradient: linear-gradient(135deg, #FFFDF9 0%, #F6EEE3 30%, #E0AA6A 70%, #CB904D 100%);
 
-  /* Oro Árabe Sultán */
-  --color-gold-light: #FDE68A;
-  --color-gold: #D4AF37;
-  --color-gold-dark: #AA820A;
-  --color-gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #996515 100%);
+  /* Fondos Cacao & Espresso Cálido */
+  --color-bg-dark: #120F0D;
+  --color-bg-card: #1A1613;
+  --color-bg-elevated: #241E1A;
+  --color-bg-input: #181411;
 
-  /* Fondos Noche Imperial Violeta */
-  --color-bg-dark: #07030C;
-  --color-bg-card: #11081D;
-  --color-bg-elevated: #1B0D2E;
-
-  /* Bordes y Sombras */
-  --color-border-purple: rgba(168, 85, 247, 0.25);
-  --color-border-purple-hover: rgba(192, 132, 252, 0.7);
-  --color-border-gold: rgba(212, 175, 55, 0.3);
-  --shadow-purple: 0 8px 32px 0 rgba(168, 85, 247, 0.22);
-  --shadow-purple-lg: 0 16px 48px 0 rgba(147, 51, 234, 0.35);
+  /* Bordes & Sombras */
+  --color-border-subtle: rgba(235, 221, 203, 0.08);
+  --color-border-amber: rgba(203, 144, 77, 0.25);
+  --color-border-hover: rgba(224, 170, 106, 0.65);
+  --shadow-lounge: 0 12px 36px -10px rgba(0, 0, 0, 0.65);
+  --shadow-amber-glow: 0 8px 30px rgba(203, 144, 77, 0.22);
 }
 
 * {
@@ -38,210 +32,139 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   background-color: var(--color-bg-dark);
-  color: #EDE9FE;
+  color: #EBDDCB;
   overflow-x: hidden;
-  selection-background-color: #A855F7;
-  selection-color: #07030C;
 }
 
 ::selection {
-  background: #A855F7;
-  color: #07030C;
+  background: #CB904D;
+  color: #120F0D;
 }
 
-/* Tipografía de Lujo */
-.font-cinzel {
-  font-family: 'Cinzel', serif;
+/* Tipografía Editorial */
+.font-cinzel, .font-serif-title {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Patrón Geométrico Árabe Místico con reflejos violeta y oro */
-.bg-arabesque, .bg-arabesque-purple {
+/* Fondo con sutil textura de luz ámbar */
+.bg-arabesque, .bg-arabesque-purple, .bg-lounge {
   background-image: 
-    radial-gradient(rgba(192, 132, 252, 0.09) 1px, transparent 1px), 
-    radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-  background-size: 38px 38px;
-  background-position: 0 0, 19px 19px;
+    radial-gradient(rgba(203, 144, 77, 0.06) 1px, transparent 1px), 
+    radial-gradient(rgba(246, 238, 227, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
 }
 
-/* Textos con Degradados */
-.text-purple-gradient {
-  background: var(--color-purple-gradient);
+/* Degradados de texto */
+.text-gold-gradient, .text-purple-gradient, .text-amber-gradient {
+  background: var(--color-amber-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gold-gradient {
-  background: var(--color-gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.text-amber-glow {
+  text-shadow: 0 0 20px rgba(224, 170, 106, 0.4);
 }
 
-.text-purple-glow {
-  text-shadow: 0 0 25px rgba(192, 132, 252, 0.55);
-}
-
-.text-gold-glow {
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-}
-
-/* Botones de Lujo Púrpura Imperial */
-.btn-purple-luxury, .btn-gold {
-  background: linear-gradient(135deg, #9333EA 0%, #7E22CE 50%, #4C1D95 100%);
-  color: #FFFFFF;
+/* Botones principales de la marca */
+.btn-gold, .btn-purple-luxury {
+  background: linear-gradient(135deg, #E0AA6A 0%, #CB904D 50%, #A76E30 100%);
+  color: #120F0D;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 25px rgba(147, 51, 234, 0.35);
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(216, 180, 254, 0.3);
+  letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(203, 144, 77, 0.28);
+  border: 1px solid rgba(246, 238, 227, 0.2);
 }
 
-.btn-purple-luxury::before, .btn-gold::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(253, 230, 138, 0.4), transparent);
-  transition: 0.6s;
-}
-
-.btn-purple-luxury:hover::before, .btn-gold:hover::before {
-  left: 100%;
-}
-
-.btn-purple-luxury:hover, .btn-gold:hover {
+.btn-gold:hover, .btn-purple-luxury:hover {
+  background: linear-gradient(135deg, #F6EEE3 0%, #E0AA6A 50%, #CB904D 100%);
+  box-shadow: 0 8px 30px rgba(224, 170, 106, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 8px 35px rgba(168, 85, 247, 0.55);
-  border-color: rgba(253, 230, 138, 0.6);
 }
 
-.btn-purple-outline, .btn-gold-outline {
-  border: 1px solid rgba(192, 132, 252, 0.4);
-  color: #E9D5FF;
-  background: rgba(147, 51, 234, 0.08);
+.btn-gold-outline {
+  border: 1px solid var(--color-border-amber);
+  color: #F6EEE3;
+  background: rgba(26, 22, 19, 0.6);
   transition: all 0.3s ease;
 }
 
-.btn-purple-outline:hover, .btn-gold-outline:hover {
-  border-color: #D4AF37;
-  color: #FFFFFF;
-  background: rgba(147, 51, 234, 0.2);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-  transform: translateY(-2px);
+.btn-gold-outline:hover {
+  border-color: #E0AA6A;
+  color: #FFFDF9;
+  background: rgba(203, 144, 77, 0.15);
+  transform: translateY(-1px);
 }
 
-/* Tarjetas de Perfumes con Glassmorphism Violeta & Oro */
-.card-luxury, .card-purple-luxury {
-  background: linear-gradient(145deg, rgba(18, 9, 31, 0.85) 0%, rgba(10, 4, 18, 0.95) 100%);
-  border: 1px solid rgba(168, 85, 247, 0.22);
+/* Tarjetas de Producto Centradas & Limpias */
+.card-luxury {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
   border-radius: 1.25rem;
-  backdrop-filter: blur(14px);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-lounge);
 }
 
-.card-luxury:hover, .card-purple-luxury:hover {
-  transform: translateY(-6px);
-  border-color: rgba(192, 132, 252, 0.55);
-  box-shadow: 0 18px 45px -10px rgba(147, 51, 234, 0.35), 0 0 20px 0 rgba(212, 175, 55, 0.15);
+.card-luxury:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(203, 144, 77, 0.12);
 }
 
-/* Badges / Insignias */
-.badge-amethyst, .badge-gold {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.9) 0%, rgba(88, 28, 135, 0.9) 100%);
-  border: 1px solid rgba(216, 180, 254, 0.4);
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.65rem;
+/* Badges elegantes */
+.badge-gold, .badge-novedad {
+  background: rgba(26, 22, 19, 0.88);
+  backdrop-filter: blur(8px);
+  color: #E0AA6A;
+  border: 1px solid rgba(203, 144, 77, 0.4);
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 0.25rem 0.65rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.65rem;
   border-radius: 9999px;
-  box-shadow: 0 2px 10px rgba(147, 51, 234, 0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-.badge-novedad {
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  color: #FFFFFF;
-  border: 1px solid rgba(16, 185, 129, 0.5);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+.badge-family {
+  background: rgba(255, 255, 255, 0.06);
+  color: #EBDDCB;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
 }
 
-/* Animaciones */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+/* Filtros y pestañas activas */
+.category-btn.active {
+  background: #CB904D !important;
+  color: #120F0D !important;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(203, 144, 77, 0.3);
 }
 
-.animate-float {
-  animation: float 5s ease-in-out infinite;
+/* Drawer Carrito */
+#cartDrawer {
+  transition: opacity 0.3s ease;
 }
 
-@keyframes pulsePurple {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-.animate-pulse-purple {
-  animation: pulsePurple 3s ease-in-out infinite;
-}
-
-/* Scrollbar Púrpura Imperial */
+/* Scrollbar estilizada */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #07030C;
+  background: #120F0D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #9333EA, #581C87);
+  background: #2B241E;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C084FC;
-}
-
-/* Pirámide Olfativa */
-.pyramid-level {
-  position: relative;
-  border-left: 3px solid #C084FC;
-  padding-left: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-/* Modal Backdrop */
-.modal-backdrop {
-  background-color: rgba(7, 3, 12, 0.88);
-  backdrop-filter: blur(10px);
-}
-
-/* Glassmorphism panel */
-.glass-panel {
-  background: rgba(17, 8, 29, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(168, 85, 247, 0.25);
-}
-
-/* Toast notification */
-#toast {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateY(100px);
-  opacity: 0;
-  pointer-events: none;
-}
-
-#toast.show {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
+  background: #CB904D;
 }

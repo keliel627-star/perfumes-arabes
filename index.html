@@ -3,47 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KELYSCENT | Tienda Exclusiva de Perfumes Árabes</title>
-  <meta name="description" content="Descubre la más selecta colección de perfumes árabes originales: Oud, Ámbar, Vainilla y Especias de Dubái. Catálogo online, pedidos por WhatsApp y envíos rápidos." />
+  <title>KELYSCENT | Perfumería Oriental Selecta de Dubái</title>
+  <meta name="description" content="Descubre la colección más exclusiva de perfumes árabes auténticos de Dubái: Asad, 9pm Rebel, Hawas Fire, Khamrah y más. Pedidos directos por WhatsApp y envíos rápidos en 24/48h." />
   
-  <!-- Favicon con icono de perfume -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
 
-  <!-- Tailwind CSS CDN con configuración personalizada -->
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            purple: {
-              300: '#E9D5FF',
-              400: '#C084FC',
-              500: '#A855F7',
-              600: '#9333EA',
-              700: '#7E22CE',
-              800: '#6B21A8',
-              900: '#581C87',
-              950: '#07030C',
+            cocoa: {
+              950: '#0E0C0A',
+              900: '#14110F',
+              850: '#1A1613',
+              800: '#231E19',
+              700: '#342D26'
             },
-            gold: {
-              300: '#FDE68A',
-              400: '#F9E79F',
-              500: '#D4AF37',
-              600: '#AA820A',
-              700: '#856404',
+            cream: {
+              100: '#FFFDF9',
+              200: '#F6EEE3',
+              300: '#EBDDCB',
+              500: '#D5BEA2',
             },
-            dark: {
-              950: '#07030C',
-              900: '#0E0617',
-              800: '#150A24',
-              700: '#1F0F35',
-              600: '#2A1547'
+            amberwarm: {
+              400: '#E0AA6A',
+              500: '#CB904D',
+              600: '#AF7634',
             }
           },
           fontFamily: {
-            cinzel: ['Cinzel', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            cinzel: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
           }
         }
       }
@@ -53,180 +51,275 @@
   <!-- FontAwesome Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Estilos Personalizados de Lujo -->
+  <!-- Estilos Lounge -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-dark-950 text-gray-200 antialiased bg-arabesque-purple">
+<body class="bg-cocoa-900 text-cream-300 antialiased bg-lounge min-h-screen flex flex-col justify-between selection:bg-amberwarm-500 selection:text-cocoa-950">
 
   <!-- ====================================================================
-       1. BARRA SUPERIOR DE ANUNCIOS & CONTACTO RÁPIDO
+       1. BARRA SUPERIOR DE ANUNCIOS & CONTACTO CERCANO
        ==================================================================== -->
-  <div class="bg-gradient-to-r from-purple-950/90 via-dark-950 to-purple-950/90 border-b border-purple-500/30 text-xs py-2 px-4">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
-      <div class="flex items-center gap-2 text-purple-200">
-        <span class="animate-pulse">✨</span>
-        <span class="font-medium tracking-wide">Fragancias 100% Originales de Dubái • Para comprar, contáctanos por WhatsApp o Teléfono</span>
-        <span class="animate-pulse">✨</span>
+  <div class="bg-cocoa-950 border-b border-cocoa-800 text-xs py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
+      <div class="flex items-center gap-2 text-cream-200">
+        <span class="text-amberwarm-400">✨</span>
+        <span class="font-medium tracking-wide">Fragancias 100% Originales importadas de Dubái · Muestras gratis en cada pedido</span>
+        <span class="text-amberwarm-400">✨</span>
       </div>
-      <div class="flex items-center gap-4 text-gray-400">
-        <a href="tel:+34612345678" class="contact-phone-link hover:text-purple-300 transition-colors flex items-center gap-1.5">
-          <i class="fa-solid fa-phone text-[10px] text-amber-300"></i>
-          <span>+34 612 345 678</span>
+      <div class="flex items-center gap-4 text-cream-500">
+        <a href="tel:+34698084329" class="contact-phone-link hover:text-amberwarm-400 transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-phone text-[10px] text-amberwarm-500"></i>
+          <span>+34 698 084 329</span>
         </a>
         <span class="opacity-30">|</span>
-        <a href="#" class="contact-wa-link hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-emerald-400">
+        <a href="#" class="contact-wa-link hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-emerald-400 font-semibold">
           <i class="fa-brands fa-whatsapp"></i>
-          <span>Comprar por WhatsApp</span>
+          <span>Atención Directa por WhatsApp</span>
         </a>
       </div>
     </div>
   </div>
 
   <!-- ====================================================================
-       2. NAVBAR PRINCIPAL DE LUJO
+       2. NAVBAR PRINCIPAL LOUNGE
        ==================================================================== -->
-  <header class="sticky top-0 z-40 bg-dark-950/90 backdrop-blur-md border-b border-purple-500/20 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+  <header class="sticky top-0 z-40 bg-cocoa-900/90 backdrop-blur-md border-b border-cocoa-800 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
       
       <!-- LOGO -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 via-purple-800 to-amber-600 flex items-center justify-center shadow-lg shadow-purple-900/40 group-hover:scale-105 transition-transform border border-purple-400/40">
-          <i class="fa-solid fa-crown text-amber-200 text-xl"></i>
-        </div>
-        <div>
-          <span class="font-cinzel text-xl sm:text-2xl font-black tracking-widest text-purple-gradient block leading-none">
-            KELYSCENT
-          </span>
-          <span class="text-[9px] uppercase tracking-[0.3em] text-purple-300/70 block mt-1 font-semibold">
-            ROYAL AMETHYST & OUD
-          </span>
-        </div>
+      <a href="#" class="flex flex-col group">
+        <span class="font-cinzel text-2xl sm:text-3xl font-bold tracking-wider text-cream-100 group-hover:text-amberwarm-400 transition-colors">
+          KELYSCENT
+        </span>
+        <span class="text-[9px] uppercase tracking-[0.3em] text-amberwarm-400/80 -mt-1 font-semibold">
+          Parfums d'Orient · Dubái
+        </span>
       </a>
 
-      <!-- ENLACES DE NAVEGACIÓN -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="#catalogo" class="text-gray-300 hover:text-purple-300 transition-colors">Catálogo</a>
-        <a href="#novedades" class="text-gray-300 hover:text-purple-300 transition-colors">Novedades</a>
-        <a href="#el-arte" class="text-gray-300 hover:text-purple-300 transition-colors">El Arte del Oud</a>
-        <a href="#opiniones" class="text-gray-300 hover:text-purple-300 transition-colors">Opiniones</a>
-        <a href="#contacto" class="text-gray-300 hover:text-purple-300 transition-colors">Contacto</a>
+      <!-- NAVEGACIÓN LIMPIA -->
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-semibold text-cream-300">
+        <a href="#novedades" class="hover:text-amberwarm-400 transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-amberwarm-500"></span> Novedades
+        </a>
+        <a href="#catalogo" class="hover:text-amberwarm-400 transition-colors">Catálogo</a>
+        <a href="#historia" class="hover:text-amberwarm-400 transition-colors">Nuestra Esencia</a>
+        <a href="#contacto" class="hover:text-amberwarm-400 transition-colors">Contacto</a>
       </nav>
 
-      <!-- BOTONES DE ACCIÓN DERECHA -->
+      <!-- BOTONES DE ACCIÓN: BUSCADOR & CESTA & ADMIN -->
       <div class="flex items-center gap-3">
         <!-- Enlace rápido a WhatsApp -->
-        <a href="#" class="contact-wa-link hidden sm:flex items-center gap-2 bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
-          <i class="fa-brands fa-whatsapp text-sm"></i>
-          <span>Pedir por WhatsApp</span>
+        <a href="#" class="contact-wa-link hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-cocoa-800 border border-cocoa-700 text-cream-200 hover:border-amberwarm-500 transition-all shadow-sm">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+          <span>Hablar con Kelly</span>
         </a>
 
-        <!-- Botón de Mi Selección -->
-        <button onclick="toggleCart()" 
-          class="btn-gold px-4 py-2.5 rounded-xl flex items-center gap-2.5 text-xs font-bold transition-all relative"
-          title="Ver los perfumes que has seleccionado para consultar">
-          <i class="fa-solid fa-list-check text-sm"></i>
-          <span class="hidden sm:inline">Mi Selección</span>
-          <span class="cart-count-badge bg-purple-950 text-amber-300 font-black text-[11px] w-5 h-5 rounded-full flex items-center justify-center border border-purple-500/50 ml-1">
-            0
-          </span>
+        <!-- Botón Carrito -->
+        <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-cocoa-800 border border-cocoa-700 text-cream-200 hover:border-amberwarm-500 transition-colors shadow-sm">
+          <i class="fa-solid fa-bag-shopping text-sm"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amberwarm-500 text-cocoa-950 text-[10px] font-bold flex items-center justify-center">0</span>
         </button>
+
+        <!-- Acceso Admin discreto -->
+        <a href="admin.html" class="p-2.5 rounded-full bg-cocoa-800/60 border border-cocoa-700/60 text-cream-500 hover:text-amberwarm-400 hover:border-amberwarm-500 transition-colors" title="Panel de Administración (PIN 1234)">
+          <i class="fa-solid fa-gear text-xs"></i>
+        </a>
       </div>
 
     </div>
   </header>
 
   <!-- ====================================================================
-       3. HERO SECTION (IMPACTO VISUAL & LUJO ÁRABE)
+       3. HERO BANNER PRINCIPAL (EDITABLE DINÁMICAMENTE DESDE ADMIN)
        ==================================================================== -->
-  <section class="relative overflow-hidden py-16 sm:py-24 border-b border-purple-500/15">
-    <!-- Luces y destellos decorativos con resplandor púrpura & oro -->
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/2 -right-32 w-96 h-96 bg-amber-600/15 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  <section class="py-12 sm:py-20 border-b border-cocoa-800 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        <!-- Texto de presentación -->
+        <!-- Texto Editorial Centrado / Alineado -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/70 border border-purple-500/40 text-purple-200 text-xs tracking-wider uppercase font-semibold shadow-lg shadow-purple-950/40">
-            <i class="fa-solid fa-gem text-xs text-amber-300"></i>
-            <span>Auténtica Alta Perfumería de Dubái</span>
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cocoa-800 border border-cocoa-700 text-xs text-amberwarm-400 font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-amberwarm-500 animate-pulse"></span>
+            <span id="heroCardBadge">Edición de Colección · Importación Dubái</span>
           </div>
 
-          <h1 class="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
-            La Seducción Oculta de Oriente: <br />
-            <span class="text-purple-gradient text-purple-glow">El Lujo que Deja Huella</span>
+          <h1 id="heroCardTitle" class="font-cinzel text-4xl sm:text-6xl text-cream-100 font-normal leading-[1.15]">
+            Aromas intensos, <br class="hidden sm:inline" />
+            <span class="italic text-amberwarm-400 font-normal">diseñados para ser recordados</span>.
           </h1>
 
-          <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Descubre fragancias icónicas elaboradas con maderas milenarias de <strong>Oud</strong>, cálido <strong>Ámbar</strong>, <strong>Canela exótica</strong> y <strong>Vainilla Bourbon</strong>. Concentraciones sublimes diseñadas para cautivar con una duración legendaria de más de 12 horas.
+          <p id="heroCardDesc" class="text-cream-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Una cuidada selección de perfumes árabes de alta fijación (más de 12 horas en piel). Macerados con notas de canela licorosa, vainilla bourbon, tabaco rubio y maderas preciosas.
           </p>
 
-          <!-- Botones de llamada a la acción -->
-          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a href="#catalogo" class="btn-gold px-8 py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-3 w-full sm:w-auto">
-              <i class="fa-solid fa-compass"></i>
-              <span>Explorar el Catálogo</span>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#novedades" class="px-7 py-3.5 rounded-full bg-amberwarm-500 hover:bg-amberwarm-400 text-cocoa-950 font-bold text-sm transition-all shadow-lg flex items-center gap-2">
+              Ver Novedades de Dubái <i class="fa-solid fa-arrow-down text-xs"></i>
             </a>
-            <a href="#" class="contact-wa-link btn-gold-outline px-8 py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-3 w-full sm:w-auto">
-              <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
-              <span>Asesoramiento Personalizado</span>
+            <a href="#" class="contact-wa-link px-6 py-3.5 rounded-full bg-cocoa-800 hover:bg-cocoa-700 text-cream-200 border border-cocoa-700 font-semibold text-sm transition-all flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+              ¿Dudas? Asesoría Personal
             </a>
           </div>
 
-          <!-- Sellos de confianza -->
-          <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 text-left">
-            <div class="flex items-center gap-3">
-              <i class="fa-solid fa-certificate text-gold-500 text-xl"></i>
-              <div class="text-xs">
-                <p class="font-bold text-white">100% Original</p>
-                <p class="text-gray-400 text-[11px]">Importación directa</p>
-              </div>
+          <!-- Puntos de Confianza -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-cocoa-800 max-w-md mx-auto lg:mx-0 text-center">
+            <div>
+              <div class="font-cinzel text-2xl font-bold text-cream-100">12h+</div>
+              <div class="text-[11px] text-cream-500">Fijación en piel</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="fa-solid fa-hourglass-half text-gold-500 text-xl"></i>
-              <div class="text-xs">
-                <p class="font-bold text-white">Fijación 12h+</p>
-                <p class="text-gray-400 text-[11px]">Alta concentración</p>
-              </div>
+            <div>
+              <div class="font-cinzel text-2xl font-bold text-cream-100">24/48h</div>
+              <div class="text-[11px] text-cream-500">Envío nacional</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="fa-solid fa-truck-fast text-gold-500 text-xl"></i>
-              <div class="text-xs">
-                <p class="font-bold text-white">Envíos 24/48h</p>
-                <p class="text-gray-400 text-[11px]">Península y Baleares</p>
-              </div>
+            <div>
+              <div class="font-cinzel text-2xl font-bold text-cream-100">100%</div>
+              <div class="text-[11px] text-cream-500">Original Dubái</div>
             </div>
-            <div class="flex items-center gap-3">
-              <i class="fa-solid fa-comments text-gold-500 text-xl"></i>
-              <div class="text-xs">
-                <p class="font-bold text-white">Trato Directo</p>
-                <p class="text-gray-400 text-[11px]">Compra por WhatsApp</p>
-              </div>
+          </div>
+
+        </div>
+
+        <!-- Imagen Destacada del Hero (Editable desde Admin) -->
+        <div class="lg:col-span-5 relative">
+          <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-cocoa-850 border border-cocoa-700 shadow-2xl relative group">
+            <img id="heroImageEl" src="images/asad.webp" alt="Perfume árabe destacado" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-cocoa-950/85 via-cocoa-950/20 to-transparent"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-cocoa-900/90 backdrop-blur-md border border-cocoa-700 text-center space-y-1.5">
+              <div class="text-[10px] uppercase font-bold tracking-widest text-amberwarm-400">Frasco de Portada</div>
+              <div id="heroCardVolume" class="text-xs text-cream-500">100ml Eau de Parfum</div>
+              <p class="text-xs text-cream-300">Puedes cambiar esta foto y textos cuando quieras desde tu panel de admin.</p>
             </div>
           </div>
         </div>
 
-        <!-- Imagen Destacada del Hero -->
-        <div class="lg:col-span-5 relative">
-          <div class="card-luxury p-3 relative group">
-            <div class="relative h-[440px] rounded-xl overflow-hidden bg-black/60">
-              <img id="heroImageEl" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80" 
-                alt="Perfume Árabe de Lujo" 
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-              
-              <!-- Cartela flotante -->
-              <div class="absolute bottom-6 left-6 right-6 bg-dark-900/90 backdrop-blur-md p-4 rounded-xl border border-[#D4AF37]/30">
-                <div class="flex items-center justify-between mb-1">
-                  <span id="heroCardBadge" class="badge-gold">Edición de Colección</span>
-                  <span id="heroCardVolume" class="text-gold-400 text-xs font-bold">100ml Eau de Parfum</span>
-                </div>
-                <h3 id="heroCardTitle" class="font-cinzel text-lg font-bold text-white">Khamrah & Oud Royale</h3>
-                <p id="heroCardDesc" class="text-xs text-gray-300 mt-1">Notas de canela especiada, dátiles árabes y vainilla de Madagascar.</p>
-              </div>
-            </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       4. SECCIÓN PRINCIPAL: ✨ NOVEDADES & RECIÉN LLEGADOS (DE PRIMERAS)
+       ==================================================================== -->
+  <section id="novedades" class="py-14 bg-cocoa-850/60 border-b border-cocoa-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-amberwarm-500/10 border border-amberwarm-500/30 text-[11px] uppercase tracking-widest text-amberwarm-400 font-bold mb-2">
+          ✨ Directo de Oriente
+        </span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cream-100">
+          Novedades & Recién Llegados
+        </h2>
+        <p class="text-xs sm:text-sm text-cream-500 mt-2">
+          Las incorporaciones más deseadas de esta temporada: <b>Asad</b>, <b>9pm Rebel</b>, <b>Hawas Fire</b> y los favoritos de la casa.
+        </p>
+      </div>
+
+      <!-- Contenedor de Novedades: Tarjetas Centradas -->
+      <div id="newArrivalsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Rellenado dinámicamente por app.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       5. BARRA DE FILTROS & BÚSQUEDA CENTRADA
+       ==================================================================== -->
+  <section class="py-6 bg-cocoa-900 border-b border-cocoa-800 sticky top-20 z-30 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Píldoras de Categoría Centradas -->
+      <div class="flex items-center justify-center gap-2 overflow-x-auto w-full md:w-auto text-xs pb-2 md:pb-0 scrollbar-none">
+        <button onclick="setCategoryFilter('Todos')" data-category="Todos" class="category-btn active px-4 py-2 rounded-full bg-amberwarm-500 text-cocoa-950 font-bold transition-all shadow-sm">
+          Todos los Perfumes
+        </button>
+        <button onclick="setCategoryFilter('Novedades')" data-category="Novedades" class="category-btn px-4 py-2 rounded-full bg-cocoa-800 text-cream-300 border border-cocoa-700 hover:border-amberwarm-500 font-medium transition-all">
+          ✨ Novedades
+        </button>
+        <button onclick="setCategoryFilter('Hombre')" data-category="Hombre" class="category-btn px-4 py-2 rounded-full bg-cocoa-800 text-cream-300 border border-cocoa-700 hover:border-amberwarm-500 font-medium transition-all">
+          Hombre
+        </button>
+        <button onclick="setCategoryFilter('Mujer')" data-category="Mujer" class="category-btn px-4 py-2 rounded-full bg-cocoa-800 text-cream-300 border border-cocoa-700 hover:border-amberwarm-500 font-medium transition-all">
+          Mujer
+        </button>
+        <button onclick="setCategoryFilter('Unisex')" data-category="Unisex" class="category-btn px-4 py-2 rounded-full bg-cocoa-800 text-cream-300 border border-cocoa-700 hover:border-amberwarm-500 font-medium transition-all">
+          Unisex
+        </button>
+      </div>
+
+      <!-- Buscador y Ordenación -->
+      <div class="flex items-center gap-3 w-full md:w-auto justify-center">
+        <div class="relative w-full sm:w-64">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-cream-500 text-xs"></i>
+          <input type="text" id="searchInput" placeholder="Buscar por nota o marca..." class="w-full pl-9 pr-4 py-2 rounded-full bg-cocoa-800 border border-cocoa-700 text-xs text-cream-100 placeholder-cream-500 focus:outline-none focus:border-amberwarm-500 transition-all shadow-sm" />
+        </div>
+
+        <select id="sortSelect" class="bg-cocoa-800 border border-cocoa-700 text-cream-300 text-xs rounded-full px-3 py-2 focus:outline-none focus:border-amberwarm-500">
+          <option value="featured">Destacados</option>
+          <option value="price-low">Precio: Menor a Mayor</option>
+          <option value="price-high">Precio: Mayor a Menor</option>
+          <option value="newest">Más Nuevos</option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       6. CATÁLOGO COMPLETO: PERFUMES CENTRADOS Y BIEN DISTRIBUIDOS
+       ==================================================================== -->
+  <main id="catalogo" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 flex-grow w-full">
+    
+    <div class="flex items-center justify-between mb-8 pb-3 border-b border-cocoa-800">
+      <div>
+        <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-cream-100">
+          Colección Completa de Perfumes
+        </h2>
+        <p class="text-xs text-cream-500">Tarjetas con vista centrada de frasco y acordes olfativos</p>
+      </div>
+      <div id="catalogProductCount" class="text-xs text-amberwarm-400 font-bold bg-cocoa-800 px-3 py-1.5 rounded-full border border-cocoa-700">
+        12 perfumes
+      </div>
+    </div>
+
+    <!-- Grilla de productos centrados -->
+    <div id="perfumesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Rellenado dinámicamente con JavaScript por app.js -->
+    </div>
+
+  </main>
+
+  <!-- ====================================================================
+       7. HISTORIA & TRADICIÓN (EDITABLE DINÁMICAMENTE DESDE ADMIN)
+       ==================================================================== -->
+  <section id="historia" class="py-16 bg-cocoa-850/50 border-y border-cocoa-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-5 relative order-2 lg:order-1">
+          <div class="aspect-[4/3] rounded-3xl overflow-hidden bg-cocoa-800 border border-cocoa-700 shadow-xl">
+            <img id="storyImageEl" src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80" alt="Maceración tradicional" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-4 text-center lg:text-left order-1 lg:order-2">
+          <span class="text-xs uppercase tracking-widest text-amberwarm-400 font-bold">Tradición Perfumera</span>
+          <h2 id="storyCardTitle" class="font-cinzel text-3xl sm:text-4xl font-bold text-cream-100">
+            Perfumes de máxima calidad
+          </h2>
+          <p id="storyCardDesc" class="text-cream-300 text-sm sm:text-base leading-relaxed font-light">
+            Importados directamente desde Dubái. Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.
+          </p>
+          <div class="pt-2">
+            <a href="#" class="contact-wa-link inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cocoa-800 border border-cocoa-700 hover:border-amberwarm-500 text-cream-200 text-xs font-semibold transition-all">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+              Consultar Disponibilidad por WhatsApp
+            </a>
           </div>
         </div>
 
@@ -235,583 +328,144 @@
   </section>
 
   <!-- ====================================================================
-       4. NOVEDADES & TENDENCIAS DESTACADAS
+       8. ASESORÍA PERSONAL & VALORES HUMANOS
        ==================================================================== -->
-  <section id="novedades" class="py-14 bg-dark-900/60 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
-        <div>
-          <div class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold flex items-center gap-2 mb-1">
-            <i class="fa-solid fa-sparkles"></i>
-            <span>Selección del Sultán</span>
-          </div>
-          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">Novedades & Tendencias</h2>
+  <section class="py-16 bg-cocoa-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
+      
+      <div class="w-12 h-12 rounded-full bg-cocoa-800 border border-cocoa-700 mx-auto flex items-center justify-center text-amberwarm-400 text-xl">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+      </div>
+
+      <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-cream-100">
+        Comprar en Kelyscent es fácil, cómodo y seguro
+      </h2>
+      <p class="text-cream-500 text-sm max-w-xl mx-auto">
+        Sin procesos de pago complicados con tarjeta ni intermediarios. Hablas directamente con la persona encargada.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 text-center">
+        <div class="p-6 rounded-2xl bg-cocoa-850 border border-cocoa-800">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-2xl mb-3 block"></i>
+          <h4 class="font-cinzel text-base font-bold text-cream-100 mb-1">Pedido Directo por WhatsApp</h4>
+          <p class="text-xs text-cream-500 leading-relaxed">Elige tu perfume y pulsa el botón. Te responderemos al instante con la confirmación.</p>
         </div>
-        <a href="#catalogo" class="text-xs text-[#F9E79F] hover:text-white flex items-center gap-1 font-semibold transition-colors">
-          <span>Ver catálogo completo</span>
-          <i class="fa-solid fa-arrow-right"></i>
+
+        <div class="p-6 rounded-2xl bg-cocoa-850 border border-cocoa-800">
+          <i class="fa-solid fa-gift text-amberwarm-400 text-2xl mb-3 block"></i>
+          <h4 class="font-cinzel text-base font-bold text-cream-100 mb-1">Muestras de Regalo</h4>
+          <p class="text-xs text-cream-500 leading-relaxed">Con cada pedido incluimos muestras gratuitas de otras fragancias de la tienda.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-cocoa-850 border border-cocoa-800">
+          <i class="fa-solid fa-truck-fast text-amberwarm-400 text-2xl mb-3 block"></i>
+          <h4 class="font-cinzel text-base font-bold text-cream-100 mb-1">Envío Exprés 24/48h</h4>
+          <p class="text-xs text-cream-500 leading-relaxed">Embalaje reforzado y protegido para que tu frasco joya llegue impoluto a tu puerta.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       9. FOOTER
+       ==================================================================== -->
+  <footer id="contacto" class="bg-cocoa-950 py-12 border-t border-cocoa-800 text-xs text-cream-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <span class="font-cinzel text-xl font-bold text-cream-100">KELYSCENT</span>
+        <p class="text-xs text-cream-500 mt-1">Perfumería Oriental de Dubái · Valencia, España</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <a href="tel:+34698084329" class="contact-phone-link hover:text-amberwarm-400 transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-phone text-amberwarm-500"></i> +34 698 084 329
+        </a>
+        <a href="mailto:keliel627@gmail.com" class="hover:text-amberwarm-400 transition-colors flex items-center gap-1.5">
+          <i class="fa-regular fa-envelope"></i> keliel627@gmail.com
+        </a>
+        <a href="bocetos.html" class="hover:text-amberwarm-400 transition-colors flex items-center gap-1.5 text-cream-400">
+          <i class="fa-solid fa-palette text-amberwarm-400"></i> Ver Otros Bocetos
+        </a>
+        <a href="admin.html" class="hover:text-amberwarm-400 transition-colors flex items-center gap-1.5 text-amberwarm-400">
+          <i class="fa-solid fa-lock text-xs"></i> Panel Admin
         </a>
       </div>
 
-      <!-- Grid de Novedades -->
-      <div id="newArrivalsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Renderizado dinámicamente con JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       5. CATÁLOGO PRINCIPAL DE PERFUMES CON FILTROS Y BÚSQUEDA
-       ==================================================================== -->
-  <section id="catalogo" class="py-16 sm:py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Cabecera del Catálogo -->
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-xs uppercase tracking-[0.25em] text-purple-400 font-bold block mb-2">
-          ✦ COLECCIÓN EXCLUSIVA AMATISTA & OUD ✦
-        </span>
-        <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-white mb-4">
-          Catálogo de <span class="text-purple-gradient">Perfumes Árabes</span>
-        </h2>
-        <p class="text-sm text-gray-300">
-          Explora nuestra cuidada selección de fragancias orientales de Dubái. Utiliza los filtros para encontrar tu aroma según género o familia olfativa.
-        </p>
-      </div>
-
-      <!-- Barra de Filtros, Búsqueda y Ordenación -->
-      <div class="bg-dark-900/80 backdrop-blur-md p-6 rounded-3xl border border-purple-500/20 mb-10 space-y-5 shadow-xl shadow-purple-950/20">
-        
-        <!-- Fila Superior: Búsqueda y Ordenación -->
-        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-          
-          <!-- Input de Búsqueda Reactiva -->
-          <div class="relative w-full md:w-96">
-            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-purple-400 text-sm"></i>
-            <input type="text" id="searchInput" 
-              placeholder="Buscar por nombre (Khamrah...), marca, notas..." 
-              class="w-full pl-11 pr-4 py-3 rounded-xl bg-black/60 border border-purple-500/30 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400/40 transition-colors"
-            />
-          </div>
-
-          <!-- Contador y Selector de Ordenación -->
-          <div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
-            <span id="catalogProductCount" class="text-xs font-semibold text-purple-200 bg-purple-950/50 px-3.5 py-1.5 rounded-lg border border-purple-500/30">
-              Cargando perfumes...
-            </span>
-
-            <div class="flex items-center gap-2">
-              <label for="sortSelect" class="text-xs text-gray-400 whitespace-nowrap">Ordenar por:</label>
-              <select id="sortSelect" class="bg-black/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-purple-400">
-                <option value="featured">Destacados</option>
-                <option value="price-low">Precio: Menor a Mayor</option>
-                <option value="price-high">Precio: Mayor a Menor</option>
-                <option value="newest">Más Recientes / Novedades</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fila Inferior: Botones de Categoría (Pestañas) -->
-        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-purple-500/10">
-          <span class="text-xs text-purple-300 mr-2 font-semibold">Categoría:</span>
-          <button class="category-btn active px-4 py-2 rounded-xl text-xs font-semibold border transition-all border-purple-400 text-purple-200 bg-purple-950/60 shadow-md shadow-purple-950/40" data-category="Todos">
-            Todos
-          </button>
-          <button class="category-btn px-4 py-2 rounded-xl text-xs font-semibold border border-transparent text-gray-300 hover:text-purple-300 bg-white/5 transition-all" data-category="Hombre">
-            Para Él
-          </button>
-          <button class="category-btn px-4 py-2 rounded-xl text-xs font-semibold border border-transparent text-gray-300 hover:text-purple-300 bg-white/5 transition-all" data-category="Mujer">
-            Para Ella
-          </button>
-          <button class="category-btn px-4 py-2 rounded-xl text-xs font-semibold border border-transparent text-gray-300 hover:text-purple-300 bg-white/5 transition-all" data-category="Unisex">
-            Unisex
-          </button>
-          <button class="category-btn px-4 py-2 rounded-xl text-xs font-semibold border border-transparent text-gray-300 hover:text-purple-300 bg-white/5 transition-all" data-category="Aceites">
-            Aceites CPO / Attar
-          </button>
-          <button class="category-btn px-4 py-2 rounded-xl text-xs font-semibold border border-transparent text-emerald-400 hover:text-emerald-300 bg-white/5 transition-all" data-category="Novedades">
-            ✨ Solo Novedades
-          </button>
-        </div>
-
-        <!-- Filtros Rápidos de Notas Olfativas -->
-        <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
-          <span class="text-purple-300 mr-2 font-semibold">Nota principal:</span>
-          <button class="family-pill px-3 py-1 rounded-full bg-purple-600 text-white font-semibold transition-all shadow-md shadow-purple-950/40" data-family="Todas">Todas</button>
-          <button class="family-pill px-3 py-1 rounded-full bg-white/5 text-gray-300 hover:text-purple-300 transition-all" data-family="Gourmand">Canela & Vainilla (Gourmand)</button>
-          <button class="family-pill px-3 py-1 rounded-full bg-white/5 text-gray-300 hover:text-purple-300 transition-all" data-family="Amaderado">Madera de Oud</button>
-          <button class="family-pill px-3 py-1 rounded-full bg-white/5 text-gray-300 hover:text-purple-300 transition-all" data-family="Dulce">Dulce & Ámbar</button>
-          <button class="family-pill px-3 py-1 rounded-full bg-white/5 text-gray-300 hover:text-purple-300 transition-all" data-family="Floral">Floral & Jazmín</button>
-          <button class="family-pill px-3 py-1 rounded-full bg-white/5 text-gray-300 hover:text-purple-300 transition-all" data-family="Cítrico">Cítrico & Ahumado</button>
-        </div>
-
-      </div>
-
-      <!-- GRID PRINCIPAL DE PRODUCTOS -->
-      <div id="perfumesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Renderizado dinámicamente con JavaScript -->
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       6. SECCIÓN EDUCATIVA: "EL ARTE DEL PERFUME ÁRABE"
-       ==================================================================== -->
-  <section id="el-arte" class="py-20 bg-dark-900 border-y border-[#D4AF37]/20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-5 relative">
-          <div class="rounded-2xl overflow-hidden border border-[#D4AF37]/40 shadow-2xl relative">
-            <img id="storyImageEl" src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80" 
-              alt="Maceración de perfumes árabes" 
-              class="w-full h-[460px] object-cover" 
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6 p-4 bg-black/80 backdrop-blur-md rounded-xl border border-white/10 text-xs">
-              <span id="storyCardTitle" class="text-[#D4AF37] font-bold uppercase tracking-wider block mb-1">Maceración Tradicional</span>
-              <p id="storyCardDesc" class="text-gray-300">Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7 space-y-6">
-          <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold">HISTORIA & MISTICISMO</span>
-          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white leading-tight">
-            ¿Por qué los Perfumes Árabes están Conquistando el Mundo?
-          </h2>
-          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            A diferencia de la perfumería occidental tradicional, que a menudo utiliza mayores proporciones de alcohol ligero, la perfumería árabe se distingue por:
-          </p>
-
-          <div class="space-y-4">
-            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-              <div class="w-10 h-10 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center flex-shrink-0 text-[#D4AF37]">
-                <i class="fa-solid fa-tree text-lg"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-white text-sm">Madera de Agar (Oud Natural)</h4>
-                <p class="text-xs text-gray-400 mt-0.5">Conocido como el "oro líquido" de Oriente Medio, un acorde profundo, místico y balsámico reservado a la realeza.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-              <div class="w-10 h-10 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center flex-shrink-0 text-[#D4AF37]">
-                <i class="fa-solid fa-wind text-lg"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-white text-sm">Estela y Proyección Monumental (Sillage)</h4>
-                <p class="text-xs text-gray-400 mt-0.5">Fragancias formuladas para resistir las temperaturas de los desiertos de los Emiratos, lo que asegura que tu aroma permanezca todo el día.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
-              <div class="w-10 h-10 rounded-lg bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center flex-shrink-0 text-[#D4AF37]">
-                <i class="fa-solid fa-gift text-lg"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-white text-sm">Presentación y Frascos Joya</h4>
-                <p class="text-xs text-gray-400 mt-0.5">Cada envase es una obra de arte con detalles en oro, terciopelo y cristales tallados que embellecen cualquier tocador.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       7. RESEÑAS & TESTIMONIOS DE CLIENTES SATISFECHOS
-       ==================================================================== -->
-  <section id="opiniones" class="py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold block mb-2">EXPERIENCIAS REALES</span>
-        <h2 class="font-cinzel text-3xl font-bold text-white mb-3">Lo Que Dicen Quienes Ya los Usan</h2>
-        <div class="flex items-center justify-center gap-1 text-gold-400 text-sm">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          <span class="text-xs text-gray-300 ml-2 font-semibold">4.9 / 5 basado en más de 800 pedidos</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="card-luxury p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-[#D4AF37] text-xs mb-3">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-xs sm:text-sm text-gray-300 italic mb-4 leading-relaxed">
-              "Compré Khamrah por recomendación y superó todas mis expectativas. Me puse 4 pulverizaciones por la mañana y por la noche aún olía intensamente. La atención por WhatsApp fue impecable."
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-            <div class="w-9 h-9 rounded-full bg-gold-600/30 text-gold-400 flex items-center justify-center font-bold text-xs">
-              MR
-            </div>
-            <div>
-              <div class="text-xs font-bold text-white">Mateo Romero</div>
-              <div class="text-[11px] text-gray-500">Madrid • Comprador Verificado</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-luxury p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-[#D4AF37] text-xs mb-3">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-xs sm:text-sm text-gray-300 italic mb-4 leading-relaxed">
-              "El aceite Hareem Al Sultan huele a paraíso. No tiene nada que ver con los perfumes comerciales de tienda común. Me preguntan en el trabajo qué perfume llevo puesto todos los días."
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-            <div class="w-9 h-9 rounded-full bg-gold-600/30 text-gold-400 flex items-center justify-center font-bold text-xs">
-              LG
-            </div>
-            <div>
-              <div class="text-xs font-bold text-white">Lucía Gómez</div>
-              <div class="text-[11px] text-gray-500">Valencia • Comprador Verificado</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-luxury p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-1 text-[#D4AF37] text-xs mb-3">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="text-xs sm:text-sm text-gray-300 italic mb-4 leading-relaxed">
-              "El pedido llegó en 24 horas y perfectamente embalado con un aroma en la caja increíble. Recomiendo Club de Nuit y 9 PM si buscas cumplidos seguros."
-            </p>
-          </div>
-          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-            <div class="w-9 h-9 rounded-full bg-gold-600/30 text-gold-400 flex items-center justify-center font-bold text-xs">
-              DA
-            </div>
-            <div>
-              <div class="text-xs font-bold text-white">David Alarcón</div>
-              <div class="text-[11px] text-gray-500">Barcelona • Comprador Verificado</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       8. PREGUNTAS FRECUENTES (FAQ)
-       ==================================================================== -->
-  <section class="py-16 bg-dark-900/40 border-t border-white/5">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-10">
-        <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-white mb-2">Preguntas Frecuentes</h2>
-        <p class="text-xs text-gray-400">Todo lo que necesitas saber antes de realizar tu pedido</p>
-      </div>
-
-      <div class="space-y-3 text-sm">
-        <details class="group bg-dark-800/60 p-4 rounded-xl border border-white/10 cursor-pointer">
-          <summary class="font-bold text-white flex justify-between items-center list-none">
-            <span>¿Los perfumes son 100% auténticos y originales?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-[#D4AF37] group-open:rotate-180 transition-transform"></i>
-          </summary>
-          <p class="text-xs text-gray-300 mt-3 pt-3 border-t border-white/5 leading-relaxed">
-            Absolutamente. Todas nuestras fragancias proceden directamente de las casas oficiales de Dubái y Emiratos Árabes (Lattafa, Swiss Arabian, Armaf, Afnan, Khadlaj). Vienen precintadas en su embalaje y caja original con sus hologramas de autenticidad.
-          </p>
-        </details>
-
-        <details class="group bg-dark-800/60 p-4 rounded-xl border border-white/10 cursor-pointer">
-          <summary class="font-bold text-white flex justify-between items-center list-none">
-            <span>¿Cómo puedo comprar un perfume?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-[#D4AF37] group-open:rotate-180 transition-transform"></i>
-          </summary>
-          <p class="text-xs text-gray-300 mt-3 pt-3 border-t border-white/5 leading-relaxed">
-            Para ofrecerte una atención personalizada, <strong>no cobramos a través de la web</strong>. Puedes ver todos los perfumes y sus precios en el catálogo. Cuando elijas el que te guste, simplemente pulsa en <strong>"Pedir por WhatsApp"</strong> o llámanos. Te confirmaremos la disponibilidad y coordinaremos el envío y pago directamente contigo.
-          </p>
-        </details>
-
-        <details class="group bg-dark-800/60 p-4 rounded-xl border border-white/10 cursor-pointer">
-          <summary class="font-bold text-white flex justify-between items-center list-none">
-            <span>¿Cuánto tardan los envíos y cuánto cuestan?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-[#D4AF37] group-open:rotate-180 transition-transform"></i>
-          </summary>
-          <p class="text-xs text-gray-300 mt-3 pt-3 border-t border-white/5 leading-relaxed">
-            Los envíos se preparan el mismo día y se entregan habitualmente en 24 a 48 horas laborables. Si tu pedido supera los 50€, el envío es totalmente <strong>GRATUITO</strong>. Para pedidos inferiores el envío tiene una tarifa plana de 4.95€.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       9. CONTACTO DIRECTO (TELÉFONO, WHATSAPP, EMAIL)
-       ==================================================================== -->
-  <section id="contacto" class="py-20 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold block mb-2">ATENCIÓN PERSONALIZADA</span>
-        <h2 class="font-cinzel text-3xl font-bold text-white mb-3">Contacta Con Nosotros</h2>
-        <p class="text-xs sm:text-sm text-gray-300">
-          ¿Tienes dudas sobre qué perfume elegir o quieres consultar existencias de una fragancia especial? Estamos a tu disposición directa.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Tarjetas de Contacto Rápido -->
-        <div class="lg:col-span-5 space-y-4">
-          
-          <!-- Tarjeta WhatsApp Directo -->
-          <a href="#" class="contact-wa-link card-luxury p-5 flex items-center gap-4 group cursor-pointer block border-emerald-500/30 hover:border-emerald-400">
-            <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-brands fa-whatsapp"></i>
-            </div>
-            <div>
-              <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Respuesta Instantánea</span>
-              <h4 class="font-bold text-white text-base">Escríbenos por WhatsApp</h4>
-              <p class="text-xs text-gray-400">Atención rápida y asesoramiento olfativo 1 a 1</p>
-            </div>
-          </a>
-
-          <!-- Tarjeta Teléfono -->
-          <a href="tel:+34612345678" class="contact-phone-link-card card-luxury p-5 flex items-center gap-4 group cursor-pointer block">
-            <div class="w-12 h-12 rounded-xl bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-phone"></i>
-            </div>
-            <div>
-              <span class="text-[10px] text-[#D4AF37] font-bold uppercase tracking-wider">Llamada Directa</span>
-              <h4 class="font-bold text-white text-base contact-phone-link">+34 612 345 678</h4>
-              <p class="text-xs text-gray-400">Horario de 10:00 a 20:00 (Lunes a Sábado)</p>
-            </div>
-          </a>
-
-          <!-- Tarjeta Email -->
-          <a href="mailto:pedidos@alsultanparfums.com" class="card-luxury p-5 flex items-center gap-4 group cursor-pointer block">
-            <div class="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-envelope"></i>
-            </div>
-            <div>
-              <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Correo Electrónico</span>
-              <h4 class="font-bold text-white text-base contact-email-link">pedidos@alsultanparfums.com</h4>
-              <p class="text-xs text-gray-400">Para consultas generales y pedidos corporativos</p>
-            </div>
-          </a>
-
-        </div>
-
-        <!-- Formulario de Mensaje Rápido -->
-        <div class="lg:col-span-7 card-luxury p-6 sm:p-8">
-          <h3 class="font-cinzel text-xl font-bold text-white mb-2">Envíanos un Mensaje</h3>
-          <p class="text-xs text-gray-400 mb-6">Rellena el formulario y te responderemos a la mayor brevedad posible.</p>
-
-          <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-gray-300 font-medium mb-1">Nombre Completo *</label>
-                <input type="text" id="contactName" required placeholder="Tu nombre" 
-                  class="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37]" 
-                />
-              </div>
-              <div>
-                <label class="block text-gray-300 font-medium mb-1">Teléfono o WhatsApp *</label>
-                <input type="tel" id="contactPhone" required placeholder="+34 600..." 
-                  class="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37]" 
-                />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-gray-300 font-medium mb-1">Correo Electrónico *</label>
-              <input type="email" id="contactEmail" required placeholder="tuemail@ejemplo.com" 
-                class="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37]" 
-              />
-            </div>
-
-            <div>
-              <label class="block text-gray-300 font-medium mb-1">¿Qué fragancia o consulta deseas hacer? *</label>
-              <textarea id="contactMessage" rows="4" required placeholder="Escribe aquí tu consulta o los perfumes que te interesan..." 
-                class="w-full bg-black/50 border border-white/10 rounded-xl px-3.5 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37]"
-              ></textarea>
-            </div>
-
-            <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
-              <i class="fa-solid fa-paper-plane"></i>
-              <span>Enviar Mensaje</span>
-            </button>
-          </form>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       10. FOOTER DE LUJO
-       ==================================================================== -->
-  <footer class="bg-dark-950 border-t border-[#D4AF37]/20 pt-12 pb-8 text-xs text-gray-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-        
-        <div class="space-y-3">
-          <div class="flex items-center gap-2">
-            <i class="fa-solid fa-crown text-[#D4AF37] text-lg"></i>
-            <span class="font-cinzel text-lg font-bold text-white store-name-text">KELYSCENT</span>
-          </div>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Tu boutique especializada en perfumería árabe exclusiva, perfumes de nicho y attars concentrados de Dubái.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px] text-[#D4AF37]">Navegación</h4>
-          <ul class="space-y-2">
-            <li><a href="#catalogo" class="hover:text-white transition-colors">Catálogo Completo</a></li>
-            <li><a href="#novedades" class="hover:text-white transition-colors">Novedades Semanales</a></li>
-            <li><a href="#el-arte" class="hover:text-white transition-colors">El Arte del Oud</a></li>
-            <li><a href="#contacto" class="hover:text-white transition-colors">Contacto Directo</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px] text-[#D4AF37]">Garantías & Pago</h4>
-          <p class="text-xs text-gray-400 mb-3">Envíos 24/48h a toda la península. Métodos seguros:</p>
-          <div class="flex flex-wrap gap-2 text-base text-gray-300">
-            <span class="bg-white/5 px-2 py-1 rounded border border-white/10 text-xs font-bold text-emerald-400">Bizum</span>
-            <span class="bg-white/5 px-2 py-1 rounded border border-white/10 text-xs"><i class="fa-brands fa-cc-visa mr-1"></i>Visa</span>
-            <span class="bg-white/5 px-2 py-1 rounded border border-white/10 text-xs"><i class="fa-brands fa-cc-mastercard mr-1"></i>Mastercard</span>
-            <span class="bg-white/5 px-2 py-1 rounded border border-white/10 text-xs">Transferencia</span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-bold text-white uppercase tracking-wider mb-3 text-[11px] text-[#D4AF37]">Atención Personalizada</h4>
-          <p class="text-xs text-gray-400 mb-3">¿Necesitas recomendación según la temporada o una ocasión especial? Habla directamente con nosotros:</p>
-          <a href="#" class="contact-wa-link btn-gold-outline w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-            <span>Consultar por WhatsApp</span>
-          </a>
-        </div>
-
-      </div>
-
-      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
-        <div>© 2026 <span class="store-name-text font-semibold text-white">KELYSCENT</span>. Todos los derechos reservados.</div>
-        <div class="text-gray-500">Esencia de Dubái con diseño vanguardista</div>
+      <div class="text-[11px] text-cream-500">
+        © 2026 KELYSCENT. Todos los derechos reservados.
       </div>
     </div>
   </footer>
 
   <!-- ====================================================================
-       11. DRAWER DESLIZANTE DE SELECCIÓN DE PERFUMES (PARA PEDIR)
+       10. DRAWER CARRITO DE COMPRA
        ==================================================================== -->
-  <div id="cartBackdrop" onclick="toggleCart(false)" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-  
-  <aside id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] bg-dark-900 border-l border-[#D4AF37]/30 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
-    
-    <!-- Cabecera de la Selección -->
-    <div class="p-5 border-b border-white/10 flex items-center justify-between bg-dark-950">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-list-check text-[#D4AF37]"></i>
-        <h3 class="font-cinzel text-base font-bold text-white">Tu Selección de Fragancias</h3>
-      </div>
-      <button onclick="toggleCart(false)" class="text-gray-400 hover:text-white p-1 text-base">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <!-- Aviso: Trato directo sin pasarelas de pago -->
-    <div class="p-3.5 bg-emerald-950/40 border-b border-emerald-500/20 text-xs text-emerald-300 flex items-start gap-2.5">
-      <i class="fa-solid fa-circle-check text-emerald-400 text-sm mt-0.5 flex-shrink-0"></i>
-      <p class="leading-relaxed">
-        <strong>No cobramos en la web.</strong> Envíanos tu lista por WhatsApp o Correo y coordinaremos contigo la entrega y el pago de forma directa y personalizada.
-      </p>
-    </div>
-
-    <!-- Lista de Perfumes Seleccionados -->
-    <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-3">
-      <!-- Inyectado por JS -->
-    </div>
-
-    <!-- Estado vacío -->
-    <div id="cartEmptyState" class="flex-1 flex flex-col items-center justify-center p-6 text-center text-gray-400 hidden">
-      <i class="fa-solid fa-bottle-droplet text-4xl mb-3 text-gold-500/30"></i>
-      <h4 class="font-cinzel text-base font-bold text-white mb-1">Sin perfumes seleccionados</h4>
-      <p class="text-xs mb-4">Revisa el catálogo, mira los precios y añade las fragancias que te gusten para consultarnos.</p>
-      <button onclick="toggleCart(false); location.href='#catalogo';" class="btn-gold px-6 py-2.5 rounded-xl text-xs font-bold">
-        Ver Perfumes del Catálogo
-      </button>
-    </div>
-
-    <!-- Resumen y Botones de Contacto para Comprar -->
-    <div id="cartSummary" class="p-5 border-t border-white/10 bg-dark-950 space-y-3 text-xs">
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-cocoa-950/60 backdrop-blur-sm hidden justify-end transition-opacity">
+    <div id="cartBackdrop" onclick="toggleCartDrawer()" class="absolute inset-0"></div>
+    <div class="relative w-full max-w-md bg-cocoa-850 h-full shadow-2xl flex flex-col justify-between border-l border-cocoa-700 z-10">
       
-      <div class="flex justify-between items-center text-sm font-bold text-white border-b border-white/10 pb-3">
-        <span>Total estimado:</span>
-        <span id="cartTotal" class="text-lg font-cinzel text-[#F9E79F]">0.00€</span>
+      <div class="p-6 border-b border-cocoa-700 flex items-center justify-between">
+        <div>
+          <h3 class="font-cinzel text-2xl font-bold text-cream-100">Tu Cesta</h3>
+          <span class="text-xs text-cream-500">Kelyscent Dubái</span>
+        </div>
+        <button onclick="toggleCartDrawer()" class="p-2 rounded-full hover:bg-cocoa-800 text-cream-300">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
       </div>
 
-      <!-- Botón 1: Enviar selección completa por WhatsApp -->
-      <button onclick="sendSelectionViaWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-900/30">
-        <i class="fa-brands fa-whatsapp text-lg"></i>
-        <span>Pedir esta Selección por WhatsApp</span>
-      </button>
+      <div id="cartItemsList" class="p-6 overflow-y-auto flex-grow space-y-4">
+        <!-- Rellenado por app.js -->
+      </div>
 
-      <!-- Botón 2: Enviar por Correo -->
-      <button onclick="sendSelectionViaEmail()" class="btn-gold-outline w-full py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2">
-        <i class="fa-solid fa-envelope"></i>
-        <span>Consultar Selección por Correo</span>
-      </button>
+      <div id="cartEmptyState" class="hidden py-16 text-center text-cream-500 p-6">
+        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-cocoa-700"></i>
+        <p class="font-cinzel text-lg font-bold text-cream-200">Tu cesta está vacía</p>
+        <p class="text-xs text-cream-500 mt-1">Explora las novedades y añade tus perfumes favoritos</p>
+      </div>
 
-      <!-- Botón 3: Llamar -->
-      <a href="tel:+34612345678" class="contact-phone-link text-center text-xs text-gray-400 hover:text-white block pt-1">
-        <i class="fa-solid fa-phone mr-1 text-[#D4AF37]"></i> O llámanos directamente por teléfono
-      </a>
+      <div id="cartSummary" class="p-6 bg-cocoa-900 border-t border-cocoa-700 space-y-4">
+        <div class="flex justify-between items-center text-sm font-semibold text-cream-100">
+          <span>Total Estimado:</span>
+          <span id="cartTotal" class="text-2xl font-bold font-cinzel text-amberwarm-400">0.00 €</span>
+        </div>
+        <p class="text-[11px] text-cream-500 text-center">
+          Al confirmar, se abrirá WhatsApp con tu lista de perfumes preparada para que Kelly te confirme el envío.
+        </p>
+        <button onclick="checkoutCartWhatsApp()" class="w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>Confirmar Pedido por WhatsApp</span>
+        </button>
+      </div>
+
     </div>
-
-  </aside>
+  </div>
 
   <!-- ====================================================================
-       12. MODAL DE VISTA RÁPIDA (PIRÁMIDE OLFATIVA & CONTACTO)
+       11. MODAL VISTA RÁPIDA & PIRÁMIDE OLFATIVA
        ==================================================================== -->
-  <div id="quickViewModal" class="fixed inset-0 modal-backdrop z-50 hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="card-luxury w-full max-w-3xl p-6 sm:p-8 bg-dark-900 border border-[#D4AF37]/50 relative my-8">
-      <button onclick="closeQuickView()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl z-20">
+  <div id="quickViewModal" class="fixed inset-0 z-50 bg-cocoa-950/70 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl bg-cocoa-850 rounded-3xl border border-cocoa-700 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <button onclick="closeQuickView()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-cocoa-900/80 border border-cocoa-700 text-cream-300 flex items-center justify-center hover:text-white transition-colors">
         <i class="fa-solid fa-xmark"></i>
       </button>
-
-      <div id="quickViewContent">
-        <!-- Inyectado por JS -->
+      <div id="quickViewContent" class="overflow-y-auto p-6 sm:p-8">
+        <!-- Rellenado por app.js -->
       </div>
     </div>
   </div>
 
-
-
-  <!-- ====================================================================
-       16. BOTÓN FLOTANTE DE WHATSAPP
-       ==================================================================== -->
-  <a href="#" class="contact-wa-link fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-xl shadow-emerald-900/40 hover:scale-110 transition-transform animate-bounce group" title="¿Hablamos por WhatsApp?">
-    <i class="fa-brands fa-whatsapp text-3xl"></i>
-    <span class="absolute right-16 bg-dark-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl border border-emerald-500/30 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-      ¿Dudas con un perfume? ¡Escríbenos!
-    </span>
-  </a>
-
-  <!-- ====================================================================
-       17. NOTIFICACIÓN TOAST
-       ==================================================================== -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-dark-900/95 border border-[#D4AF37] text-white px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 text-xs font-semibold">
-    <i class="fa-solid fa-sparkles text-[#D4AF37]"></i>
-    <span id="toastMessage">Acción realizada</span>
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300">
+    <div class="bg-cocoa-850 text-cream-100 px-5 py-3.5 rounded-2xl border border-amberwarm-500/40 shadow-2xl flex items-center gap-3 text-xs">
+      <span class="w-2 h-2 rounded-full bg-amberwarm-500"></span>
+      <span id="toastMessage">Acción completada</span>
+    </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- LÓGICA PRINCIPAL JAVASCRIPT -->
   <script src="app.js"></script>
+
 </body>
 </html>
