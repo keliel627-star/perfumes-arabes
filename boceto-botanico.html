@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boceto 3: Botánica Pura & Esencias | KELYSCENT</title>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍃</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: {
+              50: '#F5F7F5',
+              100: '#E9EFEA',
+              200: '#D5DFD7',
+              500: '#53735D',
+              700: '#385140',
+              900: '#1F3025'
+            },
+            olive: {
+              100: '#F4F5ED',
+              500: '#757C58',
+            }
+          },
+          fontFamily: {
+            italiana: ['Italiana', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body {
+      background-color: #FAFAF8;
+      color: #262926;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-italiana {
+      font-family: 'Italiana', serif;
+    }
+    .card-pure {
+      background: #FFFFFF;
+      border: 1px solid #E6EAE7;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-pure:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -6px rgba(50, 70, 55, 0.08);
+      border-color: #53735D;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sage-500 selection:text-white">
+
+  <!-- AVISO DE BOCETO -->
+  <div class="bg-sage-900 text-sage-100 text-xs py-2 px-4 text-center border-b border-sage-700 flex items-center justify-between">
+    <div class="hidden sm:block text-[11px] text-sage-200">
+      <i class="fa-solid fa-leaf mr-1"></i> Boceto de Diseño 3: <b>Botánica Pura & Esencias</b>
+    </div>
+    <div class="mx-auto sm:mx-0 font-medium">
+      🍃 Diseño fresco, transparente y honesto · Máxima claridad de ingredientes
+    </div>
+    <a href="bocetos.html" class="hidden sm:inline-flex items-center gap-1 text-[11px] text-sage-100 hover:text-white transition-colors">
+      <i class="fa-solid fa-arrow-left"></i> Volver a Bocetos
+    </a>
+  </div>
+
+  <!-- CABECERA -->
+  <header class="sticky top-0 z-40 bg-[#FAFAF8]/90 backdrop-blur-md border-b border-sage-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <a href="#" class="flex flex-col group">
+        <span class="font-italiana text-3xl sm:text-4xl tracking-wider text-sage-900 group-hover:text-sage-500 transition-colors">
+          KELYSCENT
+        </span>
+        <span class="text-[9px] uppercase tracking-[0.25em] text-sage-500 -mt-1 font-semibold">
+          Esencias Árabes Puras
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-sage-900">
+        <a href="#catalogo" class="hover:text-sage-500 transition-colors">Fragancias</a>
+        <a href="#notas" class="hover:text-sage-500 transition-colors">Notas Naturales</a>
+        <a href="#contacto" class="hover:text-sage-500 transition-colors">Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34698084329" target="_blank" class="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-sage-200 text-sage-900 hover:bg-sage-50 transition-all flex items-center gap-2 shadow-sm">
+          <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i>
+          <span>Pedir recomendación</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO BOTÁNICO -->
+  <section class="py-14 sm:py-20 border-b border-sage-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100 text-sage-900 text-xs font-medium border border-sage-200">
+        <span class="w-2 h-2 rounded-full bg-sage-500"></span> Aceites macerados gota a gota
+      </div>
+
+      <h1 class="font-italiana text-4xl sm:text-6xl text-sage-900 font-normal leading-tight">
+        La verdad sobre el perfume: <br />
+        <span class="italic text-sage-500">Pura fijación natural</span> sin artificios.
+      </h1>
+
+      <p class="text-sage-900/80 text-base sm:text-lg max-w-xl mx-auto font-light leading-relaxed">
+        Descubre fragancias elaboradas con resinas de ámbar gris, maderas ahumadas y flores de jazmín blanco. Menos químicos, más concentración y duración infinita.
+      </p>
+    </div>
+  </section>
+
+  <!-- BUSCADOR Y FILTROS -->
+  <section class="py-6 bg-white border-b border-sage-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto text-xs pb-2 sm:pb-0 scrollbar-none">
+        <button onclick="setFilter('Todos', this)" class="filter-btn px-4 py-2 rounded-full bg-sage-700 text-white font-bold transition-all shadow-sm">
+          Todos los Perfumes (12)
+        </button>
+        <button onclick="setFilter('Hombre', this)" class="filter-btn px-4 py-2 rounded-full bg-sage-50 text-sage-900 border border-sage-200 hover:border-sage-500 font-medium">
+          Hombre
+        </button>
+        <button onclick="setFilter('Mujer', this)" class="filter-btn px-4 py-2 rounded-full bg-sage-50 text-sage-900 border border-sage-200 hover:border-sage-500 font-medium">
+          Mujer
+        </button>
+        <button onclick="setFilter('Unisex', this)" class="filter-btn px-4 py-2 rounded-full bg-sage-50 text-sage-900 border border-sage-200 hover:border-sage-500 font-medium">
+          Unisex
+        </button>
+      </div>
+
+      <div class="relative w-full sm:w-64">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-sage-500 text-xs"></i>
+        <input type="text" id="searchInput" oninput="filterCatalog()" placeholder="Buscar aroma..." class="w-full pl-9 pr-4 py-2 rounded-full bg-sage-50 border border-sage-200 text-xs text-sage-900 focus:outline-none focus:border-sage-500" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <main id="catalogo" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 flex-grow w-full">
+    <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Rellenado con JS -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contacto" class="bg-sage-100 py-12 border-t border-sage-200 text-xs text-sage-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="font-italiana text-2xl font-bold text-sage-900">KELYSCENT</span>
+        <p class="text-xs text-sage-700 mt-1">Boceto 3 (Botánica & Esencias)</p>
+      </div>
+      <div>
+        <a href="https://wa.me/34698084329" target="_blank" class="text-sage-700 hover:text-sage-900 font-semibold">
+          WhatsApp: +34 698 084 329
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    let perfumes = [];
+    let currentFilter = 'Todos';
+
+    async function initCatalog() {
+      try {
+        const res = await fetch(`perfumes.json?v=${Date.now()}`);
+        if (res.ok) perfumes = await res.json();
+      } catch (e) {}
+      renderProducts(perfumes);
+    }
+
+    function renderProducts(items) {
+      const container = document.getElementById("productsGrid");
+      if (!container) return;
+
+      container.innerHTML = items.map(p => `
+        <article class="card-pure rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="relative bg-sage-50 aspect-[4/4.5] overflow-hidden group">
+              <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              ${p.badge ? `<span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[10px] font-bold bg-white text-sage-900 border border-sage-200">${p.badge}</span>` : ''}
+              <span class="absolute bottom-3.5 right-3.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 text-sage-900">${p.family || 'Oriental'}</span>
+            </div>
+            <div class="p-5 space-y-2">
+              <div class="text-[11px] text-sage-700 uppercase font-semibold">${p.brand} · ${p.volume || '100ml'}</div>
+              <h3 class="font-italiana text-2xl font-bold text-sage-900">${p.name}</h3>
+              <div class="text-xs text-sage-700 bg-sage-50/80 p-2.5 rounded-xl border border-sage-100">
+                <b>Notas:</b> ${p.topNotes || 'Especias, maderas y resinas'}
+              </div>
+              <p class="text-xs text-sage-900/80 leading-relaxed line-clamp-2">${p.description}</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t border-sage-100 flex items-center justify-between mt-3">
+            <div>
+              <span class="font-italiana text-2xl font-bold text-sage-900">${p.price.toFixed(2)} €</span>
+              ${p.oldPrice ? `<span class="text-xs text-gray-400 line-through ml-1">${p.oldPrice.toFixed(2)} €</span>` : ''}
+            </div>
+            <a href="https://wa.me/34698084329?text=Hola%20Kelly,%20quiero%20el%20perfume%20${encodeURIComponent(p.name)}%20(${p.price}€)" target="_blank" class="px-4 py-2.5 rounded-full bg-sage-700 hover:bg-sage-900 text-white text-xs font-semibold transition-colors">
+              Pedir WhatsApp
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function setFilter(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn px-4 py-2 rounded-full bg-sage-50 text-sage-900 border border-sage-200 hover:border-sage-500 font-medium';
+      });
+      btn.className = 'filter-btn px-4 py-2 rounded-full bg-sage-700 text-white font-bold transition-all shadow-sm';
+      filterCatalog();
+    }
+
+    function filterCatalog() {
+      const q = document.getElementById("searchInput")?.value.trim().toLowerCase() || "";
+      let filtered = perfumes;
+      if (currentFilter !== 'Todos') {
+        filtered = filtered.filter(p => (p.category && p.category.includes(currentFilter)) || (p.family && p.family.includes(currentFilter)));
+      }
+      if (q) {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q));
+      }
+      renderProducts(filtered);
+    }
+
+    document.addEventListener("DOMContentLoaded", initCatalog);
+  </script>
+</body>
+</html>
