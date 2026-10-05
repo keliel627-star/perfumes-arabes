@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    AL-SULTAN PARFUMS - LOGICA DEL PANEL DE ADMINISTRACIÓN (ADMIN.JS)
    Gestión Rápida de Precios, Catálogo, Pedidos de Clientes y Configuración
    ========================================================================== */
@@ -364,8 +364,16 @@ function loadData() {
   if (savedPerfumes) {
     try {
       perfumes = JSON.parse(savedPerfumes);
+      // Fusión inteligente: asegurar que todos los perfumes de DEFAULT_PERFUMES estén en el admin
+      DEFAULT_PERFUMES.forEach(def => {
+        if (!perfumes.some(p => p.id === def.id || p.name.trim().toLowerCase() === def.name.trim().toLowerCase())) {
+          perfumes.unshift(def);
+        }
+      });
+      savePerfumes();
     } catch (e) {
       perfumes = [...DEFAULT_PERFUMES];
+      savePerfumes();
     }
   } else {
     perfumes = [...DEFAULT_PERFUMES];

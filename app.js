@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    KELYSCENT - LOGICA PRINCIPAL DE LA APLICACIÓN
    Catálogo Dinámico, Carrito, Pedidos WhatsApp/Email y Panel de Gestión
    ========================================================================== */
@@ -378,12 +378,20 @@ function loadPerfumes() {
   if (saved) {
     try {
       perfumes = JSON.parse(saved);
+      // Fusión inteligente: asegurar que todos los perfumes oficiales de DEFAULT_PERFUMES estén presentes
+      DEFAULT_PERFUMES.forEach(def => {
+        if (!perfumes.some(p => p.id === def.id || p.name.trim().toLowerCase() === def.name.trim().toLowerCase())) {
+          perfumes.unshift(def);
+        }
+      });
+      localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
     } catch (e) {
       console.error("Error cargando perfumes guardados:", e);
       perfumes = [...DEFAULT_PERFUMES];
     }
   } else {
     perfumes = [...DEFAULT_PERFUMES];
+    localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
   }
 
   // Sincronizar SIEMPRE con el catálogo oficial del servidor (perfumes.json)
@@ -396,13 +404,18 @@ async function syncWithServerCatalog() {
     if (res.ok) {
       const serverData = await res.json();
       if (Array.isArray(serverData) && serverData.length > 0) {
-        const isAdmin = sessionStorage.getItem("alSultan_admin_auth") === "true";
-        if (!isAdmin) {
-          perfumes = serverData;
-          localStorage.setItem("alSultan_perfumes", JSON.stringify(serverData));
-          renderCatalog();
-          renderNewArrivalsCarousel();
-        }
+        // Fusión limpia: actualizar o incorporar productos del servidor sin eliminar los actuales
+        serverData.forEach(serverItem => {
+          const idx = perfumes.findIndex(p => p.id === serverItem.id || p.name.trim().toLowerCase() === serverItem.name.trim().toLowerCase());
+          if (idx >= 0) {
+            perfumes[idx] = { ...perfumes[idx], ...serverItem };
+          } else {
+            perfumes.unshift(serverItem);
+          }
+        });
+        localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
+        renderCatalog();
+        renderNewArrivalsCarousel();
       }
     }
   } catch (err) {
