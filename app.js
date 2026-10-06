@@ -574,14 +574,28 @@ function renderCatalog() {
   }
 
   if (filtered.length === 0) {
+    const cleanPhone = (settings.sellerPhone || "+34698084329").replace(/\D/g, '');
+    const waEncargoMsg = currentSearch 
+      ? `Hola! He buscado "${currentSearch}" en la web de Kelyscent y no lo veo, ¿podrías conseguírmelo?`
+      : "Hola! Busco un perfume que no veo en la web de Kelyscent, ¿podrías conseguírmelo?";
+    const waEncargoUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waEncargoMsg)}`;
+
     container.innerHTML = `
-      <div class="col-span-full py-16 text-center text-gray-400">
-        <i class="fa-solid fa-bottle-droplet text-5xl mb-4 text-[#D4AF37] opacity-40"></i>
-        <h3 class="text-xl font-bold font-cinzel text-white mb-2">No se encontraron perfumes</h3>
-        <p class="text-sm max-w-md mx-auto mb-6">Prueba a cambiar los filtros o los términos de búsqueda para encontrar tu fragancia ideal.</p>
-        <button onclick="resetFilters()" class="btn-gold-outline px-6 py-2.5 rounded-full text-sm font-semibold">
-          Restablecer Filtros
-        </button>
+      <div class="col-span-full py-16 text-center text-cream-400">
+        <i class="fa-solid fa-magnifying-glass-location text-5xl mb-4 text-amberwarm-400 opacity-60"></i>
+        <h3 class="text-xl font-bold font-cinzel text-cream-100 mb-2">¿No encuentras el perfume que buscas?</h3>
+        <p class="text-sm max-w-md mx-auto mb-6 text-cream-400">
+          Si necesitas una fragancia que no tengo en la web, puedes contactar conmigo por WhatsApp e intentamos encontrar el perfume que necesites.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="${waEncargoUrl}" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-lg shadow-emerald-950">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            Pedir por Encargo en WhatsApp
+          </a>
+          <button onclick="resetFilters()" class="px-6 py-2.5 rounded-full bg-cocoa-800 border border-cocoa-700 text-cream-300 hover:text-white text-xs font-semibold">
+            Restablecer Filtros
+          </button>
+        </div>
       </div>
     `;
     return;
