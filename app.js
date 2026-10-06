@@ -477,6 +477,11 @@ function updateContactLinks() {
     el.href = waUrl;
   });
 
+  const waEncargoUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent("¡Hola! Estoy buscando un perfume árabe que no tienes en la web, ¿podrías conseguírmelo?")}`;
+  document.querySelectorAll(".contact-encargo-link").forEach(el => {
+    el.href = waEncargoUrl;
+  });
+
   // Email
   const emailElements = document.querySelectorAll(".contact-email-link");
   emailElements.forEach(el => {
