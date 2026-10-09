@@ -14,16 +14,16 @@ const DEFAULT_PERFUMES = [
         "volume":  "100ml - Eau de Parfum",
         "category":  "Hombre",
         "family":  "Amaderado",
-        "badge":  "âœ¨ Novedad",
+        "badge":  "✨ Novedad",
         "isNew":  true,
         "inStock":  true,
         "rating":  5,
         "reviewsCount":  1,
         "image":  "images/asad.webp",
-        "topNotes":  "Pimienta negra, tabaco, piÃ±a",
-        "heartNotes":  "PachulÃ­, cafÃ©, iris",
-        "baseNotes":  "Vainilla, Ã¡mbar, madera seca, benjuÃ­, lÃ¡dano",
-        "description":  "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzÃ³ en 2021. Las Notas de Salida son pimienta negra, tabaco y piÃ±a; las Notas de CorazÃ³n son pachulÃ­, cafÃ© y iris; las Notas de Fondo son vainilla, Ã¡mbar, Madera seca, benjuÃ­ y lÃ¡dano."
+        "topNotes":  "Pimienta negra, tabaco, piña",
+        "heartNotes":  "Pachulí, café, iris",
+        "baseNotes":  "Vainilla, ámbar, madera seca, benjuí, ládano",
+        "description":  "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzó en 2021. Las Notas de Salida son pimienta negra, tabaco y piña; las Notas de Corazón son pachulí, café y iris; las Notas de Fondo son vainilla, ámbar, Madera seca, benjuí y ládano."
     },
     {
         "id":  "p_1791227917997",
@@ -34,16 +34,16 @@ const DEFAULT_PERFUMES = [
         "volume":  "100ml - Eau de Parfum",
         "category":  "Unisex",
         "family":  "Gourmand",
-        "badge":  "âœ¨ Novedad",
+        "badge":  "✨ Novedad",
         "isNew":  true,
         "inStock":  true,
         "rating":  5,
         "reviewsCount":  1,
         "image":  "images/9pm-rebel.webp",
-        "topNotes":  "PiÃ±a, manzana Granny Smith, mandarina",
+        "topNotes":  "Piña, manzana Granny Smith, mandarina",
         "heartNotes":  "Cedro, musgo de roble, vainilla",
-        "baseNotes":  "Caramelo, maderas secas, Ã¡mbar gris, almizcle",
-        "description":  "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ãmbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzÃ³ en 2024. Las Notas de Salida son piÃ±a, manzana Granny Smith y mandarina; las Notas de CorazÃ³n son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, Ã¡mbar gris y almizcle."
+        "baseNotes":  "Caramelo, maderas secas, ámbar gris, almizcle",
+        "description":  "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ámbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzó en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazón son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, ámbar gris y almizcle."
     },
     {
         "id":  "p_1791142104277",
@@ -380,6 +380,9 @@ function loadData() {
     savePerfumes();
   }
 
+  // Sincronizar con el catálogo oficial del servidor (perfumes.json)
+  syncWithServerCatalog();
+
   // Pedidos
   const savedOrders = localStorage.getItem("alSultan_orders");
   if (savedOrders) {
@@ -388,6 +391,30 @@ function loadData() {
     } catch (e) {
       orders = [];
     }
+  }
+}
+
+async function syncWithServerCatalog() {
+  try {
+    const res = await fetch(`perfumes.json?v=${Date.now()}`);
+    if (res.ok) {
+      const serverData = await res.json();
+      if (Array.isArray(serverData) && serverData.length > 0) {
+        serverData.forEach(serverItem => {
+          const idx = perfumes.findIndex(p => p.id === serverItem.id || p.name.trim().toLowerCase() === serverItem.name.trim().toLowerCase());
+          if (idx >= 0) {
+            perfumes[idx] = { ...perfumes[idx], ...serverItem };
+          } else {
+            perfumes.unshift(serverItem);
+          }
+        });
+        localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
+        renderPricingTable();
+        updateKpis();
+      }
+    }
+  } catch (err) {
+    // Modo offline o red lenta
   }
 }
 
@@ -488,13 +515,14 @@ function renderPricingTable() {
 
   tbody.innerHTML = filtered.map(item => `
     <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-      <!-- Perfume & Marca -->
-      <td class="p-3.5 flex items-center gap-3">
-        <img src="${item.image}" alt="${item.name}" class="w-12 h-14 object-cover rounded-lg bg-black/60 border border-white/10 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'" />
-        <div>
+      <!-- Perfume & Marca (Clicable para editar notas y todo) -->
+      <td class="p-3.5 flex items-center gap-3 cursor-pointer group" onclick="openEditModal('${item.id}')" title="Haz clic para editar notas olfativas, fotos y descripción">
+        <img src="${item.image}" alt="${item.name}" class="w-12 h-14 object-cover rounded-lg bg-black/60 border border-white/10 flex-shrink-0 group-hover:border-amber-400 transition-all shadow-md" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'" />
+        <div class="min-w-0">
           <span class="text-[10px] text-[#D4AF37] font-bold uppercase tracking-wider block">${item.brand}</span>
-          <span class="font-bold text-white text-sm block">${item.name}</span>
+          <span class="font-bold text-white text-sm block group-hover:text-amber-300 transition-colors">${item.name}</span>
           <span class="text-[11px] text-gray-500">${item.volume || '100ml EDP'}</span>
+          ${item.topNotes ? `<div class="text-[10px] text-amber-200/90 truncate max-w-[210px] mt-0.5" title="Salida: ${item.topNotes} | Corazón: ${item.heartNotes || '-'} | Fondo: ${item.baseNotes || '-'}"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 mr-1"></i>${item.topNotes}</div>` : `<div class="text-[10px] text-gray-500 italic mt-0.5"><i class="fa-solid fa-pen mr-1"></i>Sin notas · Clic para añadir</div>`}
         </div>
       </td>
 
@@ -532,9 +560,9 @@ function renderPricingTable() {
       <!-- ETIQUETA / BADGE (AUTO-GUARDADO) -->
       <td class="p-3.5 text-center">
         <input type="text" id="badge_${item.id}" value="${item.badge || ''}" placeholder="Ej: Bestseller" 
-          onchange="saveQuickPrice('${item.id}')"
-          onblur="saveQuickPrice('${item.id}')"
-          class="w-24 bg-black/80 border border-white/10 rounded-lg px-2 py-1.5 text-center text-xs text-[#F9E79F] focus:outline-none focus:border-[#D4AF37]" 
+            onchange="saveQuickPrice('${item.id}')"
+            onblur="saveQuickPrice('${item.id}')"
+            class="w-24 bg-black/80 border border-white/10 rounded-lg px-2 py-1.5 text-center text-xs text-[#F9E79F] focus:outline-none focus:border-[#D4AF37]" 
         />
       </td>
 
@@ -549,15 +577,16 @@ function renderPricingTable() {
       <!-- BOTONES DE ACCIÓN -->
       <td class="p-3.5 text-right">
         <div class="flex items-center justify-end gap-1.5">
-          <!-- Botón Guardar Manual -->
-          <button onclick="saveQuickPrice('${item.id}', true)" class="btn-gold px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" title="Guardar cambios">
+          <!-- Botón Guardar Rápido -->
+          <button onclick="saveQuickPrice('${item.id}', true)" class="btn-gold px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1" title="Guardar cambios rápidos">
             <i class="fa-solid fa-floppy-disk"></i>
             <span class="hidden xl:inline">Guardar</span>
           </button>
 
-          <!-- Botón Editar Todo -->
-          <button onclick="openEditModal('${item.id}')" class="bg-white/10 hover:bg-white/20 text-white p-1.5 rounded-lg text-xs transition-colors" title="Editar descripción, notas y fotos">
-            <i class="fa-solid fa-pen-to-square"></i>
+          <!-- Botón Editar Notas & Ficha Completa -->
+          <button onclick="openEditModal('${item.id}')" class="bg-purple-950/60 hover:bg-purple-900/90 text-purple-200 border border-purple-500/40 px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer" title="Editar notas olfativas, fotos y datos completos">
+            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+            <span>Notas & Ficha</span>
           </button>
 
           <!-- Botón Eliminar -->
@@ -951,30 +980,53 @@ function closeEditModal() {
 }
 
 function handleSaveEditPerfume(e) {
-  e.preventDefault();
-  const id = document.getElementById("editId").value;
+  if (e && e.preventDefault) e.preventDefault();
+  const id = document.getElementById("editId")?.value;
   const item = perfumes.find(p => p.id === id);
-  if (!item) return;
+  if (!item) {
+    showToast("⚠️ No se encontró el perfume a editar.");
+    return;
+  }
 
-  item.name = document.getElementById("editName").value.trim();
-  item.brand = document.getElementById("editBrand").value.trim();
-  item.volume = document.getElementById("editVolume").value.trim();
-  item.price = parseFloat(document.getElementById("editPrice").value);
-  item.oldPrice = document.getElementById("editOldPrice").value ? parseFloat(document.getElementById("editOldPrice").value) : null;
-  item.category = document.getElementById("editCategory").value;
-  item.family = document.getElementById("editFamily").value;
-  item.badge = document.getElementById("editBadge").value.trim();
-  item.image = document.getElementById("editImage").value.trim();
-  item.topNotes = document.getElementById("editTopNotes").value.trim();
-  item.heartNotes = document.getElementById("editHeartNotes").value.trim();
-  item.baseNotes = document.getElementById("editBaseNotes").value.trim();
-  item.description = document.getElementById("editDescription").value.trim();
+  const nameVal = document.getElementById("editName")?.value.trim();
+  const brandVal = document.getElementById("editBrand")?.value.trim();
+  const priceVal = parseFloat(document.getElementById("editPrice")?.value);
+
+  if (!nameVal || !brandVal || isNaN(priceVal)) {
+    showToast("⚠️ Por favor completa al menos el nombre, la marca y el precio.");
+    return;
+  }
+
+  item.name = nameVal;
+  item.brand = brandVal;
+  item.volume = document.getElementById("editVolume")?.value.trim() || item.volume || "100ml - Eau de Parfum";
+  item.price = priceVal;
+  item.oldPrice = document.getElementById("editOldPrice")?.value ? parseFloat(document.getElementById("editOldPrice").value) : null;
+  item.category = document.getElementById("editCategory")?.value || item.category || "Unisex";
+  item.family = document.getElementById("editFamily")?.value || item.family || "Amaderado";
+  item.badge = document.getElementById("editBadge")?.value.trim() || "";
+
+  const imgInput = document.getElementById("editImage")?.value.trim();
+  if (imgInput) {
+    item.image = imgInput;
+  }
+
+  // Notas Olfativas (Salida, Corazón y Fondo) y Descripción
+  const topVal = document.getElementById("editTopNotes")?.value.trim();
+  const heartVal = document.getElementById("editHeartNotes")?.value.trim();
+  const baseVal = document.getElementById("editBaseNotes")?.value.trim();
+  const descVal = document.getElementById("editDescription")?.value.trim();
+
+  item.topNotes = topVal !== undefined ? topVal : (item.topNotes || "");
+  item.heartNotes = heartVal !== undefined ? heartVal : (item.heartNotes || "");
+  item.baseNotes = baseVal !== undefined ? baseVal : (item.baseNotes || "");
+  item.description = descVal !== undefined ? descVal : (item.description || "");
 
   savePerfumes();
   updateKpis();
   renderPricingTable();
   closeEditModal();
-  showToast(`✅ Cambios guardados para "${item.name}"`);
+  showToast(`✅ Notas y datos de "${item.name}" guardados correctamente`);
 }
 
 // ==========================================================================

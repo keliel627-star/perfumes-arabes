@@ -14,16 +14,16 @@ const DEFAULT_PERFUMES = [
         "volume":  "100ml - Eau de Parfum",
         "category":  "Hombre",
         "family":  "Amaderado",
-        "badge":  "âœ¨ Novedad",
+        "badge":  "✨ Novedad",
         "isNew":  true,
         "inStock":  true,
         "rating":  5,
         "reviewsCount":  1,
         "image":  "images/asad.webp",
-        "topNotes":  "Pimienta negra, tabaco, piÃ±a",
-        "heartNotes":  "PachulÃ­, cafÃ©, iris",
-        "baseNotes":  "Vainilla, Ã¡mbar, madera seca, benjuÃ­, lÃ¡dano",
-        "description":  "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzÃ³ en 2021. Las Notas de Salida son pimienta negra, tabaco y piÃ±a; las Notas de CorazÃ³n son pachulÃ­, cafÃ© y iris; las Notas de Fondo son vainilla, Ã¡mbar, Madera seca, benjuÃ­ y lÃ¡dano."
+        "topNotes":  "Pimienta negra, tabaco, piña",
+        "heartNotes":  "Pachulí, café, iris",
+        "baseNotes":  "Vainilla, ámbar, madera seca, benjuí, ládano",
+        "description":  "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzó en 2021. Las Notas de Salida son pimienta negra, tabaco y piña; las Notas de Corazón son pachulí, café y iris; las Notas de Fondo son vainilla, ámbar, Madera seca, benjuí y ládano."
     },
     {
         "id":  "p_1791227917997",
@@ -34,16 +34,16 @@ const DEFAULT_PERFUMES = [
         "volume":  "100ml - Eau de Parfum",
         "category":  "Unisex",
         "family":  "Gourmand",
-        "badge":  "âœ¨ Novedad",
+        "badge":  "✨ Novedad",
         "isNew":  true,
         "inStock":  true,
         "rating":  5,
         "reviewsCount":  1,
         "image":  "images/9pm-rebel.webp",
-        "topNotes":  "PiÃ±a, manzana Granny Smith, mandarina",
+        "topNotes":  "Piña, manzana Granny Smith, mandarina",
         "heartNotes":  "Cedro, musgo de roble, vainilla",
-        "baseNotes":  "Caramelo, maderas secas, Ã¡mbar gris, almizcle",
-        "description":  "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ãmbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzÃ³ en 2024. Las Notas de Salida son piÃ±a, manzana Granny Smith y mandarina; las Notas de CorazÃ³n son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, Ã¡mbar gris y almizcle."
+        "baseNotes":  "Caramelo, maderas secas, ámbar gris, almizcle",
+        "description":  "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ámbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzó en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazón son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, ámbar gris y almizcle."
     },
     {
         "id":  "p_1791142104277",
