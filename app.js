@@ -270,9 +270,9 @@ let settings = {
   promoDiscount: 0.10, // 10% con código KELY10 o SULTAN10
   heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
   heroBadge: "Edición de Colección",
-  heroTitle: "Khamrah & Oud Royale",
+  heroTitle: "Hawas Fire",
   heroVolume: "100ml Eau de Parfum",
-  heroDesc: "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.",
+  heroDesc: "Hawas Fire de Rasasi es una fragancia de la familia olfativa Aromática Acuática",
   storyImage: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80",
   storyTitle: "Maceración Tradicional",
   storyDesc: "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel."
@@ -296,6 +296,7 @@ if (syncChannel) {
     } else if (event.data?.type === 'settings') {
       loadSettings();
       updateContactLinks();
+      updateBannersUI();
       updateCartUI();
     }
   };
@@ -326,6 +327,7 @@ function initApp() {
   renderNewArrivalsCarousel();
   updateCartUI();
   updateContactLinks();
+  updateBannersUI();
 
   setupEventListeners();
 }
@@ -344,6 +346,7 @@ function loadSettings() {
       console.error("Error cargando configuración:", e);
     }
   }
+  updateBannersUI();
   // Sincronizar siempre con settings.json del servidor para tener banners actualizados
   syncServerSettings();
 }
@@ -354,13 +357,10 @@ async function syncServerSettings() {
     if (res.ok) {
       const serverSettings = await res.json();
       if (serverSettings && typeof serverSettings === 'object') {
-        const isAdmin = sessionStorage.getItem("alSultan_admin_auth") === "true";
-        if (!isAdmin) {
-          settings = { ...settings, ...serverSettings };
-          localStorage.setItem("alSultan_settings", JSON.stringify(settings));
-          updateContactLinks();
-          updateBannersUI();
-        }
+        settings = { ...settings, ...serverSettings };
+        localStorage.setItem("alSultan_settings", JSON.stringify(settings));
+        updateContactLinks();
+        updateBannersUI();
       }
     }
   } catch (e) {
@@ -505,18 +505,18 @@ function updateBannersUI() {
   const heroDesc = document.getElementById("heroCardDesc");
 
   if (heroImg && settings.heroImage) heroImg.src = settings.heroImage;
-  if (heroBadge && settings.heroBadge) heroBadge.textContent = settings.heroBadge;
-  if (heroTitle && settings.heroTitle) heroTitle.textContent = settings.heroTitle;
-  if (heroVolume && settings.heroVolume) heroVolume.textContent = settings.heroVolume;
-  if (heroDesc && settings.heroDesc) heroDesc.textContent = settings.heroDesc;
+  if (heroBadge) heroBadge.textContent = settings.heroBadge !== undefined ? settings.heroBadge : "Edición de Colección";
+  if (heroTitle) heroTitle.textContent = settings.heroTitle !== undefined ? settings.heroTitle : "Hawas Fire";
+  if (heroVolume) heroVolume.textContent = settings.heroVolume !== undefined ? settings.heroVolume : "100ml Eau de Parfum";
+  if (heroDesc) heroDesc.textContent = settings.heroDesc !== undefined ? settings.heroDesc : "";
 
   const storyImg = document.getElementById("storyImageEl");
   const storyTitle = document.getElementById("storyCardTitle");
   const storyDesc = document.getElementById("storyCardDesc");
 
   if (storyImg && settings.storyImage) storyImg.src = settings.storyImage;
-  if (storyTitle && settings.storyTitle) storyTitle.textContent = settings.storyTitle;
-  if (storyDesc && settings.storyDesc) storyDesc.textContent = settings.storyDesc;
+  if (storyTitle) storyTitle.textContent = settings.storyTitle !== undefined ? settings.storyTitle : "Maceración Tradicional";
+  if (storyDesc) storyDesc.textContent = settings.storyDesc !== undefined ? settings.storyDesc : "";
 }
 
 function formatPhoneNumber(num) {

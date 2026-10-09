@@ -268,9 +268,9 @@ let settings = {
   adminPin: "1234",
   heroImage: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80",
   heroBadge: "Edición de Colección",
-  heroTitle: "Khamrah & Oud Royale",
+  heroTitle: "Hawas Fire",
   heroVolume: "100ml Eau de Parfum",
-  heroDesc: "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.",
+  heroDesc: "Hawas Fire de Rasasi es una fragancia de la familia olfativa Aromática Acuática",
   storyImage: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=1200&q=80",
   storyTitle: "Maceración Tradicional",
   storyDesc: "Aceites concentrados destilados gota a gota para lograr la máxima longevidad en piel."
@@ -380,8 +380,9 @@ function loadData() {
     savePerfumes();
   }
 
-  // Sincronizar con el catálogo oficial del servidor (perfumes.json)
+  // Sincronizar con el catálogo y ajustes oficiales del servidor
   syncWithServerCatalog();
+  syncServerSettings();
 
   // Pedidos
   const savedOrders = localStorage.getItem("alSultan_orders");
@@ -415,6 +416,22 @@ async function syncWithServerCatalog() {
     }
   } catch (err) {
     // Modo offline o red lenta
+  }
+}
+
+async function syncServerSettings() {
+  try {
+    const res = await fetch(`settings.json?v=${Date.now()}`);
+    if (res.ok) {
+      const serverSettings = await res.json();
+      if (serverSettings && typeof serverSettings === 'object') {
+        settings = { ...settings, ...serverSettings };
+        localStorage.setItem("alSultan_settings", JSON.stringify(settings));
+        loadBannersForm();
+      }
+    }
+  } catch (err) {
+    // Modo offline
   }
 }
 
@@ -1453,9 +1470,9 @@ function loadBannersForm() {
   if (heroImg && settings.heroImage) heroImg.src = settings.heroImage;
   if (heroUrl && settings.heroImage && !settings.heroImage.startsWith("data:")) heroUrl.value = settings.heroImage;
   if (heroBadge) heroBadge.value = settings.heroBadge || "Edición de Colección";
-  if (heroTitle) heroTitle.value = settings.heroTitle || "Khamrah & Oud Royale";
+  if (heroTitle) heroTitle.value = settings.heroTitle || "Hawas Fire";
   if (heroVolume) heroVolume.value = settings.heroVolume || "100ml Eau de Parfum";
-  if (heroDesc) heroDesc.value = settings.heroDesc || "Notas de canela especiada, dátiles árabes y vainilla de Madagascar.";
+  if (heroDesc) heroDesc.value = settings.heroDesc || "";
   updateHeroPreviewTexts();
 
   // Story
