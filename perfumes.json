@@ -57,26 +57,6 @@
     "description": "Una de las fragancias árabes más aclamadas del mundo. Inspirada en la opulencia de los palacios orientales, abre con una canela envolvente y dátiles licorosos sobre un fondo cremoso de vainilla y ámbar. Estela y duración descomunales (12h+ en piel)."
   },
   {
-    "id": "p_1791133028733",
-    "name": "VULCAN  SABLE",
-    "brand": "French Aveneu",
-    "price": 30,
-    "oldPrice": 35,
-    "volume": "100ml-Eau  de Parfum",
-    "category": "Hombre",
-    "family": "Amaderado",
-    "badge": "✨ Novedad",
-    "isNew": true,
-    "inStock": false,
-    "rating": 5,
-    "reviewsCount": 1,
-    "image": "images/vulcan-sable.jpg",
-    "topNotes": "whisky  naranja  mandarina cilantro",
-    "heartNotes": "haba tonka  cachemira  styrax   anís",
-    "baseNotes": "vainilla benjuí  pachulí",
-    "description": "Un aroma de lujo para hombres con carácter\nVulcan Sable es una fragancia imponente que destila elegancia y madurez. No es un perfume para quienes buscan algo sutil o juvenil; es una declaración de intenciones para quien tiene una personalidad definida."
-  },
-  {
     "id": "p_1791133243785",
     "name": "Asad Bourbon",
     "brand": "Lattafa",
