@@ -16,7 +16,8 @@
     "topNotes": "Manzana silvestre, Canela, Lavanda, Bergamota",
     "heartNotes": "Flor de Azahar del naranjo, Lirio de los valles",
     "baseNotes": "Vainilla cremosa, Haba tonka, Ámbar gris, Pachulí",
-    "description": "La fragancia nocturna definitiva. Juvenil, dulce, magnética y con un encanto irresistible. Combina notas crujientes de manzana con canela y una base de vainilla cálida que enamora a cualquiera."
+    "description": "La fragancia nocturna definitiva. Juvenil, dulce, magnética y con un encanto irresistible. Combina notas crujientes de manzana con canela y una base de vainilla cálida que enamora a cualquiera.",
+    "inStock": false
   },
   {
     "id": "p1",
@@ -35,7 +36,8 @@
     "topNotes": "Canela, Nuez Moscada, Bergamota brillante",
     "heartNotes": "Dátiles dulces, Praliné suave, Tuberosa",
     "baseNotes": "Vainilla de Madagascar, Haba Tonka, Benjuí, Ámbar cálido, Mirra",
-    "description": "Una de las fragancias árabes más aclamadas del mundo. Inspirada en la opulencia de los palacios orientales, abre con una canela envolvente y dátiles licorosos sobre un fondo cremoso de vainilla y ámbar. Estela y duración descomunales (12h+ en piel)."
+    "description": "Una de las fragancias árabes más aclamadas del mundo. Inspirada en la opulencia de los palacios orientales, abre con una canela envolvente y dátiles licorosos sobre un fondo cremoso de vainilla y ámbar. Estela y duración descomunales (12h+ en piel).",
+    "inStock": true
   },
   {
     "id": "p_1791133243785",
@@ -48,7 +50,7 @@
     "family": "Amaderado",
     "badge": "✨ Novedad",
     "isNew": true,
-    "inStock": true,
+    "inStock": false,
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/asad-bourbon.jpg",
@@ -148,7 +150,7 @@
     "family": "Floral",
     "badge": "✨ Novedad",
     "isNew": true,
-    "inStock": true,
+    "inStock": false,
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/hawas-fire.jpg",
