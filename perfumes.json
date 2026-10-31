@@ -40,6 +40,26 @@
     "inStock": true
   },
   {
+    "id": "p_1791133028733",
+    "name": "VULCAN  SABLE",
+    "brand": "French Aveneu",
+    "price": 30,
+    "oldPrice": 35,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": false,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/vulcan-sable.jpg",
+    "topNotes": "whisky, naranja, mandarina, cilantro",
+    "heartNotes": "haba tonka, cachemira, styrax, anís",
+    "baseNotes": "vainilla, benjuí, pachulí",
+    "description": "Un aroma de lujo para hombres con carácter. Vulcan Sable es una fragancia imponente que destila elegancia y madurez. No es un perfume para quienes buscan algo sutil o juvenil; es una declaración de intenciones para quien tiene una personalidad definida."
+  },
+  {
     "id": "p_1791133243785",
     "name": "Asad Bourbon",
     "brand": "Lattafa",
@@ -54,10 +74,10 @@
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/asad-bourbon.jpg",
-    "topNotes": "ciruela Mirabel pimienta rosa  lavanda",
-    "heartNotes": "cacao nuez moscada  Davana",
-    "baseNotes": "vainilla Bourbon ámbar   vetiver",
-    "description": "Asad Bourbon de Lattafa Perfumes es una fragancia masculina perteneciente a la familia olfativa Oriental Especiada / Gourmand Amaderada. Es una variación cálida y seductora dentro de la popular línea Asad, alejándose del perfil aromático estilo Dior Sauvage Elixir del original para apostar por un carácter más dulce, achocolatado y licoroso"
+    "topNotes": "ciruela Mirabel, pimienta rosa, lavanda",
+    "heartNotes": "cacao, nuez moscada, Davana",
+    "baseNotes": "vainilla Bourbon, ámbar, vetiver",
+    "description": "Asad Bourbon de Lattafa Perfumes es una fragancia masculina perteneciente a la familia olfativa Oriental Especiada / Gourmand Amaderada. Es una variación cálida y seductora dentro de la popular línea Asad, alejándose del perfil aromático estilo Dior Sauvage Elixir del original para apostar por un carácter más dulce, achocolatado y licoroso."
   },
   {
     "id": "p_1791141409375",
@@ -74,9 +94,9 @@
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/odyssey-mandarin-sky.jpg",
-    "topNotes": "mandarina naranja  azafrán  salvia",
-    "heartNotes": "caramelo haba tonka  cempasúchil (tagete, clavelón)",
-    "baseNotes": "ambroxan  cedro vetiver",
+    "topNotes": "mandarina, naranja, azafrán, salvia",
+    "heartNotes": "caramelo, haba tonka, cempasúchil (tagete, clavelón)",
+    "baseNotes": "ambroxan, cedro, vetiver",
     "description": "Odyssey Mandarin Sky de Armaf es una fragancia de la familia olfativa para Hombres. Odyssey Mandarin Sky se lanzó en 2023. Las Notas de Salida son mandarina, naranja, azafrán y salvia; las Notas de Corazón son caramelo, haba tonka y cempasúchil (tagete, clavelón); las Notas de Fondo son ambroxan, cedro y vetiver."
   },
   {
@@ -94,9 +114,9 @@
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/asad-elixir.jpg",
-    "topNotes": "pimienta rosa azafrán  toronja (pomelo)",
-    "heartNotes": "tabaco  vainilla cedro",
-    "baseNotes": "ámbar ligero Incienso  pachulí  cachemira",
+    "topNotes": "pimienta rosa, azafrán, toronja (pomelo)",
+    "heartNotes": "tabaco, vainilla, cedro",
+    "baseNotes": "ámbar ligero, Incienso, pachulí, cachemira",
     "description": "Asad Elixir de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Asad Elixir se lanzó en 2025. Las Notas de Salida son pimienta rosa, azafrán y toronja (pomelo); las Notas de Corazón son tabaco, vainilla y cedro; las Notas de Fondo son ámbar ligero, Incienso, pachulí y cachemira."
   },
   {
@@ -114,9 +134,9 @@
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/khamrah-dukhan-100.jpg",
-    "topNotes": "especias pimienta de Jamaica  mandarina",
-    "heartNotes": "incienso ládano  flor de azahar del naranjo  pachulí",
-    "baseNotes": "praliné tabaco  ámbar  haba tonka benjuí",
+    "topNotes": "especias, pimienta de Jamaica, mandarina",
+    "heartNotes": "incienso, ládano, flor de azahar del naranjo, pachulí",
+    "baseNotes": "praliné, tabaco, ámbar, haba tonka, benjuí",
     "description": "Khamrah Dukhan de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Khamrah Dukhan se lanzó en 2025. Las Notas de Salida son especias, pimienta de Jamaica y mandarina; las Notas de Corazón son incienso, ládano, flor de azahar del naranjo y pachulí; las Notas de Fondo son praliné, tabaco, ámbar, haba tonka y benjuí."
   },
   {
@@ -134,9 +154,9 @@
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/yara-tous.jpg",
-    "topNotes": "mango  coco maracuyá (fruta de la pasión)",
-    "heartNotes": "jazmín  flor de azahar del naranjo heliotropo",
-    "baseNotes": "vainilla almizcle  cachemira",
+    "topNotes": "mango, coco, maracuyá (fruta de la pasión)",
+    "heartNotes": "jazmín, flor de azahar del naranjo, heliotropo",
+    "baseNotes": "vainilla, almizcle, cachemira",
     "description": "Yara Tous de Lattafa Perfumes es una fragancia de la familia olfativa para Mujeres. Yara Tous se lanzó en 2023. Las Notas de Salida son mango, coco y maracuyá (fruta de la pasión); las Notas de Corazón son jazmín, flor de azahar del naranjo y heliotropo; las Notas de Fondo son vainilla, almizcle y cachemira."
   },
   {
@@ -155,8 +175,8 @@
     "reviewsCount": 1,
     "image": "images/hawas-fire.jpg",
     "topNotes": "esclarea",
-    "heartNotes": "Notas marinas jazmín egipcio",
-    "baseNotes": "ámbar Notas minerales  ámbar gris",
+    "heartNotes": "Notas marinas, jazmín egipcio",
+    "baseNotes": "ámbar, Notas minerales, ámbar gris",
     "description": "Hawas Fire de Rasasi es una fragancia de la familia olfativa Aromática Acuática para Hombres y Mujeres. Esta fragrancia es nueva. Hawas Fire se lanzó en 2025. La Nota de Salida es esclarea; las Notas de Corazón son Notas marinas y jazmín egipcio; las Notas de Fondo son ámbar, Notas minerales y ámbar gris."
   },
   {
@@ -168,7 +188,7 @@
     "volume": "100ml - Eau de Parfum",
     "category": "Unisex",
     "family": "Gourmand",
-    "badge": "âœ¨ Novedad",
+    "badge": "✨ Novedad",
     "isNew": true,
     "inStock": true,
     "rating": 5,
@@ -176,8 +196,8 @@
     "image": "images/9pm-rebel.webp",
     "topNotes": "Piña, manzana Granny Smith, mandarina",
     "heartNotes": "Cedro, musgo de roble, vainilla",
-    "baseNotes": "Caramelo, maderas secas, Ambar gris, almizcle",
-    "description": "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ambar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzÃ³ en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazon, son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, Ambar gris y almizcle."
+    "baseNotes": "Caramelo, maderas secas, ámbar gris, almizcle",
+    "description": "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ámbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzó en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazón son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, ámbar gris y almizcle."
   },
   {
     "id": "p_1791228202074",
@@ -188,15 +208,15 @@
     "volume": "100ml - Eau de Parfum",
     "category": "Hombre",
     "family": "Amaderado",
-    "badge": "âœ¨ Novedad",
+    "badge": "✨ Novedad",
     "isNew": true,
     "inStock": true,
     "rating": 5,
     "reviewsCount": 1,
     "image": "images/asad.webp",
     "topNotes": "Pimienta negra, tabaco, piña",
-    "heartNotes": "Pachula­, cafoa, iris",
-    "baseNotes": "Vainilla, Ambar, madera seca, benjua, laidano",
-    "description": "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzÃ³ en 2021. Las Notas de Salida son pimienta negra, tabaco y piÃ±a; las Notas de CorazÃ³n son pachulÃ­, cafÃ© y iris; las Notas de Fondo son vainilla, Ã¡mbar, Madera seca, benjuÃ­ y lÃ¡dano."
+    "heartNotes": "Pachulí, café, iris",
+    "baseNotes": "Vainilla, ámbar, madera seca, benjuí, ládano",
+    "description": "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzó en 2021. Las Notas de Salida son pimienta negra, tabaco y piña; las Notas de Corazón son pachulí, café y iris; las Notas de Fondo son vainilla, ámbar, madera seca, benjuí y ládano."
   }
 ]

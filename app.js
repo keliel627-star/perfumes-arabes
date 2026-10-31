@@ -5,243 +5,226 @@
 
 // Catalogo inicial por defecto de Perfumes Árabes Auténticos y Exclusivos
 const DEFAULT_PERFUMES = [
-    {
-        "id":  "p_1791228202074",
-        "name":  "Asad",
-        "brand":  "Lattafa",
-        "price":  20,
-        "oldPrice":  25,
-        "volume":  "100ml - Eau de Parfum",
-        "category":  "Hombre",
-        "family":  "Amaderado",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/asad.webp",
-        "topNotes":  "Pimienta negra, tabaco, piña",
-        "heartNotes":  "Pachulí, café, iris",
-        "baseNotes":  "Vainilla, ámbar, madera seca, benjuí, ládano",
-        "description":  "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzó en 2021. Las Notas de Salida son pimienta negra, tabaco y piña; las Notas de Corazón son pachulí, café y iris; las Notas de Fondo son vainilla, ámbar, Madera seca, benjuí y ládano."
-    },
-    {
-        "id":  "p_1791227917997",
-        "name":  "9pm Rebel",
-        "brand":  "Afnan",
-        "price":  35,
-        "oldPrice":  40,
-        "volume":  "100ml - Eau de Parfum",
-        "category":  "Unisex",
-        "family":  "Gourmand",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/9pm-rebel.webp",
-        "topNotes":  "Piña, manzana Granny Smith, mandarina",
-        "heartNotes":  "Cedro, musgo de roble, vainilla",
-        "baseNotes":  "Caramelo, maderas secas, ámbar gris, almizcle",
-        "description":  "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ámbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzó en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazón son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, ámbar gris y almizcle."
-    },
-    {
-        "id":  "p_1791142104277",
-        "name":  "Hawas Fire",
-        "brand":  "Rasasi",
-        "price":  35,
-        "oldPrice":  40,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Unisex",
-        "family":  "Floral",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/hawas-fire.jpg",
-        "topNotes":  "esclarea",
-        "heartNotes":  "Notas marinas jazmín egipcio",
-        "baseNotes":  "ámbar Notas minerales  ámbar gris",
-        "description":  "Hawas Fire de Rasasi es una fragancia de la familia olfativa Aromática Acuática para Hombres y Mujeres. Esta fragrancia es nueva. Hawas Fire se lanzó en 2025. La Nota de Salida es esclarea; las Notas de Corazón son Notas marinas y jazmín egipcio; las Notas de Fondo son ámbar, Notas minerales y ámbar gris."
-    },
-    {
-        "id":  "p_1791141926566",
-        "name":  "Yara Tous",
-        "brand":  "Lattafa",
-        "price":  20,
-        "oldPrice":  25,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Mujer",
-        "family":  "Dulce",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/yara-tous.jpg",
-        "topNotes":  "mango  coco maracuyá (fruta de la pasión)",
-        "heartNotes":  "jazmín  flor de azahar del naranjo heliotropo",
-        "baseNotes":  "vainilla almizcle  cachemira",
-        "description":  "Yara Tous de Lattafa Perfumes es una fragancia de la familia olfativa para Mujeres. Yara Tous se lanzó en 2023. Las Notas de Salida son mango, coco y maracuyá (fruta de la pasión); las Notas de Corazón son jazmín, flor de azahar del naranjo y heliotropo; las Notas de Fondo son vainilla, almizcle y cachemira."
-    },
-    {
-        "id":  "p_1791141720469",
-        "name":  "Khamrah Dukhan 100",
-        "brand":  "Lattafa",
-        "price":  30,
-        "oldPrice":  35,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Hombre",
-        "family":  "Amaderado",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/khamrah-dukhan-100.jpg",
-        "topNotes":  "especias pimienta de Jamaica  mandarina",
-        "heartNotes":  "incienso ládano  flor de azahar del naranjo  pachulí",
-        "baseNotes":  "praliné tabaco  ámbar  haba tonka benjuí",
-        "description":  "Khamrah Dukhan de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Khamrah Dukhan se lanzó en 2025. Las Notas de Salida son especias, pimienta de Jamaica y mandarina; las Notas de Corazón son incienso, ládano, flor de azahar del naranjo y pachulí; las Notas de Fondo son praliné, tabaco, ámbar, haba tonka y benjuí."
-    },
-    {
-        "id":  "p_1791141568942",
-        "name":  "Asad  Elixir",
-        "brand":  "Lattafa",
-        "price":  25,
-        "oldPrice":  30,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Hombre",
-        "family":  "Amaderado",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/asad-elixir.jpg",
-        "topNotes":  "pimienta rosa azafrán  toronja (pomelo)",
-        "heartNotes":  "tabaco  vainilla cedro",
-        "baseNotes":  "ámbar ligero Incienso  pachulí  cachemira",
-        "description":  "Asad Elixir de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Asad Elixir se lanzó en 2025. Las Notas de Salida son pimienta rosa, azafrán y toronja (pomelo); las Notas de Corazón son tabaco, vainilla y cedro; las Notas de Fondo son ámbar ligero, Incienso, pachulí y cachemira."
-    },
-    {
-        "id":  "p_1791141409375",
-        "name":  "Odyssey  Mandarin sky",
-        "brand":  "Armaf",
-        "price":  25,
-        "oldPrice":  35,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Hombre",
-        "family":  "Cítrico",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/odyssey-mandarin-sky.jpg",
-        "topNotes":  "mandarina naranja  azafrán  salvia",
-        "heartNotes":  "caramelo haba tonka  cempasúchil (tagete, clavelón)",
-        "baseNotes":  "ambroxan  cedro vetiver",
-        "description":  "Odyssey Mandarin Sky de Armaf es una fragancia de la familia olfativa para Hombres. Odyssey Mandarin Sky se lanzó en 2023. Las Notas de Salida son mandarina, naranja, azafrán y salvia; las Notas de Corazón son caramelo, haba tonka y cempasúchil (tagete, clavelón); las Notas de Fondo son ambroxan, cedro y vetiver."
-    },
-    {
-        "id":  "p_1791133243785",
-        "name":  "Asad Bourbon",
-        "brand":  "Lattafa",
-        "price":  25,
-        "oldPrice":  30,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Hombre",
-        "family":  "Amaderado",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/asad-bourbon.jpg",
-        "topNotes":  "ciruela Mirabel pimienta rosa  lavanda",
-        "heartNotes":  "cacao nuez moscada  Davana",
-        "baseNotes":  "vainilla Bourbon ámbar   vetiver",
-        "description":  "Asad Bourbon de Lattafa Perfumes es una fragancia masculina perteneciente a la familia olfativa Oriental Especiada / Gourmand Amaderada. Es una variación cálida y seductora dentro de la popular línea Asad, alejándose del perfil aromático estilo Dior Sauvage Elixir del original para apostar por un carácter más dulce, achocolatado y licoroso"
-    },
-    {
-        "id":  "p_1791133028733",
-        "name":  "VULCAN  SABLE",
-        "brand":  "French Aveneu",
-        "price":  30,
-        "oldPrice":  35,
-        "volume":  "100ml-Eau  de Parfum",
-        "category":  "Hombre",
-        "family":  "Amaderado",
-        "badge":  "✨ Novedad",
-        "isNew":  true,
-        "inStock":  true,
-        "rating":  5,
-        "reviewsCount":  1,
-        "image":  "images/vulcan-sable.jpg",
-        "topNotes":  "whisky  naranja  mandarina cilantro",
-        "heartNotes":  "haba tonka  cachemira  styrax   anís",
-        "baseNotes":  "vainilla benjuí  pachulí",
-        "description":  "Un aroma de lujo para hombres con carácter\nVulcan Sable es una fragancia imponente que destila elegancia y madurez. No es un perfume para quienes buscan algo sutil o juvenil; es una declaración de intenciones para quien tiene una personalidad definida."
-    },
-    {
-        "id":  "p1",
-        "name":  "Khamrah",
-        "brand":  "Lattafa Perfumes",
-        "price":  30,
-        "oldPrice":  40,
-        "volume":  "100ml - Eau de Parfum",
-        "category":  "Unisex",
-        "family":  "Gourmand",
-        "badge":  "Bestseller",
-        "isNew":  false,
-        "rating":  4.9,
-        "reviewsCount":  142,
-        "image":  "images/khamrah.jpg",
-        "topNotes":  "Canela, Nuez Moscada, Bergamota brillante",
-        "heartNotes":  "Dátiles dulces, Praliné suave, Tuberosa",
-        "baseNotes":  "Vainilla de Madagascar, Haba Tonka, Benjuí, Ámbar cálido, Mirra",
-        "description":  "Una de las fragancias árabes más aclamadas del mundo. Inspirada en la opulencia de los palacios orientales, abre con una canela envolvente y dátiles licorosos sobre un fondo cremoso de vainilla y ámbar. Estela y duración descomunales (12h+ en piel)."
-    },
-    {
-        "id":  "p7",
-        "name":  "9 PM",
-        "brand":  "Afnan",
-        "price":  30,
-        "oldPrice":  35,
-        "volume":  "100ml - Eau de Parfum",
-        "category":  "Hombre",
-        "family":  "Dulce",
-        "badge":  "Bestseller",
-        "isNew":  false,
-        "rating":  4.9,
-        "reviewsCount":  165,
-        "image":  "images/9-pm.jpg",
-        "topNotes":  "Manzana silvestre, Canela, Lavanda, Bergamota",
-        "heartNotes":  "Flor de Azahar del naranjo, Lirio de los valles",
-        "baseNotes":  "Vainilla cremosa, Haba tonka, Ámbar gris, Pachulí",
-        "description":  "La fragancia nocturna definitiva. Juvenil, dulce, magnética y con un encanto irresistible. Combina notas crujientes de manzana con canela y una base de vainilla cálida que enamora a cualquiera."
-    },
-    {
-        "id":  "p8",
-        "name":  "Yara (Pink)",
-        "brand":  "Lattafa Perfumes",
-        "price":  25,
-        "oldPrice":  30,
-        "volume":  "100ml - Eau de Parfum",
-        "category":  "Mujer",
-        "family":  "Dulce",
-        "badge":  "Favorito Femenino",
-        "isNew":  false,
-        "rating":  4.8,
-        "reviewsCount":  195,
-        "image":  "images/yara-pink.jpg",
-        "topNotes":  "Heliotropo, Orquídea salvaje, Mandarina fresca",
-        "heartNotes":  "Acorde gourmand de frutas tropicales, Malvavisco",
-        "baseNotes":  "Vainilla suave, Sándalo, Almizcle esponjoso",
-        "description":  "Una caricia dulce y femenina. Famoso por su aroma a batido de fresas cremoso con orquídeas y vainilla suave. Extremadamente adictivo, delicado y duradero para uso diario o citas especiales."
-    }
+  {
+    "id": "p7",
+    "name": "9 PM",
+    "brand": "Afnan",
+    "price": 30,
+    "oldPrice": 35,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Hombre",
+    "family": "Dulce",
+    "badge": "Bestseller",
+    "isNew": false,
+    "rating": 4.9,
+    "reviewsCount": 165,
+    "image": "images/9-pm.jpg",
+    "topNotes": "Manzana silvestre, Canela, Lavanda, Bergamota",
+    "heartNotes": "Flor de Azahar del naranjo, Lirio de los valles",
+    "baseNotes": "Vainilla cremosa, Haba tonka, Ámbar gris, Pachulí",
+    "description": "La fragancia nocturna definitiva. Juvenil, dulce, magnética y con un encanto irresistible. Combina notas crujientes de manzana con canela y una base de vainilla cálida que enamora a cualquiera.",
+    "inStock": false
+  },
+  {
+    "id": "p1",
+    "name": "Khamrah",
+    "brand": "Lattafa Perfumes",
+    "price": 30,
+    "oldPrice": 40,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Unisex",
+    "family": "Gourmand",
+    "badge": "Bestseller",
+    "isNew": false,
+    "rating": 4.9,
+    "reviewsCount": 142,
+    "image": "images/khamrah.jpg",
+    "topNotes": "Canela, Nuez Moscada, Bergamota brillante",
+    "heartNotes": "Dátiles dulces, Praliné suave, Tuberosa",
+    "baseNotes": "Vainilla de Madagascar, Haba Tonka, Benjuí, Ámbar cálido, Mirra",
+    "description": "Una de las fragancias árabes más aclamadas del mundo. Inspirada en la opulencia de los palacios orientales, abre con una canela envolvente y dátiles licorosos sobre un fondo cremoso de vainilla y ámbar. Estela y duración descomunales (12h+ en piel).",
+    "inStock": true
+  },
+  {
+    "id": "p_1791133028733",
+    "name": "VULCAN  SABLE",
+    "brand": "French Aveneu",
+    "price": 30,
+    "oldPrice": 35,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": false,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/vulcan-sable.jpg",
+    "topNotes": "whisky, naranja, mandarina, cilantro",
+    "heartNotes": "haba tonka, cachemira, styrax, anís",
+    "baseNotes": "vainilla, benjuí, pachulí",
+    "description": "Un aroma de lujo para hombres con carácter. Vulcan Sable es una fragancia imponente que destila elegancia y madurez. No es un perfume para quienes buscan algo sutil o juvenil; es una declaración de intenciones para quien tiene una personalidad definida."
+  },
+  {
+    "id": "p_1791133243785",
+    "name": "Asad Bourbon",
+    "brand": "Lattafa",
+    "price": 25,
+    "oldPrice": 30,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": false,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/asad-bourbon.jpg",
+    "topNotes": "ciruela Mirabel, pimienta rosa, lavanda",
+    "heartNotes": "cacao, nuez moscada, Davana",
+    "baseNotes": "vainilla Bourbon, ámbar, vetiver",
+    "description": "Asad Bourbon de Lattafa Perfumes es una fragancia masculina perteneciente a la familia olfativa Oriental Especiada / Gourmand Amaderada. Es una variación cálida y seductora dentro de la popular línea Asad, alejándose del perfil aromático estilo Dior Sauvage Elixir del original para apostar por un carácter más dulce, achocolatado y licoroso."
+  },
+  {
+    "id": "p_1791141409375",
+    "name": "Odyssey  Mandarin sky",
+    "brand": "Armaf",
+    "price": 25,
+    "oldPrice": 35,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Hombre",
+    "family": "Cítrico",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/odyssey-mandarin-sky.jpg",
+    "topNotes": "mandarina, naranja, azafrán, salvia",
+    "heartNotes": "caramelo, haba tonka, cempasúchil (tagete, clavelón)",
+    "baseNotes": "ambroxan, cedro, vetiver",
+    "description": "Odyssey Mandarin Sky de Armaf es una fragancia de la familia olfativa para Hombres. Odyssey Mandarin Sky se lanzó en 2023. Las Notas de Salida son mandarina, naranja, azafrán y salvia; las Notas de Corazón son caramelo, haba tonka y cempasúchil (tagete, clavelón); las Notas de Fondo son ambroxan, cedro y vetiver."
+  },
+  {
+    "id": "p_1791141568942",
+    "name": "Asad  Elixir",
+    "brand": "Lattafa",
+    "price": 25,
+    "oldPrice": 30,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/asad-elixir.jpg",
+    "topNotes": "pimienta rosa, azafrán, toronja (pomelo)",
+    "heartNotes": "tabaco, vainilla, cedro",
+    "baseNotes": "ámbar ligero, Incienso, pachulí, cachemira",
+    "description": "Asad Elixir de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Asad Elixir se lanzó en 2025. Las Notas de Salida son pimienta rosa, azafrán y toronja (pomelo); las Notas de Corazón son tabaco, vainilla y cedro; las Notas de Fondo son ámbar ligero, Incienso, pachulí y cachemira."
+  },
+  {
+    "id": "p_1791141720469",
+    "name": "Khamrah Dukhan 100",
+    "brand": "Lattafa",
+    "price": 30,
+    "oldPrice": 35,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/khamrah-dukhan-100.jpg",
+    "topNotes": "especias, pimienta de Jamaica, mandarina",
+    "heartNotes": "incienso, ládano, flor de azahar del naranjo, pachulí",
+    "baseNotes": "praliné, tabaco, ámbar, haba tonka, benjuí",
+    "description": "Khamrah Dukhan de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Esta fragrancia es nueva. Khamrah Dukhan se lanzó en 2025. Las Notas de Salida son especias, pimienta de Jamaica y mandarina; las Notas de Corazón son incienso, ládano, flor de azahar del naranjo y pachulí; las Notas de Fondo son praliné, tabaco, ámbar, haba tonka y benjuí."
+  },
+  {
+    "id": "p_1791141926566",
+    "name": "Yara Tous",
+    "brand": "Lattafa",
+    "price": 20,
+    "oldPrice": 25,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Mujer",
+    "family": "Dulce",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/yara-tous.jpg",
+    "topNotes": "mango, coco, maracuyá (fruta de la pasión)",
+    "heartNotes": "jazmín, flor de azahar del naranjo, heliotropo",
+    "baseNotes": "vainilla, almizcle, cachemira",
+    "description": "Yara Tous de Lattafa Perfumes es una fragancia de la familia olfativa para Mujeres. Yara Tous se lanzó en 2023. Las Notas de Salida son mango, coco y maracuyá (fruta de la pasión); las Notas de Corazón son jazmín, flor de azahar del naranjo y heliotropo; las Notas de Fondo son vainilla, almizcle y cachemira."
+  },
+  {
+    "id": "p_1791142104277",
+    "name": "Hawas Fire",
+    "brand": "Rasasi",
+    "price": 35,
+    "oldPrice": 40,
+    "volume": "100ml-Eau  de Parfum",
+    "category": "Unisex",
+    "family": "Floral",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": false,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/hawas-fire.jpg",
+    "topNotes": "esclarea",
+    "heartNotes": "Notas marinas, jazmín egipcio",
+    "baseNotes": "ámbar, Notas minerales, ámbar gris",
+    "description": "Hawas Fire de Rasasi es una fragancia de la familia olfativa Aromática Acuática para Hombres y Mujeres. Esta fragrancia es nueva. Hawas Fire se lanzó en 2025. La Nota de Salida es esclarea; las Notas de Corazón son Notas marinas y jazmín egipcio; las Notas de Fondo son ámbar, Notas minerales y ámbar gris."
+  },
+  {
+    "id": "p_1791227917997",
+    "name": "9pm Rebel",
+    "brand": "Afnan",
+    "price": 35,
+    "oldPrice": 40,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Unisex",
+    "family": "Gourmand",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/9pm-rebel.webp",
+    "topNotes": "Piña, manzana Granny Smith, mandarina",
+    "heartNotes": "Cedro, musgo de roble, vainilla",
+    "baseNotes": "Caramelo, maderas secas, ámbar gris, almizcle",
+    "description": "9 PM Rebel de Afnan es una fragancia de la familia olfativa Ámbar Frutal Amaderada para Hombres y Mujeres. Esta fragrancia es nueva. 9 PM Rebel se lanzó en 2024. Las Notas de Salida son piña, manzana Granny Smith y mandarina; las Notas de Corazón son cedro, musgo de roble y vainilla; las Notas de Fondo son caramelo, maderas secas, ámbar gris y almizcle."
+  },
+  {
+    "id": "p_1791228202074",
+    "name": "Asad",
+    "brand": "Lattafa",
+    "price": 20,
+    "oldPrice": 25,
+    "volume": "100ml - Eau de Parfum",
+    "category": "Hombre",
+    "family": "Amaderado",
+    "badge": "✨ Novedad",
+    "isNew": true,
+    "inStock": true,
+    "rating": 5,
+    "reviewsCount": 1,
+    "image": "images/asad.webp",
+    "topNotes": "Pimienta negra, tabaco, piña",
+    "heartNotes": "Pachulí, café, iris",
+    "baseNotes": "Vainilla, ámbar, madera seca, benjuí, ládano",
+    "description": "Asad de Lattafa Perfumes es una fragancia de la familia olfativa Oriental para Hombres. Asad se lanzó en 2021. Las Notas de Salida son pimienta negra, tabaco y piña; las Notas de Corazón son pachulí, café y iris; las Notas de Fondo son vainilla, ámbar, madera seca, benjuí y ládano."
+  }
 ];
 
 // Presets de imágenes de lujo para que el usuario elija fácilmente al añadir un perfume
@@ -378,13 +361,6 @@ function loadPerfumes() {
   if (saved) {
     try {
       perfumes = JSON.parse(saved);
-      // Fusión inteligente: asegurar que todos los perfumes oficiales de DEFAULT_PERFUMES estén presentes
-      DEFAULT_PERFUMES.forEach(def => {
-        if (!perfumes.some(p => p.id === def.id || p.name.trim().toLowerCase() === def.name.trim().toLowerCase())) {
-          perfumes.unshift(def);
-        }
-      });
-      localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
     } catch (e) {
       console.error("Error cargando perfumes guardados:", e);
       perfumes = [...DEFAULT_PERFUMES];
@@ -404,15 +380,7 @@ async function syncWithServerCatalog() {
     if (res.ok) {
       const serverData = await res.json();
       if (Array.isArray(serverData) && serverData.length > 0) {
-        // Fusión limpia: actualizar o incorporar productos del servidor sin eliminar los actuales
-        serverData.forEach(serverItem => {
-          const idx = perfumes.findIndex(p => p.id === serverItem.id || p.name.trim().toLowerCase() === serverItem.name.trim().toLowerCase());
-          if (idx >= 0) {
-            perfumes[idx] = { ...perfumes[idx], ...serverItem };
-          } else {
-            perfumes.unshift(serverItem);
-          }
-        });
+        perfumes = serverData;
         localStorage.setItem("alSultan_perfumes", JSON.stringify(perfumes));
         renderCatalog();
         renderNewArrivalsCarousel();
@@ -606,20 +574,23 @@ function renderCatalog() {
     return;
   }
 
-  container.innerHTML = filtered.map(item => `
-    <div class="card-luxury flex flex-col group overflow-hidden text-center">
+  container.innerHTML = filtered.map(item => {
+    const isOutOfStock = item.inStock === false;
+    return `
+    <div class="card-luxury flex flex-col group overflow-hidden text-center ${isOutOfStock ? 'opacity-90' : ''}">
       <!-- Imagen y Badges Centrados -->
       <div class="relative overflow-hidden bg-cocoa-950/70 h-80 flex items-center justify-center p-4 cursor-pointer" onclick="openQuickView('${item.id}')">
         <img src="${item.image}" alt="${item.name}" 
-          class="max-h-full max-w-full object-contain mx-auto transition-transform duration-700 group-hover:scale-108 drop-shadow-xl"
+          class="max-h-full max-w-full object-contain mx-auto transition-transform duration-700 group-hover:scale-108 drop-shadow-xl ${isOutOfStock ? 'grayscale-[35%] opacity-70' : ''}"
           onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'"
         />
         
         <!-- Badges Superiores -->
         <div class="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
-          <div class="flex items-center gap-1.5">
-            ${item.badge ? `<span class="badge-gold">${item.badge}</span>` : ''}
-            ${item.isNew ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
+          <div class="flex items-center gap-1.5 flex-wrap">
+            ${isOutOfStock ? `<span class="badge-agotado"><i class="fa-solid fa-circle-xmark mr-1"></i>Agotado</span>` : ''}
+            ${item.badge && !isOutOfStock ? `<span class="badge-gold">${item.badge}</span>` : ''}
+            ${item.isNew && !isOutOfStock ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
           </div>
           <span class="badge-family">${item.family || 'Oriental'}</span>
         </div>
@@ -660,32 +631,50 @@ function renderCatalog() {
         <!-- Precios y Acciones Centradas -->
         <div class="pt-4 border-t border-cocoa-800 w-full flex flex-col items-center gap-3">
           <div class="flex items-baseline justify-center gap-2">
-            <span class="text-2xl font-bold text-cream-100 font-cinzel">
+            <span class="text-2xl font-bold ${isOutOfStock ? 'text-cream-400' : 'text-cream-100'} font-cinzel">
               ${item.price.toFixed(2)}${settings.currency}
             </span>
             ${item.oldPrice ? `<span class="text-xs text-cream-500/70 line-through">${item.oldPrice.toFixed(2)}${settings.currency}</span>` : ''}
+            ${isOutOfStock ? `<span class="text-[11px] font-bold text-red-400 ml-1">Agotado</span>` : ''}
           </div>
 
           <div class="flex items-center justify-center gap-2 w-full">
-            <!-- Pedir directamente por WhatsApp -->
-            <button onclick="directWhatsAppOrder('${item.id}')" 
-              class="flex-1 max-w-[140px] bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md"
-              title="Pedir este perfume por WhatsApp">
-              <i class="fa-brands fa-whatsapp text-sm"></i>
-              <span>Pedir Ya</span>
-            </button>
+            ${isOutOfStock ? `
+              <!-- Pedir por Encargo en WhatsApp -->
+              <button onclick="directWhatsAppOrder('${item.id}')" 
+                class="flex-1 max-w-[155px] bg-red-950/60 hover:bg-red-900/80 border border-red-500/40 text-red-200 px-3 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md"
+                title="Pedir por encargo por WhatsApp">
+                <i class="fa-brands fa-whatsapp text-sm text-red-400"></i>
+                <span>Pedir Encargo</span>
+              </button>
 
-            <!-- Añadir a la cesta -->
-            <button onclick="addToCart('${item.id}')" 
-              class="bg-cocoa-800 hover:bg-amberwarm-500 hover:text-cocoa-950 text-cream-200 border border-cocoa-700 p-2.5 rounded-full text-xs transition-all shadow-sm"
-              title="Añadir a mi cesta">
-              <i class="fa-solid fa-bag-shopping"></i>
-            </button>
+              <!-- Botón Carrito Desactivado -->
+              <button onclick="showToast('⚠️ Este perfume está temporalmente agotado. Puedes pedirlo por encargo por WhatsApp.')" 
+                class="bg-cocoa-900/90 text-cream-600/40 border border-cocoa-800 p-2.5 rounded-full text-xs cursor-not-allowed transition-all"
+                title="Agotado temporalmente">
+                <i class="fa-solid fa-ban"></i>
+              </button>
+            ` : `
+              <!-- Pedir directamente por WhatsApp -->
+              <button onclick="directWhatsAppOrder('${item.id}')" 
+                class="flex-1 max-w-[140px] bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md"
+                title="Pedir este perfume por WhatsApp">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>Pedir Ya</span>
+              </button>
+
+              <!-- Añadir a la cesta -->
+              <button onclick="addToCart('${item.id}')" 
+                class="bg-cocoa-800 hover:bg-amberwarm-500 hover:text-cocoa-950 text-cream-200 border border-cocoa-700 p-2.5 rounded-full text-xs transition-all shadow-sm"
+                title="Añadir a mi cesta">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </button>
+            `}
           </div>
         </div>
       </div>
     </div>
-  `).join("");
+  `}).join("");
 }
 
 function renderNewArrivalsCarousel() {
@@ -695,15 +684,19 @@ function renderNewArrivalsCarousel() {
   const newItems = perfumes.filter(p => p.isNew || p.badge?.includes("Novedad"));
   const itemsToDisplay = newItems.length >= 4 ? newItems.slice(0, 4) : perfumes.slice(0, 4);
 
-  container.innerHTML = itemsToDisplay.map(item => `
-    <div class="card-luxury flex flex-col group overflow-hidden text-center cursor-pointer" onclick="openQuickView('${item.id}')">
+  container.innerHTML = itemsToDisplay.map(item => {
+    const isOutOfStock = item.inStock === false;
+    return `
+    <div class="card-luxury flex flex-col group overflow-hidden text-center cursor-pointer ${isOutOfStock ? 'opacity-90' : ''}" onclick="openQuickView('${item.id}')">
       <!-- Imagen centrada -->
       <div class="relative bg-cocoa-950/80 h-64 flex items-center justify-center p-4 overflow-hidden">
         <img src="${item.image}" alt="${item.name}" 
-          class="max-h-full max-w-full object-contain mx-auto group-hover:scale-108 transition-transform duration-500 drop-shadow-md" 
+          class="max-h-full max-w-full object-contain mx-auto group-hover:scale-108 transition-transform duration-500 drop-shadow-md ${isOutOfStock ? 'grayscale-[35%] opacity-70' : ''}" 
           onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'"
         />
-        <span class="badge-novedad absolute top-3 left-3">✨ Recién Llegado</span>
+        ${isOutOfStock 
+          ? `<span class="badge-agotado absolute top-3 left-3"><i class="fa-solid fa-circle-xmark mr-1"></i>Agotado</span>` 
+          : `<span class="badge-novedad absolute top-3 left-3">✨ Recién Llegado</span>`}
         <span class="badge-family absolute top-3 right-3">${item.family || 'Oriental'}</span>
       </div>
 
@@ -718,17 +711,27 @@ function renderNewArrivalsCarousel() {
         </div>
 
         <div class="w-full pt-3 border-t border-cocoa-800 flex items-center justify-between">
-          <span class="text-lg font-bold text-cream-100 font-cinzel">
-            ${item.price.toFixed(2)}${settings.currency}
-          </span>
-          <button onclick="event.stopPropagation(); directWhatsAppOrder('${item.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-colors shadow-sm">
-            <i class="fa-brands fa-whatsapp text-sm"></i>
-            <span>Pedir</span>
-          </button>
+          <div class="flex items-center gap-1.5">
+            <span class="text-lg font-bold ${isOutOfStock ? 'text-cream-400' : 'text-cream-100'} font-cinzel">
+              ${item.price.toFixed(2)}${settings.currency}
+            </span>
+            ${isOutOfStock ? `<span class="text-[10px] font-bold text-red-400">Agotado</span>` : ''}
+          </div>
+          ${isOutOfStock ? `
+            <button onclick="event.stopPropagation(); directWhatsAppOrder('${item.id}')" class="text-xs bg-red-950/60 hover:bg-red-900/80 border border-red-500/40 text-red-200 px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-colors shadow-sm">
+              <i class="fa-brands fa-whatsapp text-sm text-red-400"></i>
+              <span>Encargar</span>
+            </button>
+          ` : `
+            <button onclick="event.stopPropagation(); directWhatsAppOrder('${item.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-colors shadow-sm">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Pedir</span>
+            </button>
+          `}
         </div>
       </div>
     </div>
-  `).join("");
+  `}).join("");
 }
 
 function resetFilters() {
@@ -763,14 +766,17 @@ function openQuickView(id) {
   const modalContent = document.getElementById("quickViewContent");
   if (!modal || !modalContent) return;
 
+  const isOutOfStock = item.inStock === false;
+
   modalContent.innerHTML = `
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <!-- Imagen Centrada de Alta Calidad -->
       <div class="relative rounded-2xl overflow-hidden bg-cocoa-950/80 border border-cocoa-700 shadow-xl p-6 flex items-center justify-center h-96">
-        <img src="${item.image}" alt="${item.name}" class="max-h-full max-w-full object-contain mx-auto drop-shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'" />
+        <img src="${item.image}" alt="${item.name}" class="max-h-full max-w-full object-contain mx-auto drop-shadow-2xl ${isOutOfStock ? 'grayscale-[35%] opacity-75' : ''}" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80'" />
         <div class="absolute top-4 left-4 flex flex-col gap-1.5">
-          ${item.badge ? `<span class="badge-gold">${item.badge}</span>` : ''}
-          ${item.isNew ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
+          ${isOutOfStock ? `<span class="badge-agotado"><i class="fa-solid fa-circle-xmark mr-1"></i>Agotado</span>` : ''}
+          ${item.badge && !isOutOfStock ? `<span class="badge-gold">${item.badge}</span>` : ''}
+          ${item.isNew && !isOutOfStock ? `<span class="badge-novedad">✨ Novedad</span>` : ''}
         </div>
         <div class="absolute bottom-4 left-4 right-4 bg-cocoa-900/90 backdrop-blur-md p-2.5 rounded-xl border border-cocoa-700 text-xs flex justify-between items-center text-cream-400">
           <span><i class="fa-solid fa-droplet text-amberwarm-400 mr-1"></i> ${item.volume || '100ml Eau de Parfum'}</span>
@@ -783,10 +789,11 @@ function openQuickView(id) {
         <div>
           <span class="text-xs uppercase tracking-widest text-amberwarm-400 font-bold">${item.brand}</span>
           <h2 class="text-2xl md:text-3xl font-cinzel font-bold text-cream-100 mt-1">${item.name}</h2>
-          <div class="flex items-center gap-3 mt-2">
+          <div class="flex items-center gap-3 mt-2 flex-wrap">
             <span class="text-2xl font-bold font-cinzel text-cream-100">${item.price.toFixed(2)}${settings.currency}</span>
             ${item.oldPrice ? `<span class="text-sm text-cream-500/70 line-through">${item.oldPrice.toFixed(2)}${settings.currency}</span>` : ''}
             <span class="bg-cocoa-800 text-cream-300 text-xs px-2.5 py-0.5 rounded-full border border-cocoa-700">${item.category}</span>
+            ${isOutOfStock ? `<span class="bg-red-950/80 text-red-300 border border-red-500/50 text-xs px-2.5 py-0.5 rounded-full font-bold">✕ Agotado temporalmente</span>` : ''}
           </div>
         </div>
 
@@ -816,17 +823,31 @@ function openQuickView(id) {
 
         <!-- Botones de Acción -->
         <div class="pt-2 flex flex-col sm:flex-row gap-3">
-          <button onclick="directWhatsAppOrder('${item.id}')" 
-            class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-full text-xs flex items-center justify-center gap-2 transition-all shadow-lg flex-1">
-            <i class="fa-brands fa-whatsapp text-base"></i>
-            <span>Pedir por WhatsApp (${item.price.toFixed(2)}${settings.currency})</span>
-          </button>
-          
-          <button onclick="addToCart('${item.id}'); closeQuickView();" 
-            class="bg-cocoa-800 hover:bg-cocoa-700 text-cream-200 border border-cocoa-700 py-3.5 px-5 rounded-full text-xs flex items-center justify-center gap-2 font-semibold">
-            <i class="fa-solid fa-plus"></i>
-            <span>Añadir a la Cesta</span>
-          </button>
+          ${isOutOfStock ? `
+            <button onclick="directWhatsAppOrder('${item.id}')" 
+              class="bg-red-950/60 hover:bg-red-900/80 border border-red-500/50 text-red-200 font-bold py-3.5 px-6 rounded-full text-xs flex items-center justify-center gap-2 transition-all shadow-lg flex-1">
+              <i class="fa-brands fa-whatsapp text-base text-red-400"></i>
+              <span>Pedir por encargo por WhatsApp</span>
+            </button>
+            
+            <button onclick="showToast('⚠️ Este perfume está temporalmente agotado. Puedes pedirlo por encargo por WhatsApp.')" 
+              class="bg-cocoa-900 text-cream-600/50 border border-cocoa-800 py-3.5 px-5 rounded-full text-xs flex items-center justify-center gap-2 font-semibold cursor-not-allowed">
+              <i class="fa-solid fa-ban"></i>
+              <span>Agotado</span>
+            </button>
+          ` : `
+            <button onclick="directWhatsAppOrder('${item.id}')" 
+              class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-full text-xs flex items-center justify-center gap-2 transition-all shadow-lg flex-1">
+              <i class="fa-brands fa-whatsapp text-base"></i>
+              <span>Pedir por WhatsApp (${item.price.toFixed(2)}${settings.currency})</span>
+            </button>
+            
+            <button onclick="addToCart('${item.id}'); closeQuickView();" 
+              class="bg-cocoa-800 hover:bg-cocoa-700 text-cream-200 border border-cocoa-700 py-3.5 px-5 rounded-full text-xs flex items-center justify-center gap-2 font-semibold">
+              <i class="fa-solid fa-plus"></i>
+              <span>Añadir a la Cesta</span>
+            </button>
+          `}
         </div>
       </div>
     </div>
@@ -848,8 +869,14 @@ function directWhatsAppOrder(id) {
   const item = perfumes.find(p => p.id === id);
   if (!item) return;
 
-  const text = `👑 *CONSULTA / COMPRA - ${settings.storeName}* 👑\n\n¡Hola! He visto en vuestro catálogo web el perfume:\n• *${item.name}* (${item.brand})\n• Precio: ${item.price.toFixed(2)}${settings.currency}\n• Formato: ${item.volume}\n\nMe gustaría comprarlo. ¿Cómo coordinamos el pago y envío? ¡Muchas gracias!`;
-  const cleanPhone = settings.sellerPhone.replace(/\D/g, '');
+  const isOutOfStock = item.inStock === false;
+  let text = '';
+  if (isOutOfStock) {
+    text = `👑 *CONSULTA / ENCARGO - ${settings.storeName}* 👑\n\n¡Hola! He visto en vuestro catálogo web el perfume:\n• *${item.name}* (${item.brand})\n• Precio: ${item.price.toFixed(2)}${settings.currency}\n• Formato: ${item.volume}\n\nActualmente aparece como *Agotado*. ¿Podrías conseguírmelo por encargo o avisarme cuándo tengáis stock disponible? ¡Muchas gracias!`;
+  } else {
+    text = `👑 *CONSULTA / COMPRA - ${settings.storeName}* 👑\n\n¡Hola! He visto en vuestro catálogo web el perfume:\n• *${item.name}* (${item.brand})\n• Precio: ${item.price.toFixed(2)}${settings.currency}\n• Formato: ${item.volume}\n\nMe gustaría comprarlo. ¿Cómo coordinamos el pago y envío? ¡Muchas gracias!`;
+  }
+  const cleanPhone = (settings.sellerPhone || "+34698084329").replace(/\D/g, '');
   window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`, "_blank");
 }
 
@@ -859,6 +886,11 @@ function directWhatsAppOrder(id) {
 function addToCart(id) {
   const perfume = perfumes.find(p => p.id === id);
   if (!perfume) return;
+
+  if (perfume.inStock === false) {
+    showToast(`⚠️ "${perfume.name}" está temporalmente agotado. Puedes pedirlo por encargo por WhatsApp.`);
+    return;
+  }
 
   const existing = cart.find(item => item.id === id);
   if (existing) {
