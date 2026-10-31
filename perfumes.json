@@ -1,24 +1,5 @@
 [
   {
-    "id": "p8",
-    "name": "Yara (Pink)",
-    "brand": "Lattafa Perfumes",
-    "price": 25,
-    "oldPrice": 30,
-    "volume": "100ml - Eau de Parfum",
-    "category": "Mujer",
-    "family": "Dulce",
-    "badge": "Favorito Femenino",
-    "isNew": false,
-    "rating": 4.8,
-    "reviewsCount": 195,
-    "image": "images/yara-pink.jpg",
-    "topNotes": "Heliotropo, Orquídea salvaje, Mandarina fresca",
-    "heartNotes": "Acorde gourmand de frutas tropicales, Malvavisco",
-    "baseNotes": "Vainilla suave, Sándalo, Almizcle esponjoso",
-    "description": "Una caricia dulce y femenina. Famoso por su aroma a batido de fresas cremoso con orquídeas y vainilla suave. Extremadamente adictivo, delicado y duradero para uso diario o citas especiales."
-  },
-  {
     "id": "p7",
     "name": "9 PM",
     "brand": "Afnan",
